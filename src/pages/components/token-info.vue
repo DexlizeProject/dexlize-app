@@ -271,7 +271,7 @@ export default {
               from: this.account.name,
               to: 'tokendapppub',
               quantity: Number(this.form.buy.amount).toFixed(4) + ' EOS',
-              memo: this.token.toUpperCase() + '-referrer:godofdapppub'
+              memo: this.token.toUpperCase() + '-referrer:eosbitportal'
             }
           }]   
         }, { broadcast: true, sign: true }).then(() => {
@@ -289,7 +289,7 @@ export default {
           from: this.account.name,
           to: 'tokendapppub', 
           quantity: Number(this.form.buy.amount).toFixed(4) + ' EOS', 
-          memo: this.token.toUpperCase() + '-referrer:godofdapppub'
+          memo: this.token.toUpperCase() + '-referrer:eosbitportal'
         }, {
           authorization: `${this.account.name}@${this.account.authority}`,
           broadcast: true,
