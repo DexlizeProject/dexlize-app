@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>tokens</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="//www.googletagmanager.com/gtag/js?id=UA-124180755-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-124180755-1');
+    </script>
+    <script src="https://cdn.ravenjs.com/3.26.4/raven.min.js" crossorigin="anonymous"></script>
+    <script>
+      if (!/localhost/.test(location.host)) {
+        Raven.config('https://bca9b4fef3154bfab8284d2f1f48f6b3@sentry.io/1271738').install();
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but tokens doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+    <script src="//cdn.jsdelivr.net/npm/@widgetbot/crate@3" async>
+      if (!/localhost/.test(location.host)) {
+        new Crate({
+          server: '482077322070196225',
+          channel: '484671665419190282',
+          shard: 'https://cl1.widgetbot.io'
+        });
+      } 
+    </script>
+  </body>
+</html>

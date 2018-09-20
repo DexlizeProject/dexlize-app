@@ -1,0 +1,49 @@
+html, 
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6,
+ol, ul,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+body {
+  width: 100%;
+  font-family: Din,-apple-system,Microsoft Yahei,MicrosoftJhengHei,BlinkMacSystemFont,Segoe UI,Helvetica Neue,sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+html, 
+body {
+  height: 100%;
+}
+
+button {
+  outline: none;
+  cursor: pointer;
+}
+
+.el-dialog__header {
+  display: none;
+}
+
+@media screen and (max-width: 1280px) {
+  body {
+    width: 1280px;
+  }
+}
+
