@@ -138,7 +138,7 @@ export default {
 
 <style scoped>
 .orders {
-  flex: 1;
+  flex: 2;
   background-color: #fff;
   box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
   border: 1px solid #DBE1E8;
@@ -229,4 +229,10 @@ export default {
 .order-footer svg.disabled:hover > path {
   fill: #c0c4cc;  
 }
+
+  @media screen and (max-width: 768px){
+    .orders{
+      padding: 16px 16px;
+    }
+  }
 </style>

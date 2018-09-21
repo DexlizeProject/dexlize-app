@@ -380,11 +380,13 @@ export default {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 32px;
+    flex-wrap: wrap;
   }
 
   .token-actionbar__info {
     display: flex;
     align-items: center;
+    flex: 1;
   }
 
   .token-actionbar__info > strong {
@@ -401,6 +403,7 @@ export default {
   .token-actionbar__action {
     display: flex;
     align-items: center;
+    flex: 1;
   }
 
   .token-actionbar__action > .left {
@@ -560,6 +563,15 @@ export default {
 
   .token-actionbar >>> .el-dialog__body {
     padding: 0;
+  }
+  @media screen and (max-width: 768px){
+    .token-actionbar__info {
+      margin-bottom: 32px;
+    }
+    .token-actionbar__action .btn-group button{
+      padding: 12px 20px;
+      margin: 4px;
+    }
   }
 </style>
 
