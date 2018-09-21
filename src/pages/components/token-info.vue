@@ -572,6 +572,13 @@ export default {
       padding: 12px 20px;
       margin: 4px;
     }
+    .token-actionbar >>> .el-dialog{
+      width: 90%;
+      max-width: none;
+    }
+    .trade-body >>> input {
+      margin-bottom: 0;
+    }
   }
 </style>
 
