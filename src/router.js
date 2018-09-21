@@ -6,6 +6,10 @@ Vue.use(Router);
 export default new Router({
   mode: 'history',
   routes: [
+      {
+        path: '/',
+          redirect: '/tokens'
+      },
     {
       path: '/tokens',
       name: 'trade',
