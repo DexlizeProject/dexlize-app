@@ -13,17 +13,21 @@
 export default {
   created() {
     document.addEventListener('bitportalapi', () => {
-      window.bitportal = null
-      const account = {
-        name: data.account,
-        authority: 'active',
-        eosAccountName: data.account,
-        fromAccount: data.account,
-        signAccount: data.account,
-        signPublicKey: data.publicKey,
-        voter: data.account
-      };
-      this.$store.commit('UPDATE_ACCOUNT', account);
+      const bitportalapi = window.bitportal;
+      window.bitportal = null;
+
+      bitportalapi.getCurrentWallet().then(data => {
+        const account = {
+          name: data.account,
+          authority: 'active',
+          eosAccountName: data.account,
+          fromAccount: data.account,
+          signAccount: data.account,
+          signPublicKey: data.publicKey,
+          voter: data.account
+        };
+        this.$store.commit('UPDATE_ACCOUNT', account)
+      });
     });
   },
 

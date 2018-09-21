@@ -48,7 +48,7 @@
     methods: {
       login() {
         bitportalapi.getCurrentWallet().then(data => {
-          let account = {
+          const account = {
             name: data.account,
             authority: 'active',
             eosAccountName: data.account,
@@ -58,7 +58,7 @@
             voter: data.account
           };
           this.$store.commit('UPDATE_ACCOUNT', account)
-        })
+        });
       },
 
       logout() {

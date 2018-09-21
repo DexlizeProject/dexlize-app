@@ -50,18 +50,21 @@ import termsheetSketch from '@/assets/termsheet.png';
 export default {
   created() {
       document.addEventListener('bitportalapi', () => {
-          const bitportal = window.bitportal
-          window.bitportal = null
+        const bitportalapi = window.bitportal;
+        window.bitportal = null;
+
+        bitportalapi.getCurrentWallet().then(data => {
           const account = {
-              name: data.account,
-              authority: 'active',
-              eosAccountName: data.account,
-              fromAccount: data.account,
-              signAccount: data.account,
-              signPublicKey: data.publicKey,
-              voter: data.account
+            name: data.account,
+            authority: 'active',
+            eosAccountName: data.account,
+            fromAccount: data.account,
+            signAccount: data.account,
+            signPublicKey: data.publicKey,
+            voter: data.account
           };
-          this.$store.commit('UPDATE_ACCOUNT', account);
+          this.$store.commit('UPDATE_ACCOUNT', account)
+        });
       });
   },
 
