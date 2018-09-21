@@ -223,5 +223,12 @@ export default {
   .btn-agree:hover {
     background-color: #2e7bc4;
   }
+
+  @media screen and (max-width: 768px){
+    .container{
+      padding: 32px 16px;
+    }
+
+  }
 </style>
 

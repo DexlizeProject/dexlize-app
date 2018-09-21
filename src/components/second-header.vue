@@ -10,12 +10,12 @@
         <span>Publish</span>
       </li>
     </ul>
-    <el-tooltip
-      effect="dark" 
-      content="Comming Soon" 
-      placement="top-start">
-      <button class="btn-invite">Invite friends, earn $PUB</button>
-    </el-tooltip>
+    <!--<el-tooltip-->
+      <!--effect="dark" -->
+      <!--content="Comming Soon" -->
+      <!--placement="top-start">-->
+      <!--<button class="btn-invite">Invite friends, earn $PUB</button>-->
+    <!--</el-tooltip>-->
   </header>  
 </template>
 
@@ -79,6 +79,16 @@ export default {
 
   .btn-invite:hover {
     opacity: .9;
+  }
+
+  @media screen and (max-width: 768px){
+    .header{
+      padding: 0 16px;
+    }
+    .header > ul > li {
+      padding: 0;
+    }
+
   }
 </style>
 

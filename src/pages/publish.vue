@@ -1,7 +1,7 @@
 <template>
   <el-card>
     <header slot="header">PUBLISH TOKEN</header>
-    <el-alert 
+    <el-alert
       class="charge-tip"
       :closable="false"
       show-icon
@@ -17,101 +17,101 @@
       show-icon>
       <p>
         You need at least 100 PUB to publish your own token
-        <a 
+        <a
           @click="goCharge"
-          class="charge-link" 
+          class="charge-link"
           href="JavaScript:;">charge PUB</a>
       </p>
     </el-alert>
     <div class="token-body">
-      <el-form 
-        label-width="150px"
-        class="form">
+      <el-form
+        :label-width="labelWidth"
+        class="form publish-form-1">
         <el-form-item label="Current PUB">
           {{currentPUB}}
         </el-form-item>
         <el-form-item label="Publisher">
-          <el-input 
+          <el-input
             class="form-item__name"
             disabled
             readonly
-            v-model="account.name" /> 
-          <el-tooltip 
-            effect="dark" 
-            content="token issuer" 
+            v-model="account.name" />
+          <el-tooltip
+            effect="dark"
+            content="token issuer"
             placement="top-start">
             <i class="el-icon-question" />
-          </el-tooltip> 
-        </el-form-item> 
+          </el-tooltip>
+        </el-form-item>
         <el-form-item label="Token">
-          <el-input 
+          <el-input
             @keydown.native="transformToken"
             maxlength="7"
             minlength="5"
             type="text"
             class="form-item__token"
             placeholder="DAPPPUB"
-            v-model="form.token" /> 
-          <el-tooltip 
-            effect="dark" 
-            content="must be uppercase, length between 1~7 (include)" 
+            v-model="form.token" />
+          <el-tooltip
+            effect="dark"
+            content="must be uppercase, length between 1~7 (include)"
             placement="top-start">
             <i class="el-icon-question" />
           </el-tooltip>
         </el-form-item>
         <el-form-item label="Base">
-          <el-input 
+          <el-input
             class="form-item__base"
             type="number"
             placeholder="0.025"
             v-model="form.base">
             <template slot="append">EOS</template>
           </el-input>
-          <el-tooltip 
-            effect="dark" 
-            content="basic EOS fund pool" 
+          <el-tooltip
+            effect="dark"
+            content="basic EOS fund pool"
             placement="top-start">
             <i class="el-icon-question" />
           </el-tooltip>
         </el-form-item>
         <el-form-item label="Maximum Supply">
-          <el-input 
+          <el-input
             class="form-item__base"
             type="number"
             placeholder="1000000.0000"
             v-model="form.stake">
-            <template 
+            <template
               v-if="form.token"
               slot="append">{{form.token}}</template>
           </el-input>
-          <el-tooltip 
-            effect="dark" 
-            content="maxmiun token supply" 
+          <el-tooltip
+            effect="dark"
+            content="maxmiun token supply"
             placement="top-start">
             <i class="el-icon-question" />
           </el-tooltip>
         </el-form-item>
         <el-form-item label="Option Quantity">
-          <el-input 
+          <el-input
             class="form-item__base"
             type="number"
             placeholder="0.0000"
             v-model="form.option">
-            <template 
+            <template
               v-if="form.token"
               slot="append">{{form.token}}</template>
           </el-input>
-          <el-tooltip 
-            effect="dark" 
-            content="option amount for the token project owner" 
+          <el-tooltip
+            effect="dark"
+            content="option amount for the token project owner"
             placement="top-start">
             <i class="el-icon-question" />
           </el-tooltip>
         </el-form-item>
       </el-form>
       <el-form
-        label-width="150px"
-        class="form">
+              :label-width="labelWidth"
+        class="form publish-form-2">
         <el-form-item label="Start Time">
           <el-date-picker
             v-model="form.startTime"
@@ -120,67 +120,67 @@
           </el-date-picker>
         </el-form-item>
         <el-form-item label="Lock Period">
-          <el-input 
+          <el-input
             class="form-item__time"
             type="number"
             placeholder="1000"
             v-model="form.lockup">
             <template  slot="append">DAYS</template>
           </el-input>
-          <el-tooltip 
-            effect="dark" 
-            content="option lock period" 
+          <el-tooltip
+            effect="dark"
+            content="option lock period"
             placement="top-start">
             <i class="el-icon-question" />
           </el-tooltip>
         </el-form-item>
         <el-form-item label="Base Fee">
-          <el-input 
+          <el-input
             class="form-item__percent"
             type="number"
             placeholder="10"
             v-model="form.baseFee">
             <template slot="append">%</template>
           </el-input>
-          <el-tooltip 
-            effect="dark" 
-            content="minimum token selling fee" 
+          <el-tooltip
+            effect="dark"
+            content="minimum token selling fee"
             placement="top-start">
             <i class="el-icon-question" />
           </el-tooltip>
         </el-form-item>
         <el-form-item label="Init Fee">
-          <el-input 
+          <el-input
             class="form-item__percent"
             type="number"
             placeholder="10"
             v-model="form.initFee">
             <template slot="append">%</template>
           </el-input>
-          <el-tooltip 
-            effect="dark" 
-            content="initial token selling fee" 
+          <el-tooltip
+            effect="dark"
+            content="initial token selling fee"
             placement="top-start">
             <i class="el-icon-question" />
           </el-tooltip>
         </el-form-item>
         <el-form-item label="Referral Fee">
-          <el-input 
+          <el-input
             class="form-item__percent"
             type="float"
             placeholder="0.10"
             v-model="form.referralFee">
             <template slot="append">%</template>
           </el-input>
-          <el-tooltip 
-            effect="dark" 
-            content="referral fee" 
+          <el-tooltip
+            effect="dark"
+            content="referral fee"
             placement="top-start">
             <i class="el-icon-question" />
           </el-tooltip>
         </el-form-item>
         <el-form-item>
-          <el-button 
+          <el-button
             :loading="loading"
             :disabled="formDisabled()"
             @click="publish"
@@ -242,7 +242,11 @@
         }
         length = this.form.token.length
         return length <= 3 ? 100 * Math.pow(10, 4-length) : 100;
-      }
+      },
+       labelWidth() {
+          console.log(screen.width)
+          return window.screen.width <= 768 ? 'auto' : '150px';
+        }
     },
     methods: {
       getBalance() {
@@ -270,7 +274,7 @@
       },
 
       transformToken(e) {
-        const { key } = e; 
+        const { key } = e;
         if (key.length > 1) return;
         e.preventDefault();
         if (this.form.token.length === 7) return;
@@ -279,7 +283,7 @@
 
       goCharge() {
         this.$router.push({ name: 'trade', query: { token: 'PUB' } });
-      }, 
+      },
 
       needCharge() {
         return !this.currentPUB || this.currentPUB.match(/(.+)?\s|$/)[1] < 100;
@@ -297,9 +301,9 @@
           contract.newtoken({
             from: this.account.name,
             base_eos_quantity: Number(this.form.base).toFixed(4) + ' EOS',
-            maximum_stake: Number(this.form.stake).toFixed(4) + ' ' + this.form.token, 
+            maximum_stake: Number(this.form.stake).toFixed(4) + ' ' + this.form.token,
             option_quantity: Number(this.form.option).toFixed(4) + ' ' + this.form.token,
-            lock_up_period: +this.form.lockup * 86400, 
+            lock_up_period: +this.form.lockup * 86400,
             base_fee_percent: +this.form.baseFee,
             init_fee_percent: +this.form.initFee,
             refer_fee: Number(+this.form.referralFee * 100).toFixed(0),
@@ -349,10 +353,19 @@
 
   .token-body {
     display: flex;
+    flex-wrap: wrap;
+  }
+
+  .publish-form-1{
+    flex: 1;
+  }
+
+  .publish-form-2{
+    flex: 1;
   }
 
   .charge-link {
-    color: #589EF8;    
+    color: #589EF8;
   }
 
   .chart-link:hover {
@@ -361,5 +374,10 @@
 
   .charge-tip {
     margin-bottom: 30px;
+  }
+  @media screen and (max-width: 768px){
+    .publish-form-1 label, .publish-form-2 label{
+        width: auto !important;
+    }
   }
 </style>

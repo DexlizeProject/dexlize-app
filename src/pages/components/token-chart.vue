@@ -127,4 +127,10 @@ export default {
 .token-filter > li:hover {
   color: #4e5c6e;
 }
+
+  @media screen and (max-width: 768px){
+    .token-chart > header {
+      padding: 16px 16px;
+    }
+  }
 </style>

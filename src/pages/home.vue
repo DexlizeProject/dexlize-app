@@ -118,6 +118,7 @@ export default {
   .bottom-container {
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
   }
 </style>
 

@@ -194,6 +194,7 @@ export default {
   border-radius: 6px;
   padding: 24px 32px 16px;
   margin-right: 30px;
+  flex:1;
 }
 
 .token-about > header {
@@ -253,5 +254,13 @@ export default {
 .social-list > li > a:hover {
   opacity: .5;
 }
+
+  @media screen and (max-width: 768px){
+    .token-about{
+      padding: 16px 16px;
+      margin-right: 0;
+      margin-bottom: 32px;
+    }
+  }
 </style>
 
