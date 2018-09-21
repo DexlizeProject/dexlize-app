@@ -404,6 +404,7 @@ export default {
     display: flex;
     align-items: center;
     flex: 1;
+      justify-content: flex-end;
   }
 
   .token-actionbar__action > .left {
@@ -569,7 +570,8 @@ export default {
       margin-bottom: 32px;
     }
     .token-actionbar__action .btn-group button{
-      padding: 12px 20px;
+        border-radius: 4px;
+        padding: 12px 20px;
       margin: 4px;
     }
     .token-actionbar >>> .el-dialog{
