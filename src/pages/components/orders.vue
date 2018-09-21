@@ -144,7 +144,8 @@ export default {
   border: 1px solid #DBE1E8;
   border-radius: 6px;
   padding: 24px 32px 16px;
-  min-width: 0;
+    min-width: 300px;
+
 }
 
 .orders > header {
