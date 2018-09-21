@@ -10,12 +10,6 @@
         <span>Publish</span>
       </li>
     </ul>
-    <!--<el-tooltip-->
-      <!--effect="dark" -->
-      <!--content="Comming Soon" -->
-      <!--placement="top-start">-->
-      <!--<button class="btn-invite">Invite friends, earn $PUB</button>-->
-    <!--</el-tooltip>-->
   </header>  
 </template>
 

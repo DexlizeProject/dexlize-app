@@ -2,30 +2,40 @@
   <header class="header">
     <p class="logo-text">token</p>
     <div>
-      <font-awesome-icon 
+      <font-awesome-icon
         class="icon-search"
         @click="showSearch = true"
         icon="search-dollar" />
-      <div 
+      <div
         class="header-account"
         v-if="account.name">
-        <p>{{account.name}}</p> 
-        <font-awesome-icon 
+        <p>{{account.name}}</p>
+        <font-awesome-icon
           @click="logout"
           icon="sign-out-alt" />
       </div>
-      <p 
+      <p
         class="login-link"
         @click="login"
         v-else>Login</p>
     </div>
     <el-dialog :visible.sync="showSearch">
-      <input 
+      <input
         v-model="keyword"
         @keydown.13="search"
         placeholder="Enter token name, ie: PUB"
         class="search-input" />
     </el-dialog>
+    <ul>
+      <li @click="navigateTo('trade')">
+        <font-awesome-icon icon="wallet" />
+        <span>Token</span>
+      </li>
+      <li @click="navigateTo('publish')">
+        <font-awesome-icon icon="dollar-sign" />
+        <span>Publish</span>
+      </li>
+    </ul>
   </header>
 </template>
 
@@ -91,7 +101,14 @@
         }).then(({ rows }) => {
           return rows.length;
         });
-      }
+      },
+
+        navigateTo(route) {
+            const { name } = this.$route;
+            if (name === route) return;
+            const { token } = this.$route.query;
+            this.$router.push({ name: route, query: { token } });
+        }
     },
 
     computed: {
@@ -116,7 +133,7 @@
   justify-content: space-between;
   background-color: #2968C9;
   padding: 0 100px;
-  height: 70px; 
+  height: 70px;
   box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
   color: #fff;
 }
@@ -146,14 +163,14 @@
 }
 
 .login-link:hover {
-  cursor: pointer; 
+  cursor: pointer;
   text-shadow: 0 0 5px #fff;
 }
 
 .icon-search {
   margin-right: 60px;
   cursor: pointer;
-  transition: transform ease 400ms; 
+  transition: transform ease 400ms;
 }
 
 .icon-search:hover {
@@ -171,9 +188,44 @@
   border: none;
 }
 
+.header {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 100px;
+}
+
+.header > ul {
+  display: flex;
+  align-items: center;
+}
+
+.header > ul > li {
+  cursor: pointer;
+  color: #8699B6;
+  line-height: 64px;
+  margin-right: 30px;
+  font-weight: 500;
+  padding: 0 15px;
+}
+
+.header > ul > li:hover {
+  border-bottom: 1px solid #2968C9;
+}
+
+.header > ul > li > span {
+  margin-left: 10px;
+}
+
   @media screen and (max-width: 768px){
     .header{
       padding: 0 16px;
+
+    }
+    .header > ul > li {
+      padding: 0;
     }
   }
 </style>
