@@ -1,7 +1,7 @@
 <template>
   <div>
-    <token-info /> 
-    <token-chart /> 
+    <token-info />
+    <token-chart />
     <div class="bottom-container">
       <token-about />
       <token-orders />
@@ -12,10 +12,17 @@
 <script>
 export default {
   created() {
-    document.addEventListener('scatterLoaded', () => {
-      if (!scatter.identity) return;
-      const account = scatter.identity.accounts.find(account => account.blockchain === 'eos');
-      if (!account) return;
+    document.addEventListener('bitportalapi', () => {
+      window.bitportal = null
+      const account = {
+        name: data.account,
+        authority: 'active',
+        eosAccountName: data.account,
+        fromAccount: data.account,
+        signAccount: data.account,
+        signPublicKey: data.publicKey,
+        voter: data.account
+      };
       this.$store.commit('UPDATE_ACCOUNT', account);
     });
   },
@@ -67,7 +74,7 @@ export default {
   }
 
   .token-filter {
-    display: flex; 
+    display: flex;
     align-items: center;
     margin-bottom: 15px;
   }
@@ -82,7 +89,7 @@ export default {
   }
 
   .order-filter {
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
@@ -105,7 +112,7 @@ export default {
   }
 
   .bottom-container {
-    display: flex;      
+    display: flex;
     align-items: flex-start;
   }
 </style>

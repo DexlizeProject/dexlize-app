@@ -47,22 +47,25 @@
 
     methods: {
       login() {
-        scatter.getIdentity({
-          accounts: [network]
-        }).then(() => {
-          const account = scatter.identity.accounts.find(account => account.blockchain === 'eos');
-          if (!account) return;
-          this.$store.commit('UPDATE_ACCOUNT', account);
-        }).catch(e => {
-          this.$message.warning(e.message);
-        });
+        bitportalapi.getCurrentWallet().then(data => {
+          let account = {
+            name: data.account,
+            authority: 'active',
+            eosAccountName: data.account,
+            fromAccount: data.account,
+            signAccount: data.account,
+            signPublicKey: data.publicKey,
+            voter: data.account
+          };
+          this.$store.commit('UPDATE_ACCOUNT', account)
+        })
       },
 
       logout() {
         scatter.forgetIdentity().then(() => {
           this.$message.success('User logout success');
           this.$store.commit('UPDATE_ACCOUNT', {});
-        }); 
+        });
       },
 
       search() {
@@ -83,7 +86,7 @@
         return api.getTableRows({
           json: true,
           code: 'tokendapppub',
-          scope: token.toUpperCase(), 
+          scope: token.toUpperCase(),
           table: 'games'
         }).then(({ rows }) => {
           return rows.length;
