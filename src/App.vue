@@ -1,7 +1,6 @@
 <template>
   <main id="app">
     <token-banner />
-    <!--<token-second-header />-->
     <el-dialog
       class="termsheet-dialog"
       :close-on-press-escape="false"
@@ -49,19 +48,23 @@ import termsheetSketch from '@/assets/termsheet.png';
 
 export default {
   created() {
-      document.addEventListener('bitportalapi', () => {
-        const bitportalapi = window.bitportal;
-        window.bitportal = null;
+      document.addEventListener('scatterLoaded', () => {
+        if (!scatter.identity) return;
+        const account = scatter.identity.accounts.find(account => account.blockchain === 'eos');
+        if (!account) return;
+        this.$store.commit('UPDATE_ACCOUNT', account);
+      });
 
-        bitportalapi.getCurrentWallet().then(data => {
+      document.addEventListener('bitportalapi', () => {
+        const bitportal = window.bitportal;
+        window.bitportal = null;
+        
+        bitportal.getCurrentWallet().then(data => {
           const account = {
             name: data.account,
-            authority: 'active',
-            eosAccountName: data.account,
-            fromAccount: data.account,
-            signAccount: data.account,
-            signPublicKey: data.publicKey,
-            voter: data.account
+            authority: data.permission,
+            publicKey: data.publicKey,
+            bitportal
           };
           this.$store.commit('UPDATE_ACCOUNT', account)
         });
@@ -230,4 +233,3 @@ export default {
 
   }
 </style>
-

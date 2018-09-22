@@ -206,110 +206,208 @@ export default {
       }); 
     },
     buy() {
-      const eos = scatter.eos(network, Eos, {});
-      this.loading = true;
-      if (!this.balance) {
-        eos.transaction({
-          actions: [{
-            account: 'tokendapppub',
-            name: 'reg',
-            authorization: [{
-              actor: this.account.name,
-              permission: this.account.authority
-            }],
-            data: {
-              from: this.account.name, 
-              memo: this.token.toUpperCase()
-            }
+      if (this.account.bitportal) {
+        this.loading = true;
+        if (!this.balance) {
+          this.account.bitportal.pushEOSAction({
+            actions: [{
+              account: 'tokendapppub',
+              name: 'reg',
+              authorization: [{
+                actor: this.account.name,
+                permission: this.account.authority
+              }],
+              data: {
+                from: this.account.name, 
+                memo: this.token.toUpperCase()
+              }
+            }, {
+              account: 'eosio.token', 
+              name: 'transfer',
+              authorization: [{
+                actor: this.account.name,
+                permission: this.account.authority
+              }],
+              data: {
+                from: this.account.name,
+                to: 'tokendapppub',
+                quantity: Number(this.form.buy.amount).toFixed(4) + ' EOS',
+                memo: this.token.toUpperCase() + '-referrer:eosbitportal'
+              }
+            }]
+          }).then(() => {
+            this.$notify.success('Token exchange success');
+            this.loading = false;
+            this.dialog.buy = false;
+            this.getBalance();
+          }).catch(e => {
+            this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
+            this.loading = false;
+            this.dialog.buy = false;
+          })
+        } else {
+          this.account.bitportal.transferEOSAsset({
+            from: this.account.name,
+            to: 'tokendapppub', 
+            symbol: 'EOS',
+            precision: 4,
+            contract: 'eosio.token',
+            amount: this.form.buy.amount,
+            memo: this.token.toUpperCase() + '-referrer:eosbitportal'
+          }).then(() => {
+            this.$notify.success('Token exchange success');
+            this.getBalance();
+            this.dialog.buy = false;
+            this.loading = false;
+          }).catch(e => {
+            this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
+            this.loading = false;
+            this.dialog.buy = false;
+          });
+        }
+      } else if (scatter) {
+        const eos = scatter.eos(network, Eos, {});
+        this.loading = true;
+        if (!this.balance) {
+          eos.transaction({
+            actions: [{
+              account: 'tokendapppub',
+              name: 'reg',
+              authorization: [{
+                actor: this.account.name,
+                permission: this.account.authority
+              }],
+              data: {
+                from: this.account.name, 
+                memo: this.token.toUpperCase()
+              }
+            }, {
+              account: 'eosio.token', 
+              name: 'transfer',
+              authorization: [{
+                actor: this.account.name,
+                permission: this.account.authority
+              }],
+              data: {
+                from: this.account.name,
+                to: 'tokendapppub',
+                quantity: Number(this.form.buy.amount).toFixed(4) + ' EOS',
+                memo: this.token.toUpperCase() + '-referrer:eosbitportal'
+              }
+            }]   
+          }, { broadcast: true, sign: true }).then(() => {
+            this.$notify.success('Token exchange success');
+            this.loading = false;
+            this.dialog.buy = false;
+            this.getBalance();
+          }).catch(e => {
+            this.loading = false;
+            this.dialog.buy = false;
+            this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
+          });
+        } else {
+          eos.transfer({
+            from: this.account.name,
+            to: 'tokendapppub', 
+            quantity: Number(this.form.buy.amount).toFixed(4) + ' EOS', 
+            memo: this.token.toUpperCase() + '-referrer:eosbitportal'
           }, {
-            account: 'eosio.token', 
-            name: 'transfer',
-            authorization: [{
-              actor: this.account.name,
-              permission: this.account.authority
-            }],
-            data: {
-              from: this.account.name,
-              to: 'tokendapppub',
-              quantity: Number(this.form.buy.amount).toFixed(4) + ' EOS',
-              memo: this.token.toUpperCase() + '-referrer:eosbitportal'
-            }
-          }]   
-        }, { broadcast: true, sign: true }).then(() => {
-          this.$notify.success('Token exchange success');
-          this.loading = false;
-          this.dialog.buy = false;
-          this.getBalance();
-        }).catch(e => {
-          this.loading = false;
-          this.dialog.buy = false;
-          this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
-        });
-      } else {
-        eos.transfer({
-          from: this.account.name,
-          to: 'tokendapppub', 
-          quantity: Number(this.form.buy.amount).toFixed(4) + ' EOS', 
-          memo: this.token.toUpperCase() + '-referrer:eosbitportal'
-        }, {
-          authorization: `${this.account.name}@${this.account.authority}`,
-          broadcast: true,
-          sign :true
-        }).then(() => {
-          this.$notify.success('Token exchange success');
-          this.getBalance();
-          this.dialog.buy = false;
-          this.loading = false;
-        }).catch(e => {
-          this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
-          this.loading = false;
-          this.dialog.buy = false;
-        });
+            authorization: `${this.account.name}@${this.account.authority}`,
+            broadcast: true,
+            sign :true
+          }).then(() => {
+            this.$notify.success('Token exchange success');
+            this.getBalance();
+            this.dialog.buy = false;
+            this.loading = false;
+          }).catch(e => {
+            this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
+            this.loading = false;
+            this.dialog.buy = false;
+          });
+        }
       }
     },
     sell() {
-      const eos = scatter.eos(network, Eos, {});
-      const options = {
-        authorization: `${this.account.name}@${this.account.authority}`,
-        broadcast: true,
-        sign :true
-      };
-      this.loading = true;
-      eos.contract('tokendapppub', options).then(contract => {
+      if (this.account.bitportal) {
         const raw = this.balance.match(/[\d\.]+/)[0].split('.')[1] || '';
         const decimals = raw.length;
-        contract.sell({
-          from: this.account.name, 
-          quantity: Number(this.form.sell.amount).toFixed(decimals) + ` ${this.token.toUpperCase()}`  
-        }, options).then(() => {
+        this.loading = true;
+        this.account.bitportal.pushEOSAction({
+          actions: [
+            {
+              account: 'tokendapppub',
+              name: 'sell',
+              authorization: [{
+                actor: this.account.name,
+                permission: this.account.authority
+              }],
+              data: {
+                from: this.account.name,
+                quantity: Number(this.form.sell.amount).toFixed(decimals) + ` ${this.token.toUpperCase()}`
+              }
+            }
+          ]
+        }).then(() => {
           this.$notify.success({ message: 'Token exchange success' });
           this.loading = false;
           this.dialog.sell = false;
-          this.getBalance();   
+          this.getBalance();  
         }).catch(e => {
           this.loading = false;
           this.dialog.sell = false;
           this.$notify.error({ title: 'Failure', message: e.message || JSON.parse(e).error.details[0].message });
+        })
+      } else if (scatter) {
+        const eos = scatter.eos(network, Eos, {});
+        const options = {
+          authorization: `${this.account.name}@${this.account.authority}`,
+          broadcast: true,
+          sign :true
+        };
+        this.loading = true;
+        eos.contract('tokendapppub', options).then(contract => {
+          const raw = this.balance.match(/[\d\.]+/)[0].split('.')[1] || '';
+          const decimals = raw.length;
+          contract.sell({
+            from: this.account.name, 
+            quantity: Number(this.form.sell.amount).toFixed(decimals) + ` ${this.token.toUpperCase()}`  
+          }, options).then(() => {
+            this.$notify.success({ message: 'Token exchange success' });
+            this.loading = false;
+            this.dialog.sell = false;
+            this.getBalance();   
+          }).catch(e => {
+            this.loading = false;
+            this.dialog.sell = false;
+            this.$notify.error({ title: 'Failure', message: e.message || JSON.parse(e).error.details[0].message });
+          });
         });
-      });
+      }
     },
     transfer() {
-      const eos = scatter.eos(network, Eos, {});
-      const options = {
-        authorization: `${this.account.name}@${this.account.authority}`,
-        broadcast: true,
-        sign :true
-      };
-      const raw = this.balance.match(/[\d\.]+/)[0].split('.')[1] || '';
-      const decimals = raw.length;
-      this.loading = true;
-      eos.contract('tokendapppub', options).then(contract => {
-        contract.transfer({
-          from: this.account.name, 
-          to: this.form.transfer.to,
-          quantity: Number(this.form.transfer.amount).toFixed(decimals) + ` ${this.token.toUpperCase()}`,
-          memo: this.token.toUpperCase() 
-        }, options).then(() => {
+      if (this.account.bitportal) {
+        const raw = this.balance.match(/[\d\.]+/)[0].split('.')[1] || '';
+        const decimals = raw.length;
+        this.loading = true;
+        this.account.bitportal.pushEOSAction({
+          actions: [
+            {
+              account: 'tokendapppub',
+              name: 'transfer',
+              authorization: [{
+                actor: this.account.name,
+                permission: this.account.authority
+              }],
+              data: {
+                from: this.account.name, 
+                to: this.form.transfer.to,
+                quantity: Number(this.form.transfer.amount).toFixed(decimals) + ` ${this.token.toUpperCase()}`,
+                memo: this.token.toUpperCase() 
+              }
+            }
+          ]
+        }).then(() => {
           this.$notify.success({ message: 'Token exchange success' });
           this.loading = false;
           this.dialog.transfer = false;
@@ -319,7 +417,34 @@ export default {
           this.loading = false;
           this.dialog.transfer = false;
         });
-      });
+      } else if (scatter) {
+        const eos = scatter.eos(network, Eos, {});
+        const options = {
+          authorization: `${this.account.name}@${this.account.authority}`,
+          broadcast: true,
+          sign :true
+        };
+        const raw = this.balance.match(/[\d\.]+/)[0].split('.')[1] || '';
+        const decimals = raw.length;
+        this.loading = true;
+        eos.contract('tokendapppub', options).then(contract => {
+          contract.transfer({
+            from: this.account.name, 
+            to: this.form.transfer.to,
+            quantity: Number(this.form.transfer.amount).toFixed(decimals) + ` ${this.token.toUpperCase()}`,
+            memo: this.token.toUpperCase() 
+          }, options).then(() => {
+            this.$notify.success({ message: 'Token exchange success' });
+            this.loading = false;
+            this.dialog.transfer = false;
+            this.getBalance();
+          }).catch(e => {
+            this.$notify.error({ title: 'Failure', message: e.message || JSON.parse(e).error.details[0].message });
+            this.loading = false;
+            this.dialog.transfer = false;
+          });
+        });
+      }
     }
   },
 
