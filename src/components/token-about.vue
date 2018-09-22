@@ -238,7 +238,7 @@ export default {
 
 .about-list > li > span {
   font-size: 12px;
-  color: #000;
+  color: #2f2f2f;
   line-height: 1.5;
   font-weight: 500;
 }
