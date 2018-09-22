@@ -152,7 +152,7 @@
     padding: 25px 16px 0;
     height: 220px;
     background-size: 100%;
-    background-image: url('/static/banner-bg.png');
+    background-image: url('/static/img/banner-bg.png');
     background-repeat: no-repeat;
   }
 
