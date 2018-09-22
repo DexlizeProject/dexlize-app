@@ -4,7 +4,7 @@
       <img src="/static/img/banner-logo.png" class="banner-logo"/>
       <div class="banner-options">
         <div class="banner-option">
-          <button class="banner-option-btn" @click="showTokenList = !showTokenList">PUB <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
+          <button class="banner-option-btn" @click="showTokenList = !showTokenList"><div class="blue-circle"></div> PUB <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
         </div>
         <div class="banner-option">
           <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">About PUB</button>
@@ -287,6 +287,7 @@
     margin-left: 10px;
     color: rgba(0,0,0,.5);
   }
+
   @media screen and (max-width: 768px){
     .token-banner > ul > li {
       padding: 0;

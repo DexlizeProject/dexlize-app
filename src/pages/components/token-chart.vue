@@ -1,8 +1,11 @@
 <template>
   <section class="token-chart card">
-    <header>
-      <div>
-      </div>
+    <div class="token-chart-info">
+      <div class="token-chart-title"><div class="blue-circle"></div> PUB - EOS</div>
+      <div class="token-chart-price">Current Price: 0.2274 EOS</div>
+      <div class="token-chart-price">EOS Pool: 23,762.1152(2.38%)</div>
+    </div>
+    <!--<header>-->
       <ul class="token-filter">
         <li 
           @click="changeInterval('1m')"
@@ -14,7 +17,7 @@
           @click="changeInterval('1d')"
           :class="{ 'active': this.interval === '1d' }">1D</li>
       </ul> 
-    </header>
+    <!--</header>-->
     <div ref="chart"></div>
   </section>
 </template>
@@ -79,6 +82,11 @@ export default {
 <style scoped>
 .token-chart {
   margin-bottom: 30px;
+  padding: 0;
+}
+
+.token-chart-info{
+  padding: 15px 20px 8px;
 }
 
 .token-chart > header {
@@ -103,9 +111,21 @@ export default {
   font-size: 3em;
 }
 
+
+.token-chart-title{
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.token-chart-price{
+  font-size: 12px;
+  margin-bottom: 5px;
+}
 .token-filter {
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .token-filter > li {
