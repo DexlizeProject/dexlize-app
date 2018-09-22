@@ -19,6 +19,7 @@ body {
   width: 100%;
   font-family: Din,-apple-system,Microsoft Yahei,MicrosoftJhengHei,BlinkMacSystemFont,Segoe UI,Helvetica Neue,sans-serif;
   font-size: 16px;
+  background: #f4f4f4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -39,6 +40,34 @@ button {
 
 .el-dialog__header {
   display: none;
+}
+
+.card-header{
+  height: 50px;
+  line-height: 50px;
+  display: flex;
+}
+
+.card{
+  border-radius: 5px;
+  padding: 20px 20px;
+  background: #fff;
+  margin: 32px auto;
+}
+
+.card-nav{
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(0,0,0,.5);
+}
+
+.card-nav.active{
+  border-bottom: 1px solid red;
+}
+
+.router-container{
+  margin-top: -142px;
 }
 
 @media screen and (max-width: 1280px) {

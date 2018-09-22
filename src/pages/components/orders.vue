@@ -1,6 +1,25 @@
 <template>
-  <section class="orders">
-    <header>Orders</header>
+  <section class="orders card">
+    <div class="card-header">
+        <div class="card-nav">My Orders</div>
+        <div class="card-nav">All Market Orders</div>
+    </div>
+      <table class="my-orders-table">
+          <thead>
+          <tr>
+              <th>Time</th>
+              <th>Account</th>
+              <th>EOS/PUB</th>
+              <th>Price(EOS/PUB)</th>
+          </tr>
+          <tr v-for="row in orders">
+              <td>{{dateFormatter(row)}}</td>
+              <td>{{row.account_name}}<br>{{row.is_buy_type ? 'buy' : 'sell'}}</td>
+              <td></td>
+              <td>{{priceFormatter(row)}} <a :href="`//eospark.com/MainNet/tx/${row.trx_id}`">Action</a></td>
+          </tr>
+          </thead>
+      </table>
     <el-table
       class="table"
       border
@@ -16,6 +35,7 @@
             disable-transitions>{{scope.row.is_buy_type ? 'buy' : 'sell'}}</el-tag>
         </template>
       </el-table-column>
+      <el-table-column prop="time" label="Time" :formatter="dateFormatter" />
       <el-table-column
         prop="account_name"
         label="Account" />
@@ -30,10 +50,7 @@
         prop="price"
         label="price" 
         :formatter="priceFormatter" />
-      <el-table-column
-        prop="time"
-        label="Time" 
-        :formatter="dateFormatter" />
+
       <el-table-column
         label="Action">
         <template slot-scope="scope">
@@ -90,7 +107,6 @@ export default {
       this.fetchOrders();
     }
   },
-
   methods: {
     search() {
       this.$route.query.token = this.keyword;
@@ -118,7 +134,7 @@ export default {
     },
 
     priceFormatter({ price }) {
-      return price ? price.toFixed(8) + ` EOS / ${this.token.toUpperCase()}` : '-';
+      return price ? price.toFixed(6) : '-';
     },
 
     prevPage() {
@@ -139,13 +155,11 @@ export default {
 <style scoped>
 .orders {
   flex: 2;
-  background-color: #fff;
-  box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
-  border: 1px solid #DBE1E8;
-  border-radius: 6px;
-  padding: 24px 32px 16px;
     min-width: 300px;
+}
 
+.my-orders-table{
+    width: 100%;
 }
 
 .orders > header {
@@ -232,8 +246,6 @@ export default {
 }
 
   @media screen and (max-width: 768px){
-    .orders{
-      padding: 16px 16px;
-    }
+
   }
 </style>

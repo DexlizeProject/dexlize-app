@@ -1,23 +1,29 @@
 <template>
-  <header class="header">
-    <p class="logo-text">token</p>
+  <div class="token-banner">
     <div>
-      <font-awesome-icon
-        class="icon-search"
-        @click="showSearch = true"
-        icon="search-dollar" />
-      <div
-        class="header-account"
-        v-if="account.name">
-        <p>{{account.name}}</p>
-        <font-awesome-icon
-          @click="logout"
-          icon="sign-out-alt" />
-      </div>
-      <p
-        class="login-link"
-        @click="login"
-        v-else>Login</p>
+        <img src="/static/img/banner-logo.png" class="banner-logo"/>
+        <div class="banner-options">
+            <div class="banner-option">
+                <button class="banner-option-btn">PUB</button>
+            </div>
+            <div class="banner-option">
+                <button class="banner-option-btn">About PUB</button>
+            </div>
+            <div class="banner-option">
+                <button
+                        class="header-account banner-option-btn"
+                        v-if="account.name">
+                    <p>{{account.name}}</p>
+                    <font-awesome-icon
+                            @click="logout"
+                            icon="sign-out-alt" />
+                </button>
+                <button
+                        class="login-link banner-option-btn"
+                        @click="login"
+                        v-else>Login</button>
+            </div>
+        </div>
     </div>
     <el-dialog :visible.sync="showSearch">
       <input
@@ -26,17 +32,17 @@
         placeholder="Enter token name, ie: PUB"
         class="search-input" />
     </el-dialog>
-    <ul>
-      <li @click="navigateTo('trade')">
-        <font-awesome-icon icon="wallet" />
-        <span>Token</span>
-      </li>
-      <li @click="navigateTo('publish')">
-        <font-awesome-icon icon="dollar-sign" />
-        <span>Publish</span>
-      </li>
-    </ul>
-  </header>
+    <!--<ul>-->
+      <!--<li @click="navigateTo('trade')">-->
+        <!--<font-awesome-icon icon="wallet" />-->
+        <!--<span>Token</span>-->
+      <!--</li>-->
+      <!--<li @click="navigateTo('publish')">-->
+        <!--<font-awesome-icon icon="dollar-sign" />-->
+        <!--<span>Publish</span>-->
+      <!--</li>-->
+    <!--</ul>-->
+  </div>
 </template>
 
 <script>
@@ -127,26 +133,39 @@
 </script>
 
 <style scoped>
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #2968C9;
-  padding: 0 100px;
-  height: 70px;
-  box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
-  color: #fff;
+.token-banner {
+    padding: 25px 16px 0;
+  height: 220px;
+    background-size: 100%;
+    background-image: url('/static/banner-bg.png');
+    background-repeat: no-repeat;
 }
 
-.header > div {
-  display: flex;
-  align-items: center;
+.banner-options{
+    display: flex;
 }
 
-.logo-text {
-  font-weight: 600;
-  font-size: 1.4em;
-  letter-spacing: 1px;
+.banner-option{
+    flex: 1;
+}
+
+.banner-option-btn{
+    width: 95%;
+    height: 40px;
+    line-height: 40px;
+    margin:0 auto;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 0;
+}
+
+.banner-logo{
+    width: 126px;
+    height: 23px;
+    margin: 0 auto 25px;
+    display: block;
 }
 
 .header-account {
@@ -188,21 +207,13 @@
   border: none;
 }
 
-.header {
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  padding: 0 100px;
-}
 
-.header > ul {
+.token-banner > ul {
   display: flex;
   align-items: center;
 }
 
-.header > ul > li {
+.token-banner > ul > li {
   cursor: pointer;
   color: #8699B6;
   line-height: 64px;
@@ -211,20 +222,16 @@
   padding: 0 15px;
 }
 
-.header > ul > li:hover {
+.token-banner > ul > li:hover {
   border-bottom: 1px solid #2968C9;
 }
 
-.header > ul > li > span {
+.token-banner > ul > li > span {
   margin-left: 10px;
 }
 
   @media screen and (max-width: 768px){
-    .header{
-      padding: 0 16px;
-
-    }
-    .header > ul > li {
+    .token-banner > ul > li {
       padding: 0;
     }
   }

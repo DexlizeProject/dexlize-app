@@ -1,11 +1,9 @@
 <template>
   <div>
-    <token-info />
     <token-chart />
-    <div class="bottom-container">
-      <token-about />
-      <token-orders />
-    </div>
+    <token-info />
+    <token-orders />
+    <token-about />
   </div>
 </template>
 
@@ -113,12 +111,6 @@ export default {
 
   .username-input {
     margin-right: 15px;
-  }
-
-  .bottom-container {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
   }
 </style>
 

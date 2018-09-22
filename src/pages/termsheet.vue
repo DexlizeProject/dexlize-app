@@ -27,9 +27,8 @@ export default {
 <style scoped>
 .termsheet {
   background-color: #fff;
-  box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
   border: 1px solid #DBE1E8;
-  border-radius: 6px;
+  border-radius: 5px;
   padding: 24px 32px 150px 32px;
 } 
 

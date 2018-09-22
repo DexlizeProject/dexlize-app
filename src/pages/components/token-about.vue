@@ -1,6 +1,8 @@
 <template>
-  <section class="token-about">
-    <header>About {{token.toUpperCase()}}</header> 
+  <section class="token-about card">
+    <div class="card-header">
+      <div class="card-nav">About {{token.toUpperCase()}}</div>
+    </div>
     <ul class="about-list">
       <li>
         <label>Publisher</label>
@@ -35,35 +37,35 @@
         <span>{{rangeFormat(about.lock_up_period)}}</span>
       </li>
     </ul> 
-    <ul 
-      v-if="social"
-      class="social-list">
-      <li @click="openTab(social.website)">
-        <el-tooltip
-          effect="dark" 
-          content="Website" 
-          placement="top-start">
-          <font-awesome-icon icon="home" />
-        </el-tooltip>
-      </li>
-      <li @click="openTab(social.community)">
-        <el-tooltip
-          effect="dark" 
-          content="Community" 
-          placement="top-start">
-          <font-awesome-icon icon="comments" />
-        </el-tooltip>
-      </li>
-      <li @click="openTab(social.social)">
-        <font-awesome-icon :icon="['fab', 'twitter']" />
-      </li>
-      <li @click="openTab(social.medium)">
-        <font-awesome-icon :icon="['fab', 'medium-m']" />
-      </li>
-      <li @click="openTab(social.github)">
-        <font-awesome-icon :icon="['fab',  'github']" />
-      </li>
-    </ul>
+    <!--<ul -->
+      <!--v-if="social"-->
+      <!--class="social-list">-->
+      <!--<li @click="openTab(social.website)">-->
+        <!--<el-tooltip-->
+          <!--effect="dark" -->
+          <!--content="Website" -->
+          <!--placement="top-start">-->
+          <!--<font-awesome-icon icon="home" />-->
+        <!--</el-tooltip>-->
+      <!--</li>-->
+      <!--<li @click="openTab(social.community)">-->
+        <!--<el-tooltip-->
+          <!--effect="dark" -->
+          <!--content="Community" -->
+          <!--placement="top-start">-->
+          <!--<font-awesome-icon icon="comments" />-->
+        <!--</el-tooltip>-->
+      <!--</li>-->
+      <!--<li @click="openTab(social.social)">-->
+        <!--<font-awesome-icon :icon="['fab', 'twitter']" />-->
+      <!--</li>-->
+      <!--<li @click="openTab(social.medium)">-->
+        <!--<font-awesome-icon :icon="['fab', 'medium-m']" />-->
+      <!--</li>-->
+      <!--<li @click="openTab(social.github)">-->
+        <!--<font-awesome-icon :icon="['fab',  'github']" />-->
+      <!--</li>-->
+    <!--</ul>-->
   </section> 
 </template>
 
@@ -188,13 +190,14 @@ export default {
 
 <style scoped>
 .token-about {
-  background-color: #fff;
-  box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
-  border: 1px solid #DBE1E8;
-  border-radius: 6px;
-  padding: 24px 32px 16px;
+  padding-top: 0;
   margin-right: 30px;
   flex:1;
+}
+
+.token-about .card-nav{
+  text-align: left;
+  border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
 .token-about > header {
@@ -208,16 +211,19 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 15px;
   margin-bottom: 15px;
 }
 
 .about-list > li > label {
-  color: #2968C9;
+  color: rgba(0,0,0,.5);
   margin-right: 100px;
+  font-size: 12px;
 }
 
 .about-list > li > span {
-  color: rgb(78, 92, 110);
+  font-size: 12px;
+  color: #000;
   line-height: 1.5;
   font-weight: 500;
 }
@@ -227,10 +233,10 @@ export default {
   margin-bottom: 15px;
 }
 
-.social-list {
-  display: flex;
-  margin-top: 100px;
-}
+/*.social-list {*/
+  /*display: flex;*/
+  /*margin-top: 100px;*/
+/*}*/
 
 .social-list > li {
   margin-right: 30px;
@@ -257,7 +263,6 @@ export default {
 
   @media screen and (max-width: 768px){
     .token-about{
-      padding: 16px 16px;
       margin-right: 0;
       margin-bottom: 32px;
     }

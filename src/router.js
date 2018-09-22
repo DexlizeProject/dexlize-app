@@ -15,11 +15,11 @@ export default new Router({
       name: 'trade',
       component: require('@/pages/home').default
     },
-    {
-      path: '/tokens/publish',
-      name: 'publish',
-      component: require('@/pages/publish').default
-    },
+    // {
+    //   path: '/tokens/publish',
+    //   name: 'publish',
+    //   component: require('@/pages/publish').default
+    // },
     {
       path: '/tokens/termsheet',
       name: 'termsheet',

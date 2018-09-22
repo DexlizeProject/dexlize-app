@@ -1,20 +1,20 @@
 <template>
-  <section class="token-actionbar">
-    <div class="token-actionbar__info">
-      <img 
-        class="token-logo"
-        :src="iconPub" />
-      <strong>{{token.toUpperCase()}}</strong>
+  <section class="token-action card">
+    <div class="card-header">
+      <div class="card-nav"><button @click="dialog.sell = true">Sell</button></div>
+      <div class="card-nav"><button @click="dialog.buy = true">Buy</button></div>
+      <div class="card-nav"><button @click="dialog.transfer = true">Transfer</button></div>
     </div>
-    <div class="token-actionbar__action">
+    <!--<div class="token-action__info">-->
+      <!--<img -->
+        <!--class="token-logo"-->
+        <!--:src="iconPub" />-->
+      <!--<strong>{{token.toUpperCase()}}</strong>-->
+    <!--</div>-->
+    <div class="token-action__action">
       <div class="left">
-        <p class="token-actionbar__title">YOUR BALANCE</p>
-        <p class="token-actionbar__balance">{{balance}}</p>
-      </div>
-      <div class="btn-group">
-        <button @click="dialog.buy = true">Buy</button>
-        <button @click="dialog.sell = true">Sell</button>
-        <button @click="dialog.transfer = true">Transfer</button>
+        <p class="token-action__title">YOUR BALANCE</p>
+        <p class="token-action__balance">{{balance}}</p>
       </div>
     </div>
     
@@ -375,7 +375,7 @@ export default {
 </script>
 
 <style scoped>
-  .token-actionbar {
+  .token-action {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -383,36 +383,28 @@ export default {
     flex-wrap: wrap;
   }
 
-  .token-actionbar__info {
+  .token-action__info {
     display: flex;
     align-items: center;
     flex: 1;
   }
 
-  .token-actionbar__info > strong {
+  .token-action__info > strong {
     font-size: 2em;
     font-weight: 500;
     color: #515C6C;
   }
 
-  .token-logo {
-    width: 46px;
-    margin-right: 24px;
-  }
-
-  .token-actionbar__action {
+  .token-action__action {
     display: flex;
-    align-items: center;
-    flex: 1;
-      justify-content: flex-end;
   }
 
-  .token-actionbar__action > .left {
+  .token-action__action > .left {
     margin-right: 30px;
     text-align: right;
   }
 
-  .token-actionbar__action button {
+  .token-action__action button {
     background-color: #5190D9; 
     font-weight: 500;
     border-radius: 4px;
@@ -422,37 +414,37 @@ export default {
     cursor: pointer;
   }
 
-  .token-actionbar__action button:hover {
+  .token-action__action button:hover {
     background-color: #2e7bc4;
   }
 
-  .token-actionbar__action button:first-child {
+  .token-action__action button:first-child {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-right: .5px solid #427BBE;
   }
 
-  .token-actionbar__action button:nth-child(2) {
+  .token-action__action button:nth-child(2) {
     border-radius: 0;
     border-left: .5px solid #427BBE;
     border-right: .5px solid #427BBE;
     z-index: 1;
   }
 
-  .token-actionbar__action button:last-child {
+  .token-action__action button:last-child {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left: .5px solid #427BBE;
   }
 
-  .token-actionbar__title {
+  .token-action__title {
     color: #B9C0C8;  
     letter-spacing: 1.5px;
     font-weight: 500;
     line-height: 1.5;
   }
 
-  .token-actionbar__balance {
+  .token-action__balance {
     color: #515C6C; 
     font-size: 1.5em;
     font-weight: 600;
@@ -485,7 +477,7 @@ export default {
     margin-right: 30px;
     border: 2px solid #fff;
     border-radius: 50%;
-    box-shadow: 0 0 5px #fff;  
+    box-shadow: 0 0 5px #fff;
   }
 
   .trade-body >>> label {
@@ -554,7 +546,7 @@ export default {
     background-color: #3673CD;
   }
 
-  .token-actionbar >>> .el-dialog {
+  .token-action >>> .el-dialog {
     width: 22%;
     max-width: 400px;
     margin: 0 auto;
@@ -562,19 +554,19 @@ export default {
     border-radius: 15px;
   }
 
-  .token-actionbar >>> .el-dialog__body {
+  .token-action >>> .el-dialog__body {
     padding: 0;
   }
   @media screen and (max-width: 768px){
-    .token-actionbar__info {
+    .token-action__info {
       margin-bottom: 32px;
     }
-    .token-actionbar__action .btn-group button{
+    .token-action__action .btn-group button{
         border-radius: 4px;
         padding: 12px 20px;
       margin: 4px;
     }
-    .token-actionbar >>> .el-dialog{
+    .token-action >>> .el-dialog{
       width: 90%;
       max-width: none;
     }

@@ -1,5 +1,5 @@
 <template>
-  <section class="token-chart">
+  <section class="token-chart card">
     <header>
       <div>
       </div>
@@ -78,10 +78,7 @@ export default {
 
 <style scoped>
 .token-chart {
-  background-color: #fff;
-  box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
-  border: 1px solid #DBE1E8;
-  border-radius: 6px;
+  padding: 0;
   margin-bottom: 30px;
 }
 
@@ -130,7 +127,6 @@ export default {
 
   @media screen and (max-width: 768px){
     .token-chart > header {
-      padding: 16px 16px;
     }
   }
 </style>
