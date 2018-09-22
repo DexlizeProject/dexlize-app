@@ -71,6 +71,11 @@
                         :class="{ 'disabled': offset === 1 }"
                         icon="chevron-left" />
             </div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === 1}" @click="gotoPage(1)">1</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === 2}" @click="gotoPage(2)">2</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === 3}" @click="gotoPage(3)">3</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === 4}" @click="gotoPage(4)">4</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === 5}" @click="gotoPage(5)">5</div>
             <div class="order-nav-item">
                 <font-awesome-icon
                         @click="nextPage"
@@ -153,10 +158,16 @@ export default {
     },
 
     nextPage() {
-      if (this.orders.length < this.limit) return;
+        if(this.offset === 5) return;
+      // if (this.orders.length < this.limit) return;
       this.offset += 1;
       this.fetchOrders();
     },
+
+      gotoPage(num){
+        this.offset = num;
+        this.fetchOrders();
+      }
   },
 };
 </script>
@@ -212,13 +223,16 @@ export default {
   line-height: 1.5;
 }
 
+.order-nav{
+    display: flex;
+}
 
 .order-nav-item{
     display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    flex: 1;
     text-align: center;
+    margin: 0 4px;
+    line-height: 32px;
     border: 1px solid #979797;
     border-radius: 5px;
 }
