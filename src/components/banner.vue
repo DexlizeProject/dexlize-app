@@ -4,16 +4,17 @@
         <img src="/static/img/banner-logo.png" class="banner-logo"/>
         <div class="banner-options">
             <div class="banner-option">
-                <button class="banner-option-btn">PUB <font-awesome-icon icon="caret-down"/></button>
+                <button class="banner-option-btn" @click="showTokenList = !showTokenList">PUB <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
             </div>
             <div class="banner-option">
                 <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">About PUB</button>
             </div>
             <div class="banner-option">
                 <button
+                        @click="showMyAccount = !showMyAccount"
                         class="header-account banner-option-btn"
-                        v-if="true || account.name">
-                    My Account <font-awesome-icon icon="caret-down"/>
+                        v-if="account.name">
+                    My Account <font-awesome-icon icon="caret-down" v-show="!showMyAccount"/><font-awesome-icon icon="caret-up" v-show="showMyAccount"/>
                     <!--<font-awesome-icon-->
                             <!--@click="logout"-->
                             <!--icon="sign-out-alt" />-->
@@ -25,6 +26,23 @@
             </div>
         </div>
     </div>
+      <div class="token-list-tip tip" v-show="showTokenList">
+          <div class="tip-header">Token List</div>
+          <ul>
+              <li>PUB</li>
+              <li>DEX</li>
+          </ul>
+      </div>
+      <div class="my-account-tip tip" v-show="showMyAccount">
+          <div class="account-item">
+              <div class="item-title">Account Name</div>
+              <div class="item-value">{{account.name}}</div>
+          </div>
+          <div class="account-item">
+              <div class="item-title">Balance</div>
+              <div class="item-value">1322321312<span class="item-unit">EOS</span><br/>31231231<span class="item-unit">PUB</span> </div>
+          </div>
+      </div>
     <el-dialog :visible.sync="showSearch">
       <input
         v-model="keyword"
@@ -59,7 +77,9 @@
       return {
         keyword: "",
         showSearch: false,
-          showTokenAbout: false
+          showTokenList: false,
+          showTokenAbout: false,
+          showMyAccount: false
       }
     },
 
@@ -172,6 +192,10 @@
     font-size: 14px;
 }
 
+.banner-option-btn svg{
+    vertical-align: inherit;
+}
+
 .banner-logo{
     width: 126px;
     height: 23px;
@@ -232,6 +256,48 @@
   margin-left: 10px;
 }
 
+.token-list-tip{
+    position: absolute;
+    top: 124px;
+    left: 16px;
+}
+
+.token-list-tip li{
+    line-height: 32px;
+}
+
+.my-account-tip{
+    position: absolute;
+    right: 16px;
+    top: 124px;
+    width: 75%;
+}
+
+.account-item{
+    display: flex;
+    line-height: 32px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.account-item:last-child{
+    border: none;
+}
+
+.account-item .item-title{
+    color: rgba(0,0,0,.5);
+    flex: 1;
+    justify-content: left;
+}
+
+.account-item .item-value{
+    flex: 1;
+    justify-content: right;
+}
+
+.account-item .item-unit{
+    margin-left: 10px;
+    color: rgba(0,0,0,.5);
+}
   @media screen and (max-width: 768px){
     .token-banner > ul > li {
       padding: 0;

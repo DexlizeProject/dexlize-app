@@ -16,7 +16,8 @@ import {
   faSearchDollar,
   faHome,
   faComments,
-    faCaretDown
+    faCaretDown,
+    faCaretUp
 } from '@fortawesome/free-solid-svg-icons'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -41,7 +42,8 @@ library.add(
   faComments,
     faChevronDown,
     faTimes,
-    faCaretDown
+    faCaretDown,
+    faCaretUp
 );
 
 import 'normalize.css';

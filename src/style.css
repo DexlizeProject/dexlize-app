@@ -18,7 +18,7 @@ ul, ol {
 body {
   width: 100%;
   font-family: Din,-apple-system,Microsoft Yahei,MicrosoftJhengHei,BlinkMacSystemFont,Segoe UI,Helvetica Neue,sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   background: #f4f4f4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -112,4 +112,17 @@ button {
 
 .el-dialog__body{
   padding: 0;
+}
+
+.tip{
+  background: #f9f9f9;
+  padding: 0 20px 20px;
+  z-index: 50;
+  border-radius: 5px;
+}
+
+.tip-header{
+  line-height: 40px;
+  color: rgba(0,0,0,.5);
+  border-bottom: 1px solid rgba(0,0,0,.1);
 }
