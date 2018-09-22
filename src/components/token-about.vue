@@ -1,8 +1,9 @@
 <template>
   <section class="token-about card">
     <div class="card-header">
-      <div class="card-nav">About {{token.toUpperCase()}}</div>
-      <font-awesome-icon icon="times" @click="closeDialog"/>
+      <div class="card-nav">About {{token.toUpperCase()}}
+        <font-awesome-icon icon="times" @click="closeDialog"/>
+      </div>
     </div>
     <ul class="about-list">
       <li>
@@ -84,9 +85,7 @@ export default {
     this.fetchReferFee();
   },
 
-    closeDialog(){
-      this.$emit('close-dialog')
-    },
+
 
   data() {
     return {
@@ -123,7 +122,10 @@ export default {
     openTab(url) {
       window.open(url);
     },
-
+      closeDialog(){
+          console.log('close')
+          this.$emit('close-dialog')
+      },
     fetchToken() {
       api.getTableRows({
         json: true,
@@ -211,6 +213,13 @@ export default {
   color: rgb(80, 92, 108);
   margin-bottom: 30px;
   line-height: 1.5;
+}
+
+.token-about .card-header svg{
+  width: 18px;
+  height: 18px;
+  float: right;
+  margin-top: 12px;
 }
 
 .about-list > li {

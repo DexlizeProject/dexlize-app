@@ -51,7 +51,7 @@
         class="search-input" />
     </el-dialog>
       <el-dialog :visible.sync="showTokenAbout">
-          <token-about @close-dialog="showTokenAbout = false"/>
+          <token-about v-on:close-dialog="showTokenAbout = false"/>
       </el-dialog>
     <!--<ul>-->
       <!--<li @click="navigateTo('trade')">-->
