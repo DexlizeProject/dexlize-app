@@ -20,14 +20,15 @@ export default {
     });
 
     document.addEventListener('bitportalapi', () => {
-      const bitportalapi = window.bitportal;
+      const bitportal = window.bitportal;
       window.bitportal = null;
 
-      bitportalapi.getCurrentWallet().then(data => {
+      bitportal.getCurrentWallet().then(data => {
         const account = {
           name: data.account,
           authority: data.permission,
-          publicKey: data.publicKey
+          publicKey: data.publicKey,
+          bitportal
         };
         this.$store.commit('UPDATE_ACCOUNT', account)
       });

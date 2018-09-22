@@ -58,17 +58,6 @@
             this.$message.warning(e.message);
           });
         }
-
-        if (bitportalapi) {
-          bitportalapi.getCurrentWallet().then(data => {
-            const account = {
-              name: data.account,
-              authority: data.permission,
-              publicKey: data.publicKey
-            };
-            this.$store.commit('UPDATE_ACCOUNT', account)
-          });
-        }
       },
 
       logout() {
