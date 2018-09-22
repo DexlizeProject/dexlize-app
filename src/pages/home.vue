@@ -3,7 +3,6 @@
     <token-chart />
     <token-info />
     <token-orders />
-    <token-about />
   </div>
 </template>
 
@@ -33,7 +32,6 @@ export default {
     tokenInfo: require('./components/token-info').default,
     tokenChart: require('./components/token-chart').default,
     tokenOrders: require('./components/orders').default,
-    tokenAbout: require('./components/token-about').default,
     tradeForm: require('@/components/trade').default
   }
 }

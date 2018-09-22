@@ -50,7 +50,7 @@ button {
 
 .card{
   border-radius: 5px;
-  padding: 20px 20px;
+  padding: 0 20px 20px;
   background: #fff;
   margin: 32px auto;
 }
@@ -62,17 +62,23 @@ button {
   color: rgba(0,0,0,.5);
 }
 
+.card-nav-btn{
+  font-size: 14px;
+  color: rgba(0,0,0,.5);
+}
+
 .card-nav.active{
-  border-bottom: 1px solid red;
+  border-bottom: 2px solid #3680c0;
 }
 
 .router-container{
   margin-top: -142px;
 }
 
-@media screen and (max-width: 1280px) {
-  body {
-    /*width: 1280px;*/
-  }
+.icon-share{
+  display: inline-block;
+  width: 10px;
+  height: 8px;
+  background: url('/static/img/share.png') no-repeat;
+  background-size: contain;
 }
-

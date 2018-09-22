@@ -1,8 +1,8 @@
 <template>
   <section class="orders card">
     <div class="card-header">
-        <div class="card-nav">My Orders</div>
-        <div class="card-nav">All Market Orders</div>
+        <div class="card-nav" :class="{'active': currentTab === 1}" @click="currentTab = 1">My Orders</div>
+        <div class="card-nav" :class="{'active': currentTab === 2}" @click="currentTab = 2">All Market Orders</div>
     </div>
       <table class="my-orders-table">
           <thead>
@@ -12,55 +12,57 @@
               <th>EOS/PUB</th>
               <th>Price(EOS/PUB)</th>
           </tr>
+          </thead>
+          <tbody>
           <tr v-for="row in orders">
               <td>{{dateFormatter(row)}}</td>
-              <td>{{row.account_name}}<br>{{row.is_buy_type ? 'buy' : 'sell'}}</td>
+              <td>{{row.account_name}}<br><span :class="{'buy': row.is_buy_type, 'sell': !row.is_buy_type}">{{row.is_buy_type ? 'buy' : 'sell'}}</span></td>
               <td></td>
-              <td>{{priceFormatter(row)}} <a :href="`//eospark.com/MainNet/tx/${row.trx_id}`">Action</a></td>
+              <td>{{priceFormatter(row)}} <a :href="`//eospark.com/MainNet/tx/${row.trx_id}`" target="_blank"><span class="icon-share"></span></a></td>
           </tr>
-          </thead>
+          </tbody>
       </table>
-    <el-table
-      class="table"
-      border
-      stripe
-      :data="orders">
-      <el-table-column
-        prop="is_buy_type"
-        label="Type"
-        width="100">
-        <template slot-scope="scope">
-          <el-tag
-            :type="scope.row.is_buy_type ? 'success' : 'danger'"
-            disable-transitions>{{scope.row.is_buy_type ? 'buy' : 'sell'}}</el-tag>
-        </template>
-      </el-table-column>
-      <el-table-column prop="time" label="Time" :formatter="dateFormatter" />
-      <el-table-column
-        prop="account_name"
-        label="Account" />
-      <el-table-column
-        prop="money"
-        label="EOS" 
-        :formatter="eosFormatter" />
-      <el-table-column
-        prop="amount"
-        label="Amount"  />
-      <el-table-column
-        prop="price"
-        label="price" 
-        :formatter="priceFormatter" />
+    <!--<el-table-->
+      <!--class="table"-->
+      <!--border-->
+      <!--stripe-->
+      <!--:data="orders">-->
+      <!--<el-table-column-->
+        <!--prop="is_buy_type"-->
+        <!--label="Type"-->
+        <!--width="100">-->
+        <!--<template slot-scope="scope">-->
+          <!--<el-tag-->
+            <!--:type="scope.row.is_buy_type ? 'success' : 'danger'"-->
+            <!--disable-transitions>{{scope.row.is_buy_type ? 'buy' : 'sell'}}</el-tag>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+      <!--<el-table-column prop="time" label="Time" :formatter="dateFormatter" />-->
+      <!--<el-table-column-->
+        <!--prop="account_name"-->
+        <!--label="Account" />-->
+      <!--<el-table-column-->
+        <!--prop="money"-->
+        <!--label="EOS" -->
+        <!--:formatter="eosFormatter" />-->
+      <!--<el-table-column-->
+        <!--prop="amount"-->
+        <!--label="Amount"  />-->
+      <!--<el-table-column-->
+        <!--prop="price"-->
+        <!--label="price" -->
+        <!--:formatter="priceFormatter" />-->
 
-      <el-table-column
-        label="Action">
-        <template slot-scope="scope">
-          <a 
-            class="order-trxlink"
-            target="_blank"
-            :href="`//eospark.com/MainNet/tx/${scope.row.trx_id}`">detail</a>
-        </template>
-    </el-table-column>
-    </el-table>
+      <!--<el-table-column-->
+        <!--label="Action">-->
+        <!--<template slot-scope="scope">-->
+          <!--<a -->
+            <!--class="order-trxlink"-->
+            <!--target="_blank"-->
+            <!--:href="`//eospark.com/MainNet/tx/${scope.row.trx_id}`">detail</a>-->
+        <!--</template>-->
+    <!--</el-table-column>-->
+    <!--</el-table>-->
     <footer class="order-footer">
       <font-awesome-icon 
         @click="prevPage"
@@ -88,7 +90,8 @@ export default {
       offset: 1,
       keyword: '',
       filter: 0,
-      limit: 10
+      limit: 10,
+        currentTab : 1
     };
   },
 
@@ -155,11 +158,45 @@ export default {
 <style scoped>
 .orders {
   flex: 2;
-    min-width: 300px;
 }
 
 .my-orders-table{
     width: 100%;
+    overflow: scroll;
+    display: block;
+    font-size: 10px;
+    border-collapse: collapse;
+}
+
+.my-orders-table thead tr{
+    border-bottom: 2px solid rgba(0,0,0,.1);
+}
+
+.my-orders-table thead th{
+    color: rgba(0,0,0,.5);
+    font-weight: normal;
+    line-height: 18px;
+    text-align: left;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.my-orders-table tbody td{
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding: 10px 0;
+}
+
+.my-orders-table tbody tr:last-child td{
+    border-bottom: none;
+}
+
+.my-orders-table tbody td{
+    line-height: 18px;
+    text-align: left;
+}
+
+.my-orders-table .icon-share{
+    margin-left: 8px;
 }
 
 .orders > header {
@@ -169,33 +206,33 @@ export default {
   line-height: 1.5;
 }
 
-.table {
-  margin-bottom: 15px;
-  width: 100%;
-}
+/*.table {*/
+  /*margin-bottom: 15px;*/
+  /*width: 100%;*/
+/*}*/
 
-.table >>> th {
-  text-align: left;
-  background-color: #FDFDFE;
-  border-top: 1px solid #E6ECF3;
-  border-bottom: 1px solid #E6ECF3;
-}
+/*.table >>> th {*/
+  /*text-align: left;*/
+  /*background-color: #FDFDFE;*/
+  /*border-top: 1px solid #E6ECF3;*/
+  /*border-bottom: 1px solid #E6ECF3;*/
+/*}*/
 
-.table >>> td,
-.table >>> th {
-  padding: 15px 8px;
-}
+/*.table >>> td,*/
+/*.table >>> th {*/
+  /*padding: 15px 8px;*/
+/*}*/
 
-.table >>> td {
-  border-bottom: 1px solid #E6ECF3;
-  font-size: .9em;
-  font-weight: 300;
-}
+/*.table >>> td {*/
+  /*border-bottom: 1px solid #E6ECF3;*/
+  /*font-size: .9em;*/
+  /*font-weight: 300;*/
+/*}*/
 
-.table >>> tbody tr:hover {
-  background-color: #f5f5f5;
-  cursor: pointer
-}
+/*.table >>> tbody tr:hover {*/
+  /*background-color: #f5f5f5;*/
+  /*cursor: pointer*/
+/*}*/
 
 .order-trxlink {
   color: #0067c8;
@@ -204,13 +241,12 @@ export default {
 .order-trxlink:hover {
   opacity: .8; 
 }
-
-.el-tag--success {
-  color: #67c23a;  
+.buy {
+  color: #09ba07;
 }
 
-.el-tag--danger {
-  color: #f56c6c;
+.sell {
+  color: #ff3232;
 }
 
 .order-footer {

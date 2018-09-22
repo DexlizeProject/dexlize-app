@@ -1,9 +1,9 @@
 <template>
   <section class="token-action card">
     <div class="card-header">
-      <div class="card-nav"><button @click="dialog.sell = true">Sell</button></div>
-      <div class="card-nav"><button @click="dialog.buy = true">Buy</button></div>
-      <div class="card-nav"><button @click="dialog.transfer = true">Transfer</button></div>
+      <div class="card-nav"><button class="card-nav-btn" @click="dialog.sell = true">Sell</button></div>
+      <div class="card-nav"><button class="card-nav-btn" @click="dialog.buy = true">Buy</button></div>
+      <div class="card-nav"><button class="card-nav-btn" @click="dialog.transfer = true">Transfer</button></div>
     </div>
     <!--<div class="token-action__info">-->
       <!--<img -->
@@ -376,11 +376,11 @@ export default {
 
 <style scoped>
   .token-action {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 32px;
-    flex-wrap: wrap;
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: space-between;*/
+    /*margin-bottom: 32px;*/
+    /*flex-wrap: wrap;*/
   }
 
   .token-action__info {

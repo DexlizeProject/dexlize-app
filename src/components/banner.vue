@@ -7,7 +7,7 @@
                 <button class="banner-option-btn">PUB</button>
             </div>
             <div class="banner-option">
-                <button class="banner-option-btn">About PUB</button>
+                <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">About PUB</button>
             </div>
             <div class="banner-option">
                 <button
@@ -32,6 +32,9 @@
         placeholder="Enter token name, ie: PUB"
         class="search-input" />
     </el-dialog>
+      <el-dialog :visible.sync="showTokenAbout">
+          <token-about/>
+      </el-dialog>
     <!--<ul>-->
       <!--<li @click="navigateTo('trade')">-->
         <!--<font-awesome-icon icon="wallet" />-->
@@ -47,7 +50,6 @@
 
 <script>
   import network from '@/utils/network';
-  import Logo from '@/assets/logo.png';
   import api from '@/utils/eos';
 
   const url = new URL(location.href);
@@ -55,9 +57,9 @@
   export default {
     data() {
       return {
-        Logo,
         keyword: "",
-        showSearch: false
+        showSearch: false,
+          showTokenAbout: false
       }
     },
 
@@ -128,7 +130,11 @@
         if (to.query.token === from.query.token) return;
         this.$store.commit('UPDATE_TOKEN', to.query.token);
       }
-    }
+    },
+
+      components: {
+        tokenAbout: require('./token-about').default
+      }
   };
 </script>
 
@@ -159,6 +165,7 @@
     border-radius: 5px;
     border: none;
     padding: 0;
+    font-size: 14px;
 }
 
 .banner-logo{
