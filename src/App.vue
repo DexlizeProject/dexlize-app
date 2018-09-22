@@ -1,6 +1,6 @@
 <template>
   <main id="app">
-    <token-banner />
+    <token-header />
     <el-dialog
       class="termsheet-dialog"
       :close-on-press-escape="false"
@@ -131,7 +131,7 @@ export default {
   },
 
   components: {
-    tokenBanner: require('@/components/banner').default,
+    tokenHeader: require('@/components/header').default,
     tokenFooter: require('@/components/footer').default
   }
 }

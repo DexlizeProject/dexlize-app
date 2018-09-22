@@ -1,48 +1,86 @@
 <template>
-  <header class="header">
-    <p class="logo-text">token</p>
+  <div class="token-banner">
     <div>
-      <font-awesome-icon
-        class="icon-search"
-        @click="showSearch = true"
-        icon="search-dollar" />
-      <div
-        class="header-account"
-        v-if="account.name">
-        <p>{{account.name}}</p>
-        <font-awesome-icon
-          @click="logout"
-          icon="sign-out-alt" />
+      <img src="/static/img/banner-logo.png" class="banner-logo"/>
+      <div class="banner-options">
+        <div class="banner-option">
+          <button class="banner-option-btn" @click="showTokenList = !showTokenList">PUB <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
+        </div>
+        <div class="banner-option">
+          <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">About PUB</button>
+        </div>
+        <div class="banner-option">
+          <button
+                  @click="showMyAccount = !showMyAccount"
+                  class="header-account banner-option-btn"
+                  v-if="account.name">
+            My Account <font-awesome-icon icon="caret-down" v-show="!showMyAccount"/><font-awesome-icon icon="caret-up" v-show="showMyAccount"/>
+            <!--<font-awesome-icon-->
+            <!--@click="logout"-->
+            <!--icon="sign-out-alt" />-->
+          </button>
+          <button
+                  class="login-link banner-option-btn"
+                  @click="login"
+                  v-else>Login</button>
+        </div>
       </div>
-      <p
-        class="login-link"
-        @click="login"
-        v-else>Login</p>
+    </div>
+    <div class="token-list-tip tip" v-show="showTokenList">
+      <div class="tip-header">Token List</div>
+      <ul>
+        <li>PUB</li>
+        <li>DEX</li>
+      </ul>
+    </div>
+    <div class="my-account-tip tip" v-show="showMyAccount">
+      <div class="account-item">
+        <div class="item-title">Account Name</div>
+        <div class="item-value">{{account.name}}</div>
+      </div>
+      <div class="account-item">
+        <div class="item-title">Balance</div>
+        <div class="item-value">1322321312<span class="item-unit">EOS</span><br/>31231231<span class="item-unit">PUB</span> </div>
+      </div>
     </div>
     <el-dialog :visible.sync="showSearch">
       <input
-        v-model="keyword"
-        @keydown.13="search"
-        placeholder="Enter token name, ie: PUB"
-        class="search-input" />
+              v-model="keyword"
+              @keydown.13="search"
+              placeholder="Enter token name, ie: PUB"
+              class="search-input" />
     </el-dialog>
-  </header>
+    <el-dialog :visible.sync="showTokenAbout">
+      <token-about v-on:close-dialog="showTokenAbout = false"/>
+    </el-dialog>
+    <!--<ul>-->
+    <!--<li @click="navigateTo('trade')">-->
+    <!--<font-awesome-icon icon="wallet" />-->
+    <!--<span>Token</span>-->
+    <!--</li>-->
+    <!--<li @click="navigateTo('publish')">-->
+    <!--<font-awesome-icon icon="dollar-sign" />-->
+    <!--<span>Publish</span>-->
+    <!--</li>-->
+    <!--</ul>-->
+  </div>
 </template>
 
 <script>
   import network from '@/utils/network';
-  import Logo from '@/assets/logo.png';
   import api from '@/utils/eos';
 
   const url = new URL(location.href);
 
   export default {
     data() {
-      return {
-        Logo,
-        keyword: "",
-        showSearch: false
-      }
+        return {
+            keyword: "",
+            showSearch: false,
+            showTokenList: false,
+            showTokenAbout: false,
+            showMyAccount: false
+        }
     },
 
     methods: {
@@ -108,71 +146,151 @@
   };
 </script>
 
+
 <style scoped>
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #2968C9;
-  padding: 0 100px;
-  height: 70px;
-  box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
-  color: #fff;
-}
+  .token-banner {
+    padding: 25px 16px 0;
+    height: 220px;
+    background-size: 100%;
+    background-image: url('/static/banner-bg.png');
+    background-repeat: no-repeat;
+  }
 
-.header > div {
-  display: flex;
-  align-items: center;
-}
+  .banner-options{
+    display: flex;
+  }
 
-.logo-text {
-  font-weight: 600;
-  font-size: 1.4em;
-  letter-spacing: 1px;
-}
+  .banner-option{
+    flex: 1;
+  }
 
-.header-account {
-  display: flex;
-  align-items: center;
-}
+  .banner-option:last-child{
+    flex: 1.2;
+  }
 
-.header-account > p {
-  margin-right: 10px;
-}
+  .banner-option-btn{
+    width: 95%;
+    height: 40px;
+    line-height: 40px;
+    margin:0 auto;
+    text-align: center;
+    background: #fff;
+    border-radius: 5px;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+  }
 
-.header-account > svg {
-  cursor: pointer;
-}
+  .banner-option-btn svg{
+    vertical-align: inherit;
+  }
 
-.login-link:hover {
-  cursor: pointer;
-  text-shadow: 0 0 5px #fff;
-}
+  .banner-logo{
+    width: 126px;
+    height: 23px;
+    margin: 0 auto 25px;
+    display: block;
+  }
 
-.icon-search {
-  margin-right: 60px;
-  cursor: pointer;
-  transition: transform ease 400ms;
-}
+  .header-account > svg {
+    cursor: pointer;
+  }
 
-.icon-search:hover {
-  transform: scale(2);
-}
+  .login-link:hover {
+    cursor: pointer;
+    text-shadow: 0 0 5px #fff;
+  }
 
-.search-input {
-  outline: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  font-size: 1.5em;
-  font-style: italic;
-  border: none;
-}
+  /*.icon-search {*/
+  /*margin-right: 60px;*/
+  /*cursor: pointer;*/
+  /*transition: transform ease 400ms;*/
+  /*}*/
 
+  /*.icon-search:hover {*/
+  /*transform: scale(2);*/
+  /*}*/
+
+  .search-input {
+    outline: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 1.5em;
+    font-style: italic;
+    border: none;
+  }
+
+
+  .token-banner > ul {
+    display: flex;
+    align-items: center;
+  }
+
+  .token-banner > ul > li {
+    cursor: pointer;
+    color: #8699B6;
+    line-height: 64px;
+    margin-right: 30px;
+    font-weight: 500;
+    padding: 0 15px;
+  }
+
+  .token-banner > ul > li:hover {
+    border-bottom: 1px solid #2968C9;
+  }
+
+  .token-banner > ul > li > span {
+    margin-left: 10px;
+  }
+
+  .token-list-tip{
+    position: absolute;
+    top: 124px;
+    left: 16px;
+  }
+
+  .token-list-tip li{
+    line-height: 32px;
+  }
+
+  .my-account-tip{
+    position: absolute;
+    right: 16px;
+    top: 124px;
+    width: 75%;
+  }
+
+  .account-item{
+    display: flex;
+    line-height: 32px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+
+  .account-item:last-child{
+    border: none;
+  }
+
+  .account-item .item-title{
+    color: rgba(0,0,0,.5);
+    flex: 1;
+    justify-content: left;
+  }
+
+  .account-item .item-value{
+    flex: 1;
+    justify-content: right;
+  }
+
+  .account-item .item-unit{
+    margin-left: 10px;
+    color: rgba(0,0,0,.5);
+  }
   @media screen and (max-width: 768px){
-    .header{
-      padding: 0 16px;
+    .token-banner > ul > li {
+      padding: 0;
     }
   }
 </style>
+
