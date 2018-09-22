@@ -1,36 +1,36 @@
 <template>
   <main id="app">
-    <token-header />    
+    <token-header />
     <token-second-header />
-    <el-dialog 
+    <el-dialog
       class="termsheet-dialog"
-      :close-on-press-escape="false" 
+      :close-on-press-escape="false"
       :close-on-click-modal="false"
       :visible.sync="needTermsheet && $route.name !== 'termsheet'">
-      <img 
+      <img
         class="termsheet-img"
-        :src="termsheetSketch" /> 
+        :src="termsheetSketch" />
       <div class="content">
         <strong>Welcome to DappPub</strong>
         <p>The site you are about to enter is a DApp platform that includes various DApps.</p>
-        <p>By choosing "I AGREE" below, you agree to DappPub's <router-link 
-          class="termsheet-link" 
+        <p>By choosing "I AGREE" below, you agree to DappPub's <router-link
+          class="termsheet-link"
           :to="{ 'name': 'termsheet', 'query': { 'token': $route.query.token } }">Term of User</router-link>.</p>
       </div>
       <footer slot="footer">
-        <button 
+        <button
           @click="agreeTermsheet"
-          class="btn-agree">I AGREE</button> 
+          class="btn-agree">I AGREE</button>
       </footer>
     </el-dialog>
     <el-alert
       title=""
-      show-icon	
+      show-icon
       v-if="showAlert"
       type="warning"
       :closable="false">
-      Token `{{token.toUpperCase()}}` not exist, 
-      <router-link 
+      Token `{{token.toUpperCase()}}` not exist,
+      <router-link
         class="create-link"
         :to="{ name: 'publish' }">publish one</router-link>
     </el-alert>
@@ -49,6 +49,13 @@ import termsheetSketch from '@/assets/termsheet.png';
 
 export default {
   created() {
+      document.addEventListener('scatterLoaded', () => {
+        if (!scatter.identity) return;
+        const account = scatter.identity.accounts.find(account => account.blockchain === 'eos');
+        if (!account) return;
+        this.$store.commit('UPDATE_ACCOUNT', account);
+      });
+
       document.addEventListener('bitportalapi', () => {
         const bitportalapi = window.bitportal;
         window.bitportal = null;
@@ -56,12 +63,8 @@ export default {
         bitportalapi.getCurrentWallet().then(data => {
           const account = {
             name: data.account,
-            authority: 'active',
-            eosAccountName: data.account,
-            fromAccount: data.account,
-            signAccount: data.account,
-            signPublicKey: data.publicKey,
-            voter: data.account
+            authority: data.permission,
+            publicKey: data.publicKey
           };
           this.$store.commit('UPDATE_ACCOUNT', account)
         });
@@ -70,7 +73,7 @@ export default {
 
   mounted() {
     this.checkTermsheet();
-    this.checkToken(); 
+    this.checkToken();
   },
 
   data() {
@@ -87,23 +90,23 @@ export default {
     },
 
     '$route.name'(to) {
-      
+
     }
   },
 
   methods: {
     checkTermsheet() {
-      const termsheet = localStorage.getItem('TERMSHEET_AGREE'); 
+      const termsheet = localStorage.getItem('TERMSHEET_AGREE');
       if (!termsheet) {
         this.needTermsheet = true;
-      } 
+      }
     },
 
     checkToken() {
       api.getTableRows({
         json: true,
         code: 'tokendapppub',
-        scope: this.token.toUpperCase(), 
+        scope: this.token.toUpperCase(),
         table: 'games'
       }).then(({ rows }) => {
         this.$store.commit('UPDATE_TRADE_DISABLED', !rows.length);
@@ -173,7 +176,7 @@ export default {
   }
 
   .termsheet-dialog >>> .el-dialog__body .content {
-    padding: 26px 24px 18px 24px; 
+    padding: 26px 24px 18px 24px;
   }
 
   .termsheet-dialog >>> .el-dialog__body .content strong {
@@ -193,7 +196,7 @@ export default {
   }
 
   .termsheet-dialog >>> .el-dialog__footer {
-    padding: 24px; 
+    padding: 24px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
   }
@@ -217,7 +220,7 @@ export default {
     padding: 10px;
     border: 1px solid #5190D9;
     font-size: .8em;
-    background-color: #427BBE;  
+    background-color: #427BBE;
   }
 
   .btn-agree:hover {
@@ -231,4 +234,3 @@ export default {
 
   }
 </style>
-

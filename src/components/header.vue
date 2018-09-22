@@ -2,25 +2,25 @@
   <header class="header">
     <p class="logo-text">token</p>
     <div>
-      <font-awesome-icon 
+      <font-awesome-icon
         class="icon-search"
         @click="showSearch = true"
         icon="search-dollar" />
-      <div 
+      <div
         class="header-account"
         v-if="account.name">
-        <p>{{account.name}}</p> 
-        <font-awesome-icon 
+        <p>{{account.name}}</p>
+        <font-awesome-icon
           @click="logout"
           icon="sign-out-alt" />
       </div>
-      <p 
+      <p
         class="login-link"
         @click="login"
         v-else>Login</p>
     </div>
     <el-dialog :visible.sync="showSearch">
-      <input 
+      <input
         v-model="keyword"
         @keydown.13="search"
         placeholder="Enter token name, ie: PUB"
@@ -47,18 +47,28 @@
 
     methods: {
       login() {
-        bitportalapi.getCurrentWallet().then(data => {
-          const account = {
-            name: data.account,
-            authority: 'active',
-            eosAccountName: data.account,
-            fromAccount: data.account,
-            signAccount: data.account,
-            signPublicKey: data.publicKey,
-            voter: data.account
-          };
-          this.$store.commit('UPDATE_ACCOUNT', account)
-        });
+        if (scatter) {
+          scatter.getIdentity({
+            accounts: [network]
+          }).then(() => {
+            const account = scatter.identity.accounts.find(account => account.blockchain === 'eos');
+            if (!account) return;
+            this.$store.commit('UPDATE_ACCOUNT', account);
+          }).catch(e => {
+            this.$message.warning(e.message);
+          });
+        }
+
+        if (bitportalapi) {
+          bitportalapi.getCurrentWallet().then(data => {
+            const account = {
+              name: data.account,
+              authority: data.permission,
+              publicKey: data.publicKey
+            };
+            this.$store.commit('UPDATE_ACCOUNT', account)
+          });
+        }
       },
 
       logout() {
@@ -116,7 +126,7 @@
   justify-content: space-between;
   background-color: #2968C9;
   padding: 0 100px;
-  height: 70px; 
+  height: 70px;
   box-shadow: rgba(114, 115, 119, 0.05) 0px 4px 14px;
   color: #fff;
 }
@@ -146,14 +156,14 @@
 }
 
 .login-link:hover {
-  cursor: pointer; 
+  cursor: pointer;
   text-shadow: 0 0 5px #fff;
 }
 
 .icon-search {
   margin-right: 60px;
   cursor: pointer;
-  transition: transform ease 400ms; 
+  transition: transform ease 400ms;
 }
 
 .icon-search:hover {
@@ -177,4 +187,3 @@
     }
   }
 </style>
-

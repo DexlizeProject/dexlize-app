@@ -12,6 +12,13 @@
 <script>
 export default {
   created() {
+    document.addEventListener('scatterLoaded', () => {
+      if (!scatter.identity) return;
+      const account = scatter.identity.accounts.find(account => account.blockchain === 'eos');
+      if (!account) return;
+      this.$store.commit('UPDATE_ACCOUNT', account)
+    });
+
     document.addEventListener('bitportalapi', () => {
       const bitportalapi = window.bitportal;
       window.bitportal = null;
@@ -19,12 +26,8 @@ export default {
       bitportalapi.getCurrentWallet().then(data => {
         const account = {
           name: data.account,
-          authority: 'active',
-          eosAccountName: data.account,
-          fromAccount: data.account,
-          signAccount: data.account,
-          signPublicKey: data.publicKey,
-          voter: data.account
+          authority: data.permission,
+          publicKey: data.publicKey
         };
         this.$store.commit('UPDATE_ACCOUNT', account)
       });
