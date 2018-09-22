@@ -78,13 +78,12 @@ export default {
 
 <style scoped>
 .token-chart {
-  padding: 0;
   margin-bottom: 30px;
 }
 
 .token-chart > header {
   padding: 24px 32px 16px;
-  display: flex; 
+  display: flex;
   align-item: center;
   justify-content: space-between;
 }

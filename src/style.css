@@ -68,7 +68,12 @@ button {
 }
 
 .card-nav.active{
+  color: #000;
   border-bottom: 2px solid #3680c0;
+}
+
+.card-nav.active button{
+  color: #000;
 }
 
 .router-container{
@@ -81,4 +86,30 @@ button {
   height: 8px;
   background: url('/static/img/share.png') no-repeat;
   background-size: contain;
+}
+
+.blue-gradient, .blue-gradient:active, .blue-gradient:focus, .blue-gradient:visited {
+  color: #fff;
+  border: none;
+  font-size: 14px;
+  background: -webkit-linear-gradient(left, #1752b0, #009dfe); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #1752b0, #009dfe); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #1752b0, #009dfe); /* Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #1752b0, #009dfe); /* 标准语法 */
+}
+
+.blue-gradient:disabled, .blue-gradient:disabled:hover{
+  color: #fff !important;
+}
+
+.bg-gray {
+  background: #f4f4f4;
+}
+
+.el-dialog{
+  width: 90%;
+}
+
+.el-dialog__body{
+  padding: 0;
 }

@@ -1,148 +1,108 @@
 <template>
   <section class="token-action card">
     <div class="card-header">
-      <div class="card-nav"><button class="card-nav-btn" @click="dialog.sell = true">Sell</button></div>
-      <div class="card-nav"><button class="card-nav-btn" @click="dialog.buy = true">Buy</button></div>
-      <div class="card-nav"><button class="card-nav-btn" @click="dialog.transfer = true">Transfer</button></div>
+      <div class="card-nav" :class="{'active': currentTab === 1}"><button class="card-nav-btn" @click="currentTab = 1">Sell</button></div>
+      <div class="card-nav" :class="{'active': currentTab === 2}"><button class="card-nav-btn" @click="currentTab = 2">Buy</button></div>
+      <div class="card-nav" :class="{'active': currentTab === 3}"><button class="card-nav-btn" @click="currentTab = 3">Transfer</button></div>
     </div>
-    <!--<div class="token-action__info">-->
-      <!--<img -->
-        <!--class="token-logo"-->
-        <!--:src="iconPub" />-->
-      <!--<strong>{{token.toUpperCase()}}</strong>-->
-    <!--</div>-->
-    <div class="token-action__action">
-      <div class="left">
-        <p class="token-action__title">YOUR BALANCE</p>
-        <p class="token-action__balance">{{balance}}</p>
+    <div class="card-content">
+      <div class="tab-sell" v-show="currentTab === 1">
+        <div class="trade-dialog">
+          <div class="transaction-form">
+            <div class="transaction-item">
+              <span class="transaction-title">Balance</span>
+              <span class="transaction-value">{{balance}}<span class="transanction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item bg-gray">
+              <span class="transaction-title">Amount</span>
+              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.sell.amount"/> <span
+                      class="transanction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item">
+              <span class="transaction-title">Fee</span>
+              <span class="transaction-value">{{feePercent}}% <span
+                      class="transanction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item">
+              <span class="transaction-title">Obtain</span>
+              <span class="transaction-value">1000<span class="transanction-unit">PUB</span></span>
+            </div>
+          </div>
+
+          <footer class="trade-footer" slot="footer">
+            <el-button
+                    @click="sell"
+                    :loading="loading"
+                    :disabled="!form.sell.amount || !account.name"
+                    class="btn-trade blue-gradient">Sell</el-button>
+          </footer>
+        </div>
+      </div>
+      <div class="tab-buy" v-show="currentTab === 2">
+        <div class="trade-dialog">
+          <div class="transaction-form">
+            <div class="transaction-item">
+              <span class="transaction-title">Balance</span>
+              <span class="transaction-value">{{balance}}<span class="transanction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item bg-gray">
+              <span class="transaction-title">Amount</span>
+              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.buy.amount"/> <span
+                      class="transanction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item">
+              <span class="transaction-title">Fee</span>
+              <span class="transaction-value">{{feePercent}}% <span
+                      class="transanction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item">
+              <span class="transaction-title">Obtain</span>
+              <span class="transaction-value">1000<span class="transanction-unit">PUB</span></span>
+            </div>
+          </div>
+          <footer class="trade-footer" slot="footer">
+            <el-button
+                    @click="buy"
+                    :loading="loading"
+                    :disabled="!form.buy.amount || !account.name"
+                    class="btn-trade blue-gradient">Buy</el-button>
+          </footer>
+        </div>
+      </div>
+      <div class="tab-transfer" v-show="currentTab === 3">
+        <div class="trade-dialog">
+          <div class="transaction-form">
+            <div class="transaction-item">
+              <span class="transaction-title">Balance</span>
+              <span class="transaction-value">{{balance}}<span class="transanction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item bg-gray">
+              <span class="transaction-title">Account</span>
+              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="receiver's account"/> <span
+                      class="transanction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item bg-gray">
+              <span class="transaction-title">Amount</span>
+              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.amount"/> <span
+                      class="transanction-unit">PUB</span></span>
+            </div>
+          </div>
+
+          <footer class="trade-footer" slot="footer">
+            <el-button
+                    @click="transfer"
+                    :loading="loading"
+                    :disabled="!form.transfer.to || !form.transfer.amount || !account.name"
+                    class="btn-trade blue-gradient">Transfer</el-button>
+          </footer>
+        </div>
       </div>
     </div>
-    
-    <el-dialog :visible.sync="dialog.buy">
-      <div class="trade-dialog">
-        <header>
-          <img 
-            class="trade-logo"
-            :src="iconPub" /> 
-          <div class="trade-info">
-            <strong>{{token.toUpperCase()}}</strong>
-            <p>{{token.toUpperCase()}} is an awesome token</p>
-          </div>
-        </header>
-        <el-form 
-          class="trade-body"
-          :model="form.buy">
-          <el-form-item 
-            label="EOS">
-            <el-input 
-              type="number"
-              placeholder="Enter pay EOS amount"
-              v-model="form.buy.amount" />
-          </el-form-item>
-          <el-form-item>
-            <el-alert
-              :closable="false"
-              :title="'Fee percent: ' + referFeePercent + '%'"
-              type="warning"
-              show-icon />
-          </el-form-item>
-        </el-form>
-        <footer class="trade-footer" slot="footer">
-          <el-button 
-            @click="buy"
-            :loading="loading"
-            :disabled="!form.buy.amount || !account.name"
-            class="btn-trade">Buy</el-button>
-        </footer>
-      </div>
-    </el-dialog>
-
-    <el-dialog :visible.sync="dialog.sell">
-      <div class="trade-dialog">
-        <header>
-          <img 
-            class="trade-logo"
-            :src="iconPub" /> 
-          <div class="trade-info">
-            <strong>{{token.toUpperCase()}}</strong>
-            <p>{{token.toUpperCase()}} is an awesome token</p>
-          </div>
-        </header>
-        <el-form 
-          class="trade-body"
-          :model="form.sell">
-          <el-form-item 
-            :label="token.toUpperCase()">
-            <el-input 
-              placeholder="Enter sell amount"
-              v-model="form.sell.amount" />
-          </el-form-item>
-          <el-form-item>
-            <el-alert
-              :closable="false"
-              :title="'Fee percent: ' + feePercent + '%'"
-              type="warning"
-              show-icon />
-          </el-form-item>
-        </el-form>
-        <footer class="trade-footer" slot="footer">
-          <el-button 
-            @click="sell"
-            :loading="loading"
-            :disabled="!form.sell.amount || !account.name"
-            class="btn-trade">Sell</el-button>
-        </footer>
-      </div>
-    </el-dialog>
-
-    <el-dialog :visible.sync="dialog.transfer">
-      <div class="trade-dialog">
-        <header>
-          <img 
-            class="trade-logo"
-            :src="iconPub" /> 
-          <div class="trade-info">
-            <strong>{{token.toUpperCase()}}</strong>
-            <p>{{token.toUpperCase()}} is an awesome token</p>
-          </div>
-        </header>
-        <el-form 
-          class="trade-body"
-          :model="form.sell">
-          <el-form-item 
-            label="From">
-            <el-input 
-              disabled
-              v-model="account.name" />
-          </el-form-item>
-          <el-form-item 
-            label="To">
-            <el-input 
-              placeholder="Enter receiver account" 
-              v-model="form.transfer.to" />
-          </el-form-item>
-          <el-form-item 
-            :label="token.toUpperCase()">
-            <el-input 
-              placeholder="Enter transfer amount"
-              v-model="form.transfer.amount" />
-          </el-form-item>
-        </el-form>
-        <footer class="trade-footer" slot="footer">
-          <el-button 
-            @click="transfer"
-            :loading="loading"
-            :disabled="!form.transfer.to || !form.transfer.amount || !account.name"
-            class="btn-trade">Transfer</el-button>
-        </footer>
-      </div>
-    </el-dialog>
   </section>
 </template>
 
 <script>
 import network from '@/utils/network';
-import iconPub from '@/assets/pub.png';
 import api from '@/utils/eos';
 import Eos from 'eosjs';
 import { feePercent } from '@/utils/math';
@@ -157,15 +117,16 @@ export default {
 
   data() {
     return {
-      iconPub,
       balance: '',
       loading: false,
       feePercent: '',
-      dialog: {
-        buy: false,
-        sell: false,
-        transfer: false
-      },
+        referFeePercent: '',
+        currentTab: 1,
+      // dialog: {
+      //   buy: false,
+      //   sell: false,
+      //   transfer: false
+      // },
       form: {
         buy: {
           amount: ''
@@ -395,62 +356,6 @@ export default {
     color: #515C6C;
   }
 
-  .token-action__action {
-    display: flex;
-  }
-
-  .token-action__action > .left {
-    margin-right: 30px;
-    text-align: right;
-  }
-
-  .token-action__action button {
-    background-color: #5190D9; 
-    font-weight: 500;
-    border-radius: 4px;
-    border: 1px solid #5190D9;
-    padding: 14px 40px;
-    color: #fff;
-    cursor: pointer;
-  }
-
-  .token-action__action button:hover {
-    background-color: #2e7bc4;
-  }
-
-  .token-action__action button:first-child {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: .5px solid #427BBE;
-  }
-
-  .token-action__action button:nth-child(2) {
-    border-radius: 0;
-    border-left: .5px solid #427BBE;
-    border-right: .5px solid #427BBE;
-    z-index: 1;
-  }
-
-  .token-action__action button:last-child {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-left: .5px solid #427BBE;
-  }
-
-  .token-action__title {
-    color: #B9C0C8;  
-    letter-spacing: 1.5px;
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  .token-action__balance {
-    color: #515C6C; 
-    font-size: 1.5em;
-    font-weight: 600;
-    line-height: 1.5;
-  }
-
   .trade-dialog {
     background-color: #fff;
     border-radius: 15px;
@@ -470,15 +375,6 @@ export default {
     display: flex;
   }
 
-  .trade-logo {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-    margin-right: 30px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 5px #fff;
-  }
 
   .trade-body >>> label {
     font-size: .9em;
@@ -503,10 +399,6 @@ export default {
     cursor: not-allowed;
     background-color: #F5F7FA;
     color: #c0c4cc;
-  }
-
-  .trade-footer {
-    padding: 20px;
   }
 
   .trade-info > strong {
@@ -556,6 +448,38 @@ export default {
 
   .token-action >>> .el-dialog__body {
     padding: 0;
+  }
+
+  .transaction-item {
+    height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+    border-radius: 5px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  .transaction-title {
+    display: inline-block;
+    color: #a8a8a8;
+  }
+  .transaction-value {
+    display: inline-block;
+    float: right;
+    color: #505050;
+  }
+  .transanction-unit {
+    display: inline-block;
+    margin-left: 8px;
+    color: #a8a8a8;
+    width: 36px;
+  }
+  .pure-input{
+    text-align: right;
+    outline: 0;
+    border: none;
+    background: transparent;
   }
   @media screen and (max-width: 768px){
     .token-action__info {

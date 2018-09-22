@@ -2,6 +2,7 @@
   <section class="token-about card">
     <div class="card-header">
       <div class="card-nav">About {{token.toUpperCase()}}</div>
+      <font-awesome-icon icon="times" @click="closeDialog"/>
     </div>
     <ul class="about-list">
       <li>
@@ -82,6 +83,10 @@ export default {
     this.fetchToken();
     this.fetchReferFee();
   },
+
+    closeDialog(){
+      this.$emit('close-dialog')
+    },
 
   data() {
     return {
@@ -191,7 +196,8 @@ export default {
 <style scoped>
 .token-about {
   padding-top: 0;
-  margin-right: 30px;
+  margin-top: 0;
+  margin-bottom: 0;
   flex:1;
 }
 
@@ -228,16 +234,6 @@ export default {
   font-weight: 500;
 }
 
-.logo-pub {
-  width: 45px;
-  margin-bottom: 15px;
-}
-
-/*.social-list {*/
-  /*display: flex;*/
-  /*margin-top: 100px;*/
-/*}*/
-
 .social-list > li {
   margin-right: 30px;
 }
@@ -260,12 +256,5 @@ export default {
 .social-list > li > a:hover {
   opacity: .5;
 }
-
-  @media screen and (max-width: 768px){
-    .token-about{
-      margin-right: 0;
-      margin-bottom: 32px;
-    }
-  }
 </style>
 

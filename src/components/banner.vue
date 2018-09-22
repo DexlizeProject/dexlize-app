@@ -4,7 +4,7 @@
         <img src="/static/img/banner-logo.png" class="banner-logo"/>
         <div class="banner-options">
             <div class="banner-option">
-                <button class="banner-option-btn">PUB</button>
+                <button class="banner-option-btn">PUB <font-awesome-icon icon="caret-down"/></button>
             </div>
             <div class="banner-option">
                 <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">About PUB</button>
@@ -12,11 +12,11 @@
             <div class="banner-option">
                 <button
                         class="header-account banner-option-btn"
-                        v-if="account.name">
-                    <p>{{account.name}}</p>
-                    <font-awesome-icon
-                            @click="logout"
-                            icon="sign-out-alt" />
+                        v-if="true || account.name">
+                    My Account <font-awesome-icon icon="caret-down"/>
+                    <!--<font-awesome-icon-->
+                            <!--@click="logout"-->
+                            <!--icon="sign-out-alt" />-->
                 </button>
                 <button
                         class="login-link banner-option-btn"
@@ -33,7 +33,7 @@
         class="search-input" />
     </el-dialog>
       <el-dialog :visible.sync="showTokenAbout">
-          <token-about/>
+          <token-about @close-dialog="showTokenAbout = false"/>
       </el-dialog>
     <!--<ul>-->
       <!--<li @click="navigateTo('trade')">-->
@@ -155,6 +155,10 @@
     flex: 1;
 }
 
+.banner-option:last-child{
+    flex: 1.2;
+}
+
 .banner-option-btn{
     width: 95%;
     height: 40px;
@@ -175,15 +179,6 @@
     display: block;
 }
 
-.header-account {
-  display: flex;
-  align-items: center;
-}
-
-.header-account > p {
-  margin-right: 10px;
-}
-
 .header-account > svg {
   cursor: pointer;
 }
@@ -193,15 +188,15 @@
   text-shadow: 0 0 5px #fff;
 }
 
-.icon-search {
-  margin-right: 60px;
-  cursor: pointer;
-  transition: transform ease 400ms;
-}
+/*.icon-search {*/
+  /*margin-right: 60px;*/
+  /*cursor: pointer;*/
+  /*transition: transform ease 400ms;*/
+/*}*/
 
-.icon-search:hover {
-  transform: scale(2);
-}
+/*.icon-search:hover {*/
+  /*transform: scale(2);*/
+/*}*/
 
 .search-input {
   outline: none;

@@ -10,10 +10,13 @@ import {
   faDollarSign,
   faChevronLeft,
   faChevronRight,
+    faChevronDown,
+    faTimes,
   faSignOutAlt,
   faSearchDollar,
   faHome,
-  faComments 
+  faComments,
+    faCaretDown
 } from '@fortawesome/free-solid-svg-icons'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -35,7 +38,10 @@ library.add(
   faSearchDollar,
   faHome,
   brands,
-  faComments 
+  faComments,
+    faChevronDown,
+    faTimes,
+    faCaretDown
 );
 
 import 'normalize.css';

@@ -64,14 +64,20 @@
     <!--</el-table-column>-->
     <!--</el-table>-->
     <footer class="order-footer">
-      <font-awesome-icon 
-        @click="prevPage"
-        :class="{ 'disabled': offset === 1 }" 
-        icon="chevron-left" />
-      <font-awesome-icon 
-        @click="nextPage"
-        :class="{ 'disabled': orders.length < limit }" 
-        icon="chevron-right" />
+        <div class="order-nav">
+            <div class="order-nav-item">
+                <font-awesome-icon
+                        @click="prevPage"
+                        :class="{ 'disabled': offset === 1 }"
+                        icon="chevron-left" />
+            </div>
+            <div class="order-nav-item">
+                <font-awesome-icon
+                        @click="nextPage"
+                        :class="{ 'disabled': orders.length < limit }"
+                        icon="chevron-right" />
+            </div>
+        </div>
     </footer>
   </section>
 </template>
@@ -206,6 +212,17 @@ export default {
   line-height: 1.5;
 }
 
+
+.order-nav-item{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #979797;
+    border-radius: 5px;
+}
+
 /*.table {*/
   /*margin-bottom: 15px;*/
   /*width: 100%;*/
@@ -253,10 +270,6 @@ export default {
   margin-top: 30px;
 }
 
-.order-footer svg:first-child {
-  margin-right: 15px; 
-}
-
 .order-footer svg {
   cursor: pointer;
 }
@@ -266,19 +279,19 @@ export default {
 }
 
 .order-footer svg.disabled > path {
-  fill: #c0c4cc;
+  fill: #979797;
 }
 
 .order-footer svg > path {
-  fill: #303133;
+  fill: #979797;
 }
 
 .order-footer svg:hover > path {
-  fill: #5F90D3;  
+  fill: #979797;
 }
 
 .order-footer svg.disabled:hover > path {
-  fill: #c0c4cc;  
+  fill: #979797;
 }
 
   @media screen and (max-width: 768px){
