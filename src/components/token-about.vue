@@ -38,37 +38,8 @@
         <label>Lockup</label>
         <span>{{rangeFormat(about.lock_up_period)}}</span>
       </li>
-    </ul> 
-    <!--<ul -->
-      <!--v-if="social"-->
-      <!--class="social-list">-->
-      <!--<li @click="openTab(social.website)">-->
-        <!--<el-tooltip-->
-          <!--effect="dark" -->
-          <!--content="Website" -->
-          <!--placement="top-start">-->
-          <!--<font-awesome-icon icon="home" />-->
-        <!--</el-tooltip>-->
-      <!--</li>-->
-      <!--<li @click="openTab(social.community)">-->
-        <!--<el-tooltip-->
-          <!--effect="dark" -->
-          <!--content="Community" -->
-          <!--placement="top-start">-->
-          <!--<font-awesome-icon icon="comments" />-->
-        <!--</el-tooltip>-->
-      <!--</li>-->
-      <!--<li @click="openTab(social.social)">-->
-        <!--<font-awesome-icon :icon="['fab', 'twitter']" />-->
-      <!--</li>-->
-      <!--<li @click="openTab(social.medium)">-->
-        <!--<font-awesome-icon :icon="['fab', 'medium-m']" />-->
-      <!--</li>-->
-      <!--<li @click="openTab(social.github)">-->
-        <!--<font-awesome-icon :icon="['fab',  'github']" />-->
-      <!--</li>-->
-    <!--</ul>-->
-  </section> 
+    </ul>
+  </section>
 </template>
 
 <script>
@@ -84,9 +55,6 @@ export default {
     this.fetchToken();
     this.fetchReferFee();
   },
-
-
-
   data() {
     return {
       decimals: 0,
@@ -99,7 +67,6 @@ export default {
   watch: {
     token() {
       this.fetchToken();
-      this.fetchSocial();
       this.getBalance();
       this.fetchReferFee();
     },
@@ -136,7 +103,8 @@ export default {
         this.about = rows[0];
         this.about.feePercent = feePercent(this.about);
         this.about.eosPool = (hexTransform(this.about.eos) - hexTransform(this.about.base_eos)).toFixed(4);
-      }); 
+        this.$store.commit('UPDATE_EOS_POOL', this.about.eosPool);
+      });
     },
 
     fetchReferFee() {
@@ -152,14 +120,6 @@ export default {
           this.referFeePercent = 0;
         }  
       }); 
-    },
-
-    fetchSocial() {
-      fetch(`token/detail?name=${this.token}`).then(({ token }) => {
-        this.social = token; 
-      }).catch(() => {
-        this.social = undefined; 
-      });
     },
 
     getBalance() {

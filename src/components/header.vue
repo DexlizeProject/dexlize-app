@@ -43,16 +43,6 @@
     <el-dialog :visible.sync="showTokenAbout">
       <token-about v-on:close-dialog="showTokenAbout = false"/>
     </el-dialog>
-    <!--<ul>-->
-    <!--<li @click="navigateTo('trade')">-->
-    <!--<font-awesome-icon icon="wallet" />-->
-    <!--<span>Token</span>-->
-    <!--</li>-->
-    <!--<li @click="navigateTo('publish')">-->
-    <!--<font-awesome-icon icon="dollar-sign" />-->
-    <!--<span>Publish</span>-->
-    <!--</li>-->
-    <!--</ul>-->
   </div>
 </template>
 

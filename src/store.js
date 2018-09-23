@@ -16,7 +16,8 @@ export default new Vuex.Store({
   state: {
     account: {},
     token,
-    tradeDisabled: false
+    tradeDisabled: false,
+      eosPool: ''
   },
 
   mutations: {
@@ -30,7 +31,11 @@ export default new Vuex.Store({
 
     UPDATE_TRADE_DISABLED(state, disabled) {
       state.tradeDisabled = disabled;
-    }
+    },
+
+      UPDATE_EOS_POOL(state, num){
+        state.eosPool = num
+      }
   }
 });
 

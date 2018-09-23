@@ -20,12 +20,11 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Fee</span>
-              <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span> <span
-                      class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈{{feePercent}}%</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Obtain</span>
-              <span class="transaction-value"><span class="transaction-num">1000</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈1000</span><span class="transaction-unit">PUB</span></span>
             </div>
           </div>
 
@@ -52,12 +51,11 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Fee</span>
-              <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span> <span
-                      class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈{{feePercent}}%</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Obtain</span>
-              <span class="transaction-value"><span class="transaction-num">1000</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈1000</span><span class="transaction-unit">PUB</span></span>
             </div>
           </div>
           <footer class="trade-footer" slot="footer">
