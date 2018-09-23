@@ -1,12 +1,42 @@
 <template>
   <section class="token-action card">
     <div class="card-header">
-      <div class="card-nav" :class="{'active': currentTab === 1}"><button class="card-nav-btn" @click="currentTab = 1">Sell</button></div>
-      <div class="card-nav" :class="{'active': currentTab === 2}"><button class="card-nav-btn" @click="currentTab = 2">Buy</button></div>
+      <div class="card-nav" :class="{'active': currentTab === 1}"><button class="card-nav-btn" @click="currentTab = 1">Buy</button></div>
+      <div class="card-nav" :class="{'active': currentTab === 2}"><button class="card-nav-btn" @click="currentTab = 2">Sell</button></div>
       <div class="card-nav" :class="{'active': currentTab === 3}"><button class="card-nav-btn" @click="currentTab = 3">Transfer</button></div>
     </div>
     <div class="card-content">
-      <div class="tab-sell" v-show="currentTab === 1">
+      <div class="tab-buy" v-show="currentTab === 1">
+        <div class="trade-dialog">
+          <div class="transaction-form">
+            <div class="transaction-item">
+              <span class="transaction-title">Balance</span>
+              <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item bg-gray">
+              <span class="transaction-title">Amount</span>
+              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.buy.amount"/> <span
+                      class="transaction-unit">PUB</span></span>
+            </div>
+            <div class="transaction-item">
+              <span class="transaction-title">Fee</span>
+              <span class="transaction-value"><span class="transaction-num">≈{{feePercent}}%</span></span>
+            </div>
+            <div class="transaction-item">
+              <span class="transaction-title">Obtain</span>
+              <span class="transaction-value"><span class="transaction-num">≈1000</span><span class="transaction-unit">PUB</span></span>
+            </div>
+          </div>
+          <footer class="trade-footer" slot="footer">
+            <el-button
+                    @click="buy"
+                    :loading="loading"
+                    :disabled="!form.buy.amount || !account.name"
+                    class="btn-trade blue-gradient">Buy</el-button>
+          </footer>
+        </div>
+      </div>
+      <div class="tab-sell" v-show="currentTab === 2">
         <div class="trade-dialog">
           <div class="transaction-form">
             <div class="transaction-item">
@@ -37,36 +67,7 @@
           </footer>
         </div>
       </div>
-      <div class="tab-buy" v-show="currentTab === 2">
-        <div class="trade-dialog">
-          <div class="transaction-form">
-            <div class="transaction-item">
-              <span class="transaction-title">Balance</span>
-              <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
-            </div>
-            <div class="transaction-item bg-gray">
-              <span class="transaction-title">Amount</span>
-              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.buy.amount"/> <span
-                      class="transaction-unit">PUB</span></span>
-            </div>
-            <div class="transaction-item">
-              <span class="transaction-title">Fee</span>
-              <span class="transaction-value"><span class="transaction-num">≈{{feePercent}}%</span></span>
-            </div>
-            <div class="transaction-item">
-              <span class="transaction-title">Obtain</span>
-              <span class="transaction-value"><span class="transaction-num">≈1000</span><span class="transaction-unit">PUB</span></span>
-            </div>
-          </div>
-          <footer class="trade-footer" slot="footer">
-            <el-button
-                    @click="buy"
-                    :loading="loading"
-                    :disabled="!form.buy.amount || !account.name"
-                    class="btn-trade blue-gradient">Buy</el-button>
-          </footer>
-        </div>
-      </div>
+
       <div class="tab-transfer" v-show="currentTab === 3">
         <div class="trade-dialog">
           <div class="transaction-form">

@@ -46,11 +46,9 @@
 import fetch from '@/utils/api';
 import api from '@/utils/eos';
 import { feePercent, hexTransform } from '@/utils/math';
-import logoPub from '@/assets/pub.png';
 
 export default {
   mounted() {
-    this.fetchSocial();
     this.getBalance();
     this.fetchToken();
     this.fetchReferFee();
@@ -58,7 +56,6 @@ export default {
   data() {
     return {
       decimals: 0,
-      logoPub,
       about: {},
       social: {}
     };
@@ -201,29 +198,6 @@ export default {
   color: #2f2f2f;
   line-height: 1.5;
   font-weight: 500;
-}
-
-.social-list > li {
-  margin-right: 30px;
-}
-
-.social-list > li {
-  cursor: pointer; 
-  opacity: .5;
-  transition: opacity ease 300ms;
-}
-
-.social-list > li:hover {
-  opacity: 1; 
-}
-
-.social-list > li > a {
-  color: #3869C2; 
-  text-decoration: none;
-}
-
-.social-list > li > a:hover {
-  opacity: .5;
 }
 </style>
 
