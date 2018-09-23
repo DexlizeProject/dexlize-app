@@ -29,8 +29,8 @@
     <div class="token-list-tip tip" v-show="showTokenList">
       <div class="tip-header">Token List</div>
       <ul>
-        <li>PUB</li>
-        <li>DEX</li>
+        <li @click="changeToken('pub')">PUB</li>
+        <li @click="changeToken('dex')">DEX</li>
       </ul>
     </div>
     <div class="my-account-tip tip" v-show="showMyAccount">
@@ -43,13 +43,13 @@
         <div class="item-value">1322321312<span class="item-unit">EOS</span><br/>31231231<span class="item-unit">PUB</span> </div>
       </div>
     </div>
-    <el-dialog :visible.sync="showSearch">
-      <input
-              v-model="keyword"
-              @keydown.13="search"
-              placeholder="Enter token name, ie: PUB"
-              class="search-input" />
-    </el-dialog>
+    <!--<el-dialog :visible.sync="showSearch">-->
+      <!--<input-->
+              <!--v-model="keyword"-->
+              <!--@keydown.13="search"-->
+              <!--placeholder="Enter token name, ie: PUB"-->
+              <!--class="search-input" />-->
+    <!--</el-dialog>-->
     <el-dialog :visible.sync="showTokenAbout">
       <token-about v-on:close-dialog="showTokenAbout = false"/>
     </el-dialog>
@@ -76,7 +76,6 @@
     data() {
         return {
             keyword: "",
-            showSearch: false,
             showTokenList: false,
             showTokenAbout: false,
             showMyAccount: false
@@ -84,6 +83,9 @@
     },
 
     methods: {
+        changeToken(target){
+            this.search(target);
+        },
       login() {
         if (scatter) {
           scatter.getIdentity({
@@ -105,8 +107,8 @@
         });
       },
 
-      search() {
-        const { keyword } = this;
+      search(target) {
+        const keyword = target;
         if (!keyword) return;
         this.checkToken(keyword).then(result => {
           if (!result) {
@@ -201,27 +203,16 @@
     text-shadow: 0 0 5px #fff;
   }
 
-  .icon-search {
-  margin-right: 60px;
-  cursor: pointer;
-  transition: transform ease 400ms;
-  }
-
-  .icon-search:hover {
-  transform: scale(2);
-  }
-
-  .search-input {
-    outline: none;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    font-size: 1.5em;
-    font-style: italic;
-    border: none;
-  }
-
+  /*.search-input {*/
+    /*outline: none;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*font-size: 1.5em;*/
+    /*font-style: italic;*/
+    /*border: none;*/
+  /*}*/
 
   .token-banner > ul {
     display: flex;
