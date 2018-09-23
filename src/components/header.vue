@@ -201,15 +201,15 @@
     text-shadow: 0 0 5px #fff;
   }
 
-  /*.icon-search {*/
-  /*margin-right: 60px;*/
-  /*cursor: pointer;*/
-  /*transition: transform ease 400ms;*/
-  /*}*/
+  .icon-search {
+  margin-right: 60px;
+  cursor: pointer;
+  transition: transform ease 400ms;
+  }
 
-  /*.icon-search:hover {*/
-  /*transform: scale(2);*/
-  /*}*/
+  .icon-search:hover {
+  transform: scale(2);
+  }
 
   .search-input {
     outline: none;

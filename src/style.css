@@ -70,6 +70,10 @@ button {
 .card-nav-btn{
   font-size: 14px;
   color: rgba(0,0,0,.5);
+  background: none;
+  border: none;
+  width: 100%;
+  height: 100%;
 }
 
 .card-nav.active{
