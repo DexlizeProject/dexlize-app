@@ -58,22 +58,22 @@ export default {
     margin-left: 10px;
   }
 
-  .btn-invite {
-    cursor: pointer;
-    background-image: url('../assets/btn-invite-bg.svg');
-    font-weight: 600;
-    border: 1px solid rgb(0, 170, 109);
-    background-color: rgb(0, 197, 127);
-    border-radius: 4px;
-    color: #fff;
-    padding: 10px;
-    font-size: .9em;
-    transition: opacity ease 200ms;
-  }
+  /*.btn-invite {*/
+    /*cursor: pointer;*/
+    /*background-image: url('../assets/btn-invite-bg.svg');*/
+    /*font-weight: 600;*/
+    /*border: 1px solid rgb(0, 170, 109);*/
+    /*background-color: rgb(0, 197, 127);*/
+    /*border-radius: 4px;*/
+    /*color: #fff;*/
+    /*padding: 10px;*/
+    /*font-size: .9em;*/
+    /*transition: opacity ease 200ms;*/
+  /*}*/
 
-  .btn-invite:hover {
-    opacity: .9;
-  }
+  /*.btn-invite:hover {*/
+    /*opacity: .9;*/
+  /*}*/
 
   @media screen and (max-width: 768px){
     .header{

@@ -20,11 +20,11 @@ export default new Router({
     //   name: 'publish',
     //   component: require('@/pages/publish').default
     // },
-    {
-      path: '/tokens/termsheet',
-      name: 'termsheet',
-      component: require('@/pages/termsheet').default
-    }
+    // {
+    //   path: '/tokens/termsheet',
+    //   name: 'termsheet',
+    //   component: require('@/pages/termsheet').default
+    // }
   ] 
 });
 

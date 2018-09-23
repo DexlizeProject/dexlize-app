@@ -1,10 +1,10 @@
 <template>
   <section class="orders card">
     <div class="card-header">
-        <div class="card-nav" :class="{'active': currentTab === 1}" @click="currentTab = 1">My Orders</div>
-        <div class="card-nav" :class="{'active': currentTab === 2}" @click="currentTab = 2">All Market Orders</div>
+        <!--<div class="card-nav" :class="{'active': currentTab === 1}" @click="currentTab = 1">My Orders</div>-->
+        <div class="card-nav" :class="{'active': currentTab === 1}" @click="currentTab = 1">All Market Orders</div>
     </div>
-      <table class="my-orders-table">
+      <table class="market-orders-table">
           <thead>
           <tr>
               <th>Time</th>
@@ -177,7 +177,7 @@ export default {
   flex: 2;
 }
 
-.my-orders-table{
+.market-orders-table{
     width: 100%;
     overflow: scroll;
     display: block;
@@ -185,20 +185,20 @@ export default {
     border-collapse: collapse;
 }
 
-.my-orders-table thead{
+.market-orders-table thead{
     display: flex;
 }
 
-.my-orders-table tr{
+.market-orders-table tr{
     display: flex;
     width: 100%;
 }
 
-.my-orders-table thead tr{
+.market-orders-table thead tr{
     border-bottom: 2px solid rgba(0,0,0,.1);
 }
 
-.my-orders-table thead th{
+.market-orders-table thead th{
     flex: 1;
     color: rgba(0,0,0,.5);
     font-weight: normal;
@@ -208,27 +208,27 @@ export default {
     padding-bottom: 12px;
 }
 
-.my-orders-table tbody{
+.market-orders-table tbody{
     display: flex;
     flex-wrap: wrap;
 }
 
-.my-orders-table tbody td{
+.market-orders-table tbody td{
     flex: 1;
     border-bottom: 1px solid rgba(0,0,0,.1);
     padding: 10px 0;
 }
 
-.my-orders-table tbody tr:last-child td{
+.market-orders-table tbody tr:last-child td{
     border-bottom: none;
 }
 
-.my-orders-table tbody td{
+.market-orders-table tbody td{
     line-height: 18px;
     text-align: left;
 }
 
-.my-orders-table .icon-share{
+.market-orders-table .icon-share{
     margin-left: 8px;
 }
 
