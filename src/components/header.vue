@@ -15,9 +15,6 @@
                   class="header-account banner-option-btn"
                   v-if="account.name">
             My Account <font-awesome-icon icon="caret-down" v-show="!showMyAccount"/><font-awesome-icon icon="caret-up" v-show="showMyAccount"/>
-            <!--<font-awesome-icon-->
-            <!--@click="logout"-->
-            <!--icon="sign-out-alt" />-->
           </button>
           <button
                   class="login-link banner-option-btn"
@@ -30,7 +27,7 @@
       <div class="tip-header">Token List</div>
       <ul>
         <li @click="changeToken('PUB')">PUB</li>
-        <li @click="changeToken('DEX')">DEX</li>
+        <li @click="changeToken('TPT')">TPT</li>
       </ul>
     </div>
     <div class="my-account-tip tip" v-show="showMyAccount">
