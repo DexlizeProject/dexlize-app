@@ -11,21 +11,21 @@
           <div class="transaction-form">
             <div class="transaction-item">
               <span class="transaction-title">Balance</span>
-              <span class="transaction-value">{{balance}}<span class="transanction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">Amount</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.sell.amount"/> <span
-                      class="transanction-unit">PUB</span></span>
+                      class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Fee</span>
-              <span class="transaction-value">{{feePercent}}% <span
-                      class="transanction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span> <span
+                      class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Obtain</span>
-              <span class="transaction-value">1000<span class="transanction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">1000</span><span class="transaction-unit">PUB</span></span>
             </div>
           </div>
 
@@ -43,21 +43,21 @@
           <div class="transaction-form">
             <div class="transaction-item">
               <span class="transaction-title">Balance</span>
-              <span class="transaction-value">{{balance}}<span class="transanction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">Amount</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.buy.amount"/> <span
-                      class="transanction-unit">PUB</span></span>
+                      class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Fee</span>
-              <span class="transaction-value">{{feePercent}}% <span
-                      class="transanction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span> <span
+                      class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Obtain</span>
-              <span class="transaction-value">1000<span class="transanction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">1000</span><span class="transaction-unit">PUB</span></span>
             </div>
           </div>
           <footer class="trade-footer" slot="footer">
@@ -74,17 +74,17 @@
           <div class="transaction-form">
             <div class="transaction-item">
               <span class="transaction-title">Balance</span>
-              <span class="transaction-value">{{balance}}<span class="transanction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">Account</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="receiver's account"/> <span
-                      class="transanction-unit">PUB</span></span>
+                      class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">Amount</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.amount"/> <span
-                      class="transanction-unit">PUB</span></span>
+                      class="transaction-unit">PUB</span></span>
             </div>
           </div>
 
@@ -544,6 +544,7 @@ export default {
     background-color: #fff;
     border-radius: 5px;
     width: 100%;
+    border: none;
     transition: color, background-color ease 200ms;
   }
 
@@ -583,27 +584,36 @@ export default {
     margin-bottom: 12px;
     padding-left: 12px;
     padding-right: 12px;
+    display: flex;
   }
   .transaction-title {
-    display: inline-block;
     color: #a8a8a8;
+    justify-content: flex-start;
+    flex: 1;
   }
   .transaction-value {
-    display: inline-block;
-    float: right;
+    flex: 1;
+    justify-content: flex-end;
     color: #505050;
+    text-align: right;
+    display: flex;
   }
-  .transanction-unit {
+  .transaction-unit {
     display: inline-block;
     margin-left: 8px;
     color: #a8a8a8;
     width: 36px;
+    flex: 1;
   }
   .pure-input{
+    flex: 1;
     text-align: right;
     outline: 0;
     border: none;
     background: transparent;
+  }
+  .transaction-num{
+    flex: 5;
   }
   @media screen and (max-width: 768px){
     .token-action__info {
