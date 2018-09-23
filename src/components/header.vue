@@ -138,7 +138,11 @@
         if (to.query.token === from.query.token) return;
         this.$store.commit('UPDATE_TOKEN', to.query.token);
       }
-    }
+    },
+
+      components:{
+        tokenAbout: require('./token-about').default
+      }
   };
 </script>
 

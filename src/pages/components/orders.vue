@@ -15,9 +15,9 @@
           </thead>
           <tbody>
           <tr v-for="row in orders">
-              <td>{{dateFormatter(row)}}</td>
-              <td>{{row.account_name}}<br><span :class="{'buy': row.is_buy_type, 'sell': !row.is_buy_type}">{{row.is_buy_type ? 'buy' : 'sell'}}</span></td>
-              <td></td>
+              <td v-html="dateFormatter(row)"></td>
+              <td :style="{overflow: 'hidden', textOverflow: 'ellipsis'}">{{row.account_name}}<br><span :class="{'buy': row.is_buy_type, 'sell': !row.is_buy_type}">{{row.is_buy_type ? 'buy' : 'sell'}}</span></td>
+              <td>123</td>
               <td>{{priceFormatter(row)}} <a :href="`//eospark.com/MainNet/tx/${row.trx_id}`" target="_blank"><span class="icon-share"></span></a></td>
           </tr>
           </tbody>
@@ -140,7 +140,7 @@ export default {
       const date = new Date(time);
       const minutes = date.getMinutes();
       const seconds = date.getSeconds();
-      return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+      return `${date.getMonth() + 1}-${date.getDate()} <br/> ${date.getHours()}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
     },
 
     eosFormatter({ money }) {
@@ -185,11 +185,21 @@ export default {
     border-collapse: collapse;
 }
 
+.my-orders-table thead{
+    display: flex;
+}
+
+.my-orders-table tr{
+    display: flex;
+    width: 100%;
+}
+
 .my-orders-table thead tr{
     border-bottom: 2px solid rgba(0,0,0,.1);
 }
 
 .my-orders-table thead th{
+    flex: 1;
     color: rgba(0,0,0,.5);
     font-weight: normal;
     line-height: 18px;
@@ -199,6 +209,7 @@ export default {
 }
 
 .my-orders-table tbody td{
+    flex: 1;
     border-bottom: 1px solid rgba(0,0,0,.1);
     padding: 10px 0;
 }
