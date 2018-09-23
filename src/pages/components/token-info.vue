@@ -606,12 +606,16 @@ export default {
     flex: 1;
   }
   .pure-input{
-    flex: 1;
+    flex: 5;
+    width: 100%;
     text-align: right;
     outline: 0;
     border: none;
     background: transparent;
     font-size: 16px;
+    min-width: 0;
+    -webkit-appearance: none;
+    flex-shrint: 1;
   }
   .transaction-num{
     flex: 5;
