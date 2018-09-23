@@ -611,6 +611,7 @@ export default {
     outline: 0;
     border: none;
     background: transparent;
+    font-size: 16px;
   }
   .transaction-num{
     flex: 5;
