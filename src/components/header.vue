@@ -4,14 +4,14 @@
       <img src="/static/img/banner-logo.png" class="banner-logo"/>
       <div class="banner-options">
         <div class="banner-option">
-          <button class="banner-option-btn" @click="showTokenList = !showTokenList"><div class="blue-circle"></div> PUB <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
+          <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
         </div>
         <div class="banner-option">
-          <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">About PUB</button>
+          <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">About {{this.$store.state.token}}</button>
         </div>
         <div class="banner-option">
           <button
-                  @click="showMyAccount = !showMyAccount"
+                  @click="toggleShowMyAccount"
                   class="header-account banner-option-btn"
                   v-if="account.name">
             My Account <font-awesome-icon icon="caret-down" v-show="!showMyAccount"/><font-awesome-icon icon="caret-up" v-show="showMyAccount"/>
@@ -29,8 +29,8 @@
     <div class="token-list-tip tip" v-show="showTokenList">
       <div class="tip-header">Token List</div>
       <ul>
-        <li @click="changeToken('pub')">PUB</li>
-        <li @click="changeToken('dex')">DEX</li>
+        <li @click="changeToken('PUB')">PUB</li>
+        <li @click="changeToken('DEX')">DEX</li>
       </ul>
     </div>
     <div class="my-account-tip tip" v-show="showMyAccount">
@@ -79,6 +79,23 @@
         changeToken(target){
             this.search(target);
         },
+        toggleTokenList(){
+            this.showTokenList = !this.showTokenList
+            console.log(this.showTokenList)
+            if(this.showTokenList || this.showMyAccount){
+                this.$emit('show-shadow')
+            }else{
+                this.$emit('hide-shadow')
+            }
+        },
+        toggleShowMyAccount(){
+            this.showMyAccount = !this.showMyAccount
+            if(this.showTokenList || this.showMyAccount){
+                this.$emit('show-shadow')
+            }else{
+                this.$emit('hide-shadow')
+            }
+        },
       login() {
         if (scatter) {
           scatter.getIdentity({
@@ -104,8 +121,8 @@
         const keyword = target;
         if (!keyword) return;
         this.showTokenList = false;
+        this.$emit('hide-shadow')
         this.checkToken(keyword).then(result => {
-            console.log(111, result);
           if (!result) {
             this.$message.error(`Token: ${keyword.toUpperCase()} not exists`);
           } else {
@@ -158,6 +175,8 @@
 
   .banner-options{
     display: flex;
+    z-index: 100;
+    position: relative;
   }
 
   .banner-option{

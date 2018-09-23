@@ -540,7 +540,7 @@ export default {
   .btn-trade {
     padding: 10px 0;
     cursor: pointer;
-    color: #3673CD;
+    color: #fff;
     background-color: #fff;
     border-radius: 5px;
     width: 100%;

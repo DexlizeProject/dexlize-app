@@ -36,7 +36,7 @@
         <!--</li>-->
       <!--</ul>-->
     <!--</nav>-->
-    <p class="copyright">Copyright &copy; 2018. DAPP PUBLISH PTE. LTD.</p>
+    <p class="copyright">Copyright &copy; 2018. Dexlize Foundation PTE. LTD.</p>
   </footer>
 </template>
 

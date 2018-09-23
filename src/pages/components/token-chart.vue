@@ -1,7 +1,7 @@
 <template>
   <section class="token-chart card">
     <div class="token-chart-info">
-      <div class="token-chart-title"><div class="blue-circle"></div> PUB - EOS</div>
+      <div class="token-chart-title"><div class="blue-circle"></div> {{this.$store.state.token}} - EOS</div>
       <div class="token-chart-price">Current Price: 0.2274 EOS</div>
       <div class="token-chart-price">EOS Pool: 23,762.1152(2.38%)</div>
     </div>

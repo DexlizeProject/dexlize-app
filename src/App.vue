@@ -1,6 +1,7 @@
 <template>
   <main id="app">
-    <token-header />
+    <div v-show="showAppShadow" class="app-shadow" ></div>
+    <token-header v-on:show-shadow="showShadow" v-on:hide-shadow="hideShadow" />
     <el-dialog
       class="termsheet-dialog"
       :close-on-press-escape="false"
@@ -80,6 +81,7 @@ export default {
     return {
       tokenNotFound: false,
       needTermsheet: false,
+        showAppShadow: false,
       termsheetSketch
     }
   },
@@ -101,6 +103,15 @@ export default {
         this.needTermsheet = true;
       }
     },
+
+      showShadow(){
+        console.log(1233)
+        this.showAppShadow = true;
+      },
+
+      hideShadow(){
+          this.showAppShadow = false;
+      },
 
     checkToken() {
       api.getTableRows({
