@@ -43,13 +43,6 @@
         <div class="item-value">1322321312<span class="item-unit">EOS</span><br/>31231231<span class="item-unit">PUB</span> </div>
       </div>
     </div>
-    <!--<el-dialog :visible.sync="showSearch">-->
-      <!--<input-->
-              <!--v-model="keyword"-->
-              <!--@keydown.13="search"-->
-              <!--placeholder="Enter token name, ie: PUB"-->
-              <!--class="search-input" />-->
-    <!--</el-dialog>-->
     <el-dialog :visible.sync="showTokenAbout">
       <token-about v-on:close-dialog="showTokenAbout = false"/>
     </el-dialog>
@@ -110,13 +103,14 @@
       search(target) {
         const keyword = target;
         if (!keyword) return;
+        this.showTokenList = false;
         this.checkToken(keyword).then(result => {
+            console.log(111, result);
           if (!result) {
             this.$message.error(`Token: ${keyword.toUpperCase()} not exists`);
           } else {
             this.$router.push({ query: { token: keyword.toUpperCase() } });
             this.$store.commit('UPDATE_TOKEN', keyword);
-            this.showSearch = false;
           }
         });
       },
