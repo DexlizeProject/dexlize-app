@@ -53,6 +53,13 @@
   const url = new URL(location.href);
 
   export default {
+      mounted(){
+          this.$root.$on('close-dialog', () => {
+              this.showTokenList = false;
+            this.showTokenAbout = false;
+            this.showMyAccount = false;
+      })
+      },
     data() {
         return {
             keyword: "",

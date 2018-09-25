@@ -1,6 +1,6 @@
 <template>
   <main id="app">
-    <div v-show="showAppShadow" class="app-shadow" ></div>
+    <div v-show="showAppShadow" class="app-shadow" @click="hideDialogAndShadow"></div>
     <token-header v-on:show-shadow="showShadow" v-on:hide-shadow="hideShadow" />
     <el-alert
       title=""
@@ -83,6 +83,11 @@ export default {
 
       hideShadow(){
           this.showAppShadow = false;
+      },
+
+      hideDialogAndShadow(){
+          this.showAppShadow = false;
+          this.$root.$emit('close-dialog')
       },
 
     checkToken() {
