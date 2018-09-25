@@ -2,8 +2,9 @@
   <section class="token-chart card">
     <div class="token-chart-info">
       <div class="token-chart-title"><div class="blue-circle"></div> {{this.$store.state.token}} - EOS</div>
-      <div class="token-chart-price">{{$t('currentPrice')}}: 0.2274 EOS</div>
-      <div class="token-chart-price">EOS {{$t('pool')}}: {{eosPool}}</div>
+      <div class="token-chart-price">{{$t('currentPrice')}}: {{currentPrice}} EOS</div>
+      <div class="token-chart-price">EOS {{$t('pool')}}: {{eosPool}} EOS</div>
+      <div class="token-chart-price">{{$t('stakeRatio')}}: {{stakeRatio}}%</div>
     </div>
     <!--<header>-->
       <ul class="token-filter">
@@ -44,7 +45,9 @@ export default {
   data() {
     return {
       interval: '1h',
-        eosPool: ''
+      eosPool: '',
+      currentPrice: '',
+      stakeRatio: ''
     };
   },
 
@@ -84,6 +87,8 @@ export default {
               table: 'games'
           }).then(({ rows }) => {
             this.eosPool = (hexTransform(rows[0].eos) - hexTransform(rows[0].base_eos)).toFixed(4);
+            this.currentPrice = (1 / ((rows[0].stake/10000) / (hexTransform(rows[0].eos)))).toFixed(8);
+            this.stakeRatio = ((1 - (rows[0].stake / (rows[0].base_stake + rows[0].claimed_option))) * 100).toFixed(4);
       });
       },
 
