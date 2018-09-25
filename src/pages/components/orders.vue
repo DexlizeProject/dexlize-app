@@ -17,7 +17,7 @@
           <tr v-for="row in orders">
               <td v-html="dateFormatter(row)"></td>
               <td :style="{overflow: 'hidden', textOverflow: 'ellipsis'}">{{row.account_name}}<br><span :class="{'buy': row.is_buy_type, 'sell': !row.is_buy_type}">{{row.is_buy_type ? 'buy' : 'sell'}}</span></td>
-              <td>123</td>
+              <td>{{(row.is_buy_type ? '+' : '-') +eosFormatter(row)}}/<br/> {{(row.is_buy_type ? '+' : '-' ) + row.amount}}</td>
               <td>{{priceFormatter(row)}} <a :href="`//eospark.com/MainNet/tx/${row.trx_id}`" target="_blank"><span class="icon-share"></span></a></td>
           </tr>
           </tbody>
@@ -43,20 +43,20 @@
         <!--label="Account" />-->
       <!--<el-table-column-->
         <!--prop="money"-->
-        <!--label="EOS" -->
+        <!--label="EOS"-->
         <!--:formatter="eosFormatter" />-->
       <!--<el-table-column-->
         <!--prop="amount"-->
         <!--label="Amount"  />-->
       <!--<el-table-column-->
         <!--prop="price"-->
-        <!--label="price" -->
+        <!--label="price"-->
         <!--:formatter="priceFormatter" />-->
 
       <!--<el-table-column-->
         <!--label="Action">-->
         <!--<template slot-scope="scope">-->
-          <!--<a -->
+          <!--<a-->
             <!--class="order-trxlink"-->
             <!--target="_blank"-->
             <!--:href="`//eospark.com/MainNet/tx/${scope.row.trx_id}`">detail</a>-->
