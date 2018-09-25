@@ -37,7 +37,10 @@
       </div>
       <div class="account-item">
         <div class="item-title">{{$t('balance')}}</div>
-        <div class="item-value">1322321312<span class="item-unit">EOS</span><br/>31231231<span class="item-unit">PUB</span> </div>
+        <div class="item-value">
+          {{this.eos_balance}}<span class="item-unit">EOS</span><br/>
+          {{this.balance}}<span class="item-unit">PUB</span> 
+        </div>
       </div>
     </div>
     <el-dialog :visible.sync="showTokenAbout">
@@ -53,8 +56,19 @@
   const url = new URL(location.href);
 
   export default {
+
+    mounted() {
+      if (typeof scatter === 'undefined') return;
+      this.getEOSBalance();
+      this.getBalance();
+      this.getToken();
+      this.fetchReferFee();
+    },
+
     data() {
         return {
+            balance: "",
+            eos_balance: "",
             keyword: "",
             showTokenList: false,
             showTokenAbout: false,
@@ -63,6 +77,41 @@
     },
 
     methods: {
+        getEOSBalance() {
+          api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
+            this.eos_balance = row[0];
+            console.log('eos_balance', this.eos_balance);
+          });
+        },
+        getBalance() {
+          api.getTableRows({
+            json: true,
+            code: 'tokendapppub',
+            table: 'accounts',
+            scope: this.account.name
+          }).then(({
+            rows
+          }) => {
+            const balance = rows.find(row => new RegExp(`\\s${'PUB'.toUpperCase()}\$`).test(row.balance));
+            if (!balance) {
+              return api.getTableRows({
+                json: true,
+                code: 'tokendapppub',
+                table: 'stat',
+                scope: 'PUB'
+              }).then(({
+                rows
+              }) => {
+                const {
+                  max_supply
+                } = rows[0];
+                const decimals = (max_supply.match(/[\d\.]+/)[0].split('.')[1] || '').length;
+                this.balance = (0).toFixed(decimals);
+              });
+            }
+            this.balance = balance.balance;
+          });
+        },
         changeToken(target){
             this.search(target);
         },
@@ -141,6 +190,10 @@
       $route(to, from) {
         if (to.query.token === from.query.token) return;
         this.$store.commit('UPDATE_TOKEN', to.query.token);
+      },
+      balance() {
+        this.getEOSBalance()
+        this.getBalance()
       }
     },
 
