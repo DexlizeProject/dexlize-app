@@ -87,8 +87,8 @@ export default {
               table: 'games'
           }).then(({ rows }) => {
             this.eosPool = (hexTransform(rows[0].eos) - hexTransform(rows[0].base_eos)).toFixed(4);
-            this.currentPrice = (1 / ((rows[0].stake/10000) / (hexTransform(rows[0].eos)))).toFixed(8);
-            this.stakeRatio = ((1 - (rows[0].stake / (rows[0].base_stake + rows[0].claimed_option))) * 100).toFixed(4);
+            this.currentPrice = (1 / ((parseInt(rows[0].stake)/10000) / (hexTransform(rows[0].eos)))).toFixed(8);
+            this.stakeRatio = ((1 - (rows[0].stake / (parseInt(rows[0].base_stake) + parseInt(rows[0].claimed_option)))) * 100).toFixed(4);
       });
       },
 
