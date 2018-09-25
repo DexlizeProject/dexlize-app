@@ -1,41 +1,41 @@
 <template>
   <section class="token-about card">
     <div class="card-header">
-      <div class="card-nav">About {{token.toUpperCase()}}
+      <div class="card-nav">{{$t('about')}} {{token.toUpperCase()}}
         <font-awesome-icon icon="times" @click="closeDialog"/>
       </div>
     </div>
     <ul class="about-list">
       <li>
-        <label>Publisher</label>
+        <label>{{$t('publisher')}}</label>
         <span>{{about.owner}}</span>
       </li>
       <li>
-        <label>Publish Time</label>
+        <label>{{$t('publishtime')}}</label>
         <span>{{timeFormat(about.start_time)}}</span>
       </li>
       <li>
-        <label>Total Amount</label>
+        <label>{{$t('totalamount')}}</label>
         <span>{{((+about.base_stake + Number(about.base_option) - Number(about.deserved_option)) / Math.pow(10, decimals)).toFixed(decimals)}}</span>
       </li>
       <li>
-        <label>Base Option</label>
+        <label>{{$t('baseoption')}}</label>
         <span>{{(about.base_option / 10000).toFixed(decimals)}}</span>
       </li>
       <li>
-        <label>EOS Pool</label>
+        <label>{{$t('eospool')}}</label>
         <span>{{about.eosPool}}</span>
       </li>
       <li>
-        <label>Buy Fee Rate</label>
+        <label>{{$t('buyfeerate')}}</label>
         <span>{{referFeePercent}}%</span>
       </li>
       <li>
-        <label>Sell Fee Rate</label>
+        <label>{{$t('sellfeerate')}}</label>
         <span>{{about.feePercent}}%</span>
       </li>
       <li>
-        <label>Lockup</label>
+        <label>{{$t('lockup')}}</label>
         <span>{{rangeFormat(about.lock_up_period)}}</span>
       </li>
     </ul>
