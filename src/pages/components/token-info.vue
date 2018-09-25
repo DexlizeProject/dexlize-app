@@ -25,13 +25,13 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{referFeePercent}}%</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈{{referFeePercent}}%</span><span class="transaction-unit">{{this.$store.state.token}}</span></span>
             </div>
             <div class="transaction-item">
-              <span class="transaction-title">{{$t('obtain')}}≈</span>
+              <span class="transaction-title">{{$t('obtain')}}</span>
               <span class="transaction-value">
-                <span class="transaction-num">{{buyObtain}}</span>
-                <span class="transaction-unit">PUB</span>
+                <span class="transaction-num">≈{{buyObtain}}</span>
+                <span class="transaction-unit">{{this.$store.state.token}}</span>
               </span>
             </div>
           </div>
@@ -51,19 +51,19 @@
               <span class="transaction-title">{{$t('balance')}}</span>
               <span class="transaction-value">
                 <span class="transaction-num">{{balance}}</span>
-                 <span class="transaction-unit">PUB</span>
+                 <span class="transaction-unit">{{this.$store.state.token}}</span>
               </span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value">
                 <input type="text" class="pure-input" v-model="form.sell.amount"/> 
-                <span class="transaction-unit">PUB</span>
+                <span class="transaction-unit">{{this.$store.state.token}}</span>
               </span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span>
+              <span class="transaction-value"><span class="transaction-num">≈{{feePercent}}%</span>
                 <span class="transaction-unit">EOS</span></span>
             </div>
             <div class="transaction-item">

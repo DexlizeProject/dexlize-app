@@ -9,8 +9,8 @@
           <tr>
               <th>{{$t('time')}}</th>
               <th>{{$t('account')}}</th>
-              <th>EOS/PUB</th>
-              <th>{{$t('price')}}(EOS/PUB)</th>
+              <th>EOS/{{this.$store.state.token}}</th>
+              <th>{{$t('price')}}(EOS/{{this.$store.state.token}})</th>
           </tr>
           </thead>
           <tbody>
