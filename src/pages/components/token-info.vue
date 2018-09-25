@@ -16,10 +16,10 @@
                  <span class="transaction-unit">EOS</span>
               </span>
             </div>
-            <div class="transaction-item bg-gray">
+            <div class="transaction-item">
               <span class="transaction-title">{{$t('eos_amount')}}</span>
               <span class="transaction-value">
-                <input type="text" class="pure-input" v-model="form.buy.amount"/> 
+                <input type="number" class="pure-input" v-model="form.buy.amount"/>
                 <span class="transaction-unit">EOS</span>
               </span>
             </div>
@@ -54,10 +54,10 @@
                  <span class="transaction-unit">{{this.$store.state.token}}</span>
               </span>
             </div>
-            <div class="transaction-item bg-gray">
+            <div class="transaction-item">
               <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value">
-                <input type="text" class="pure-input" v-model="form.sell.amount"/> 
+                <input type="number" class="pure-input" v-model="form.sell.amount"/>
                 <span class="transaction-unit">{{this.$store.state.token}}</span>
               </span>
             </div>
@@ -92,15 +92,15 @@
                 <!-- <span class="transaction-unit">PUB</span> -->
               </span>
             </div>
-            <div class="transaction-item bg-gray">
+            <div class="transaction-item">
               <span class="transaction-title">{{$t('account')}}</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="Receiver's account name"/>
               </span>
             </div>
-            <div class="transaction-item bg-gray">
+            <div class="transaction-item">
               <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value">
-                <input type="text" class="pure-input" v-model="form.transfer.amount"/> 
+                <input type="number" class="pure-input" v-model="form.transfer.amount"/>
                 <span class="transaction-unit">PUB</span>
               </span>
             </div>
@@ -583,7 +583,6 @@ export default {
     padding: 10px 0;
     cursor: pointer;
     color: #fff;
-    background-color: #fff;
     border-radius: 5px;
     width: 100%;
     border: none;
@@ -653,7 +652,8 @@ export default {
     text-align: right;
     outline: 0;
     border: none;
-    background: transparent;
+    background: #f4f4f4;
+    border-radius: 5px;
     font-size: 16px;
     min-width: 0;
     -webkit-appearance: none;
