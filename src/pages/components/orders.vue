@@ -2,15 +2,15 @@
   <section class="orders card">
     <div class="card-header">
         <!--<div class="card-nav" :class="{'active': currentTab === 1}" @click="currentTab = 1">My Orders</div>-->
-        <div class="card-nav" :class="{'active': currentTab === 1}" @click="currentTab = 1">All Market Orders</div>
+        <div class="card-nav" :class="{'active': currentTab === 1}" @click="currentTab = 1">{{$t('allMarketOrders')}}</div>
     </div>
       <table class="market-orders-table">
           <thead>
           <tr>
-              <th>Time</th>
-              <th>Account</th>
+              <th>{{$t('time')}}</th>
+              <th>{{$t('account')}}</th>
               <th>EOS/PUB</th>
-              <th>Price(EOS/PUB)</th>
+              <th>{{$t('price')}}(EOS/PUB)</th>
           </tr>
           </thead>
           <tbody>

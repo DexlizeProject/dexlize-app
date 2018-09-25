@@ -7,24 +7,24 @@
           <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
         </div>
         <div class="banner-option">
-          <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">About {{this.$store.state.token}}</button>
+          <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">{{$t('about')}} {{this.$store.state.token}}</button>
         </div>
         <div class="banner-option">
           <button
                   @click="toggleShowMyAccount"
                   class="header-account banner-option-btn"
                   v-if="account.name">
-            My Account <font-awesome-icon icon="caret-down" v-show="!showMyAccount"/><font-awesome-icon icon="caret-up" v-show="showMyAccount"/>
+            {{$t('myAccount')}} <font-awesome-icon icon="caret-down" v-show="!showMyAccount"/><font-awesome-icon icon="caret-up" v-show="showMyAccount"/>
           </button>
           <button
                   class="login-link banner-option-btn"
                   @click="login"
-                  v-else>Login</button>
+                  v-else>{{$t('login')}}</button>
         </div>
       </div>
     </div>
     <div class="token-list-tip tip" v-show="showTokenList">
-      <div class="tip-header">Token List</div>
+      <div class="tip-header">{{$t('tokenList')}}</div>
       <ul>
         <li @click="changeToken('PUB')">PUB</li>
         <li @click="changeToken('TPT')">TPT</li>
@@ -32,11 +32,11 @@
     </div>
     <div class="my-account-tip tip" v-show="showMyAccount">
       <div class="account-item">
-        <div class="item-title">Account Name</div>
+        <div class="item-title">{{$t('accountName')}}</div>
         <div class="item-value">{{account.name}}</div>
       </div>
       <div class="account-item">
-        <div class="item-title">Balance</div>
+        <div class="item-title">{{$t('balance')}}</div>
         <div class="item-value">1322321312<span class="item-unit">EOS</span><br/>31231231<span class="item-unit">PUB</span> </div>
       </div>
     </div>
@@ -167,6 +167,7 @@
   }
 
   .banner-option{
+    text-align: center;
     flex: 1;
   }
 

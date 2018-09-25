@@ -1,29 +1,29 @@
 <template>
   <section class="token-action card">
     <div class="card-header">
-      <div class="card-nav" :class="{'active': currentTab === 1}"><button class="card-nav-btn" @click="currentTab = 1">Buy</button></div>
-      <div class="card-nav" :class="{'active': currentTab === 2}"><button class="card-nav-btn" @click="currentTab = 2">Sell</button></div>
-      <div class="card-nav" :class="{'active': currentTab === 3}"><button class="card-nav-btn" @click="currentTab = 3">Transfer</button></div>
+      <div class="card-nav" :class="{'active': currentTab === 1}"><button class="card-nav-btn" @click="currentTab = 1">{{$t('buy')}}</button></div>
+      <div class="card-nav" :class="{'active': currentTab === 2}"><button class="card-nav-btn" @click="currentTab = 2">{{$t('sell')}}</button></div>
+      <div class="card-nav" :class="{'active': currentTab === 3}"><button class="card-nav-btn" @click="currentTab = 3">{{$t('transfer')}}</button></div>
     </div>
     <div class="card-content">
       <div class="tab-buy" v-show="currentTab === 1">
         <div class="trade-dialog">
           <div class="transaction-form">
             <div class="transaction-item">
-              <span class="transaction-title">Balance</span>
+              <span class="transaction-title">{{$t('balance')}}</span>
               <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item bg-gray">
-              <span class="transaction-title">Amount</span>
+              <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.buy.amount"/> <span
                       class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item">
-              <span class="transaction-title">Fee</span>
+              <span class="transaction-title">{{$t('fee')}}</span>
               <span class="transaction-value"><span class="transaction-num">≈{{buyFee}}({{referFeePercent}}%)</span></span>
             </div>
             <div class="transaction-item">
-              <span class="transaction-title">Obtain</span>
+              <span class="transaction-title">{{$t('obtain')}}</span>
               <span class="transaction-value"><span class="transaction-num">≈{{buyObtain}}</span><span class="transaction-unit">PUB</span></span>
             </div>
           </div>
@@ -32,7 +32,7 @@
                     @click="buy"
                     :loading="loading"
                     :disabled="!form.buy.amount || !account.name"
-                    class="btn-trade blue-gradient">Buy</el-button>
+                    class="btn-trade blue-gradient">{{$t('buy')}}</el-button>
           </footer>
         </div>
       </div>
@@ -40,20 +40,20 @@
         <div class="trade-dialog">
           <div class="transaction-form">
             <div class="transaction-item">
-              <span class="transaction-title">Balance</span>
+              <span class="transaction-title">{{$t('balance')}}</span>
               <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item bg-gray">
-              <span class="transaction-title">Amount</span>
+              <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.sell.amount"/> <span
                       class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item">
-              <span class="transaction-title">Fee</span>
+              <span class="transaction-title">{{$t('fee')}}</span>
               <span class="transaction-value"><span class="transaction-num">≈{{sellFee}}({{feePercent}}%)</span></span>
             </div>
             <div class="transaction-item">
-              <span class="transaction-title">Obtain</span>
+              <span class="transaction-title">{{$t('obtain')}}</span>
               <span class="transaction-value"><span class="transaction-num">≈{{sellObtain}}</span><span class="transaction-unit">PUB</span></span>
             </div>
           </div>
@@ -63,7 +63,7 @@
                     @click="sell"
                     :loading="loading"
                     :disabled="!form.sell.amount || !account.name"
-                    class="btn-trade blue-gradient">Sell</el-button>
+                    class="btn-trade blue-gradient">{{$t('sell')}}</el-button>
           </footer>
         </div>
       </div>
@@ -72,18 +72,18 @@
         <div class="trade-dialog">
           <div class="transaction-form">
             <div class="transaction-item">
-              <span class="transaction-title">Balance</span>
+              <span class="transaction-title">{{$t('balance')}}</span>
               <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item bg-gray">
-              <span class="transaction-title">Account</span>
+              <span class="transaction-title">{{$t('account')}}</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="Receiver's account"/>
                 <!--<span-->
                       <!--class="transaction-unit">PUB</span>-->
               </span>
             </div>
             <div class="transaction-item bg-gray">
-              <span class="transaction-title">Amount</span>
+              <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.amount"/> <span
                       class="transaction-unit">PUB</span></span>
             </div>
@@ -94,7 +94,7 @@
                     @click="transfer"
                     :loading="loading"
                     :disabled="!form.transfer.to || !form.transfer.amount || !account.name"
-                    class="btn-trade blue-gradient">Transfer</el-button>
+                    class="btn-trade blue-gradient">{{$t('transfer')}}</el-button>
           </footer>
         </div>
       </div>
