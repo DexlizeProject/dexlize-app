@@ -20,11 +20,11 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Fee</span>
-              <span class="transaction-value"><span class="transaction-num">≈{{feePercent}}%</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈{{buyFee}}({{referFeePercent}}%)</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Obtain</span>
-              <span class="transaction-value"><span class="transaction-num">≈1000</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈{{buyObtain}}</span><span class="transaction-unit">PUB</span></span>
             </div>
           </div>
           <footer class="trade-footer" slot="footer">
@@ -50,11 +50,11 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Fee</span>
-              <span class="transaction-value"><span class="transaction-num">≈{{feePercent}}%</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈{{sellFee}}({{feePercent}}%)</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">Obtain</span>
-              <span class="transaction-value"><span class="transaction-num">≈1000</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈{{sellObtain}}</span><span class="transaction-unit">PUB</span></span>
             </div>
           </div>
 
@@ -77,8 +77,10 @@
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">Account</span>
-              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="receiver's account"/> <span
-                      class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="Receiver's account"/>
+                <!--<span-->
+                      <!--class="transaction-unit">PUB</span>-->
+              </span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">Amount</span>
@@ -187,8 +189,7 @@ export default {
         table: 'games'
       }).then(({ rows }) => {
         this.feePercent = feePercent(rows[0]);
-        console.log(this.feePercent);
-      }); 
+      });
     },
     fetchReferFee() {
       api.getTableRows({
@@ -454,7 +455,23 @@ export default {
 
     token() {
       return this.$store.state.token;
-    }
+    },
+
+      sellFee() {
+        return (this.form.sell.amount * this.feePercent / 100).toFixed(4);
+      },
+
+      buyFee() {
+        return (this.form.buy.amount * this.referFeePercent / 100).toFixed(4);
+      },
+
+      sellObtain() {
+        return (this.form.sell.amount * (1 - this.feePercent / 100)).toFixed(4);
+      },
+
+      buyObtain() {
+        return (this.form.buy.amount * (1 - this.referFeePercent / 100)).toFixed(4);
+      }
   }
 };
 </script>
