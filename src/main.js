@@ -31,8 +31,6 @@ import 'element-ui/lib/theme-chalk/tooltip.css';
 import VueI18n from 'vue-i18n';
 import translate from './i18n'
 
-console.log(translate)
-
 library.add(
   faWallet, 
   faInfo, 
