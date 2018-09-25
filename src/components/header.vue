@@ -74,8 +74,8 @@
             this.search(target);
         },
         toggleTokenList(){
+            this.showMyAccount = false;
             this.showTokenList = !this.showTokenList
-            console.log(this.showTokenList)
             if(this.showTokenList || this.showMyAccount){
                 this.$emit('show-shadow')
             }else{
@@ -83,6 +83,7 @@
             }
         },
         toggleShowMyAccount(){
+            this.showTokenList = false;
             this.showMyAccount = !this.showMyAccount
             if(this.showTokenList || this.showMyAccount){
                 this.$emit('show-shadow')
