@@ -25,7 +25,7 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{referFeePercent}}%</span><span class="transaction-unit">PUB</span>
+              <span class="transaction-value"><span class="transaction-num">{{referFeePercent}}%</span><span class="transaction-unit">PUB</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('obtain')}}≈</span>
@@ -64,7 +64,7 @@
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
               <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span>
-                <span class="transaction-unit">EOS</span>
+                <span class="transaction-unit">EOS</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('obtain')}}</span>
