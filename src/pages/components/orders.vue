@@ -71,11 +71,11 @@
                         :class="{ 'disabled': offset === 1 }"
                         icon="chevron-left" />
             </div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === 1}" @click="gotoPage(1)">1</div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === 2}" @click="gotoPage(2)">2</div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === 3}" @click="gotoPage(3)">3</div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === 4}" @click="gotoPage(4)">4</div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === 5}" @click="gotoPage(5)">5</div>
+            <div class="order-nav-item blue-gradient" @click="gotoPage(offset)">{{this.offset}}</div>
+            <div class="order-nav-item" @click="gotoPage(Number(offset + 1))">{{Number(this.offset + 1)}}</div>
+            <div class="order-nav-item" @click="gotoPage(Number(offset + 2))">{{Number(this.offset + 2)}}</div>
+            <div class="order-nav-item" @click="gotoPage(Number(offset + 3))">{{Number(this.offset + 3)}}</div>
+            <div class="order-nav-item" @click="gotoPage(Number(offset + 4))">{{Number(this.offset + 4)}}</div>
             <div class="order-nav-item">
                 <font-awesome-icon
                         @click="nextPage"
@@ -159,7 +159,7 @@ export default {
 
     nextPage() {
         if(this.offset === 5) return;
-      // if (this.orders.length < this.limit) return;
+      if (this.orders.length < this.limit) return;
       this.offset += 1;
       this.fetchOrders();
     },

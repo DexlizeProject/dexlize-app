@@ -13,7 +13,7 @@
               <span class="transaction-title">{{$t('balance')}}</span>
               <span class="transaction-value">
                 <span class="transaction-num">{{eos_balance}}</span>
-                <!-- <span class="transaction-unit">EOS</span> -->
+                 <span class="transaction-unit">EOS</span>
               </span>
             </div>
             <div class="transaction-item bg-gray">
@@ -25,7 +25,7 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{referFeePercent}}%</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{referFeePercent}}%</span><span class="transaction-unit">PUB</span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('obtain')}}≈</span>
@@ -40,7 +40,7 @@
                     @click="buy"
                     :loading="loading"
                     :disabled="!form.buy.amount || !account.name"
-                    class="btn-trade blue-gradient">{{$t('buy')}}</el-button>
+                    class="btn-trade btn-buy">{{$t('buy')}}</el-button>
           </footer>
         </div>
       </div>
@@ -51,7 +51,7 @@
               <span class="transaction-title">{{$t('balance')}}</span>
               <span class="transaction-value">
                 <span class="transaction-num">{{balance}}</span>
-                <!-- <span class="transaction-unit">PUB</span> -->
+                 <span class="transaction-unit">PUB</span>
               </span>
             </div>
             <div class="transaction-item bg-gray">
@@ -63,7 +63,8 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span>
+                <span class="transaction-unit">EOS</span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('obtain')}}</span>
@@ -76,7 +77,7 @@
                     @click="sell"
                     :loading="loading"
                     :disabled="!form.sell.amount || !account.name"
-                    class="btn-trade blue-gradient">{{$t('sell')}}</el-button>
+                    class="btn-trade btn-sell">{{$t('sell')}}</el-button>
           </footer>
         </div>
       </div>

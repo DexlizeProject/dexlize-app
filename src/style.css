@@ -106,9 +106,38 @@ button {
   background: linear-gradient(to right, #1752b0, #009dfe); /* 标准语法 */
 }
 
-.blue-gradient:disabled, .blue-gradient:disabled:hover{
+.btn-sell:disabled, .btn-sell:disabled:hover{
   color: #fff !important;
 }
+
+.btn-sell, .btn-sell:active, .btn-sell:focus, .btn-sell:visited {
+  color: #fff;
+  background: -webkit-linear-gradient(left, #1752b0, #009dfe); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #1752b0, #009dfe); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #1752b0, #009dfe); /* Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #1752b0, #009dfe); /* 标准语法 */
+}
+
+.btn-sell:disabled, .btn-sell:disabled:hover{
+  color: #fff !important;
+}
+
+.btn-buy:disabled, .btn-buy:disabled:hover{
+  color: #fff !important;
+}
+
+.btn-buy, .btn-buy:active, .btn-buy:focus, .btn-buy:visited {
+  color: #fff;
+  background: -webkit-linear-gradient(left, #1752b0, #009dfe); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #1752b0, #009dfe); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #1752b0, #009dfe); /* Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #1752b0, #009dfe); /* 标准语法 */
+}
+
+.btn-buy:disabled, .btn-buy:disabled:hover{
+  color: #fff !important;
+}
+
 
 .bg-gray {
   background: #f4f4f4;

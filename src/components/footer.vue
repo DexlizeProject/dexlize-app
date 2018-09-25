@@ -48,13 +48,13 @@
   }
 
   .footer-item-title{
-    color: #3d5170;
+    color: #888;
     font-size: 16px;
     margin-bottom: 8px;
   }
 
   .footer-item a{
-    color: #888;
+    color: #3d5170;
     text-decoration: none;
   }
 </style>
