@@ -3,13 +3,13 @@
     <div>
       <img src="/static/img/banner-logo.png" class="banner-logo"/>
       <div class="banner-options">
-        <div class="banner-option" style="text-align: left;">
+        <div class="banner-option">
           <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
         </div>
-        <div class="banner-option" style="text-align: center;">
+        <div class="banner-option">
           <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">{{$t('about')}} {{this.$store.state.token}}</button>
         </div>
-        <div class="banner-option" style="text-align: right">
+        <div class="banner-option">
           <button
                   @click="toggleShowMyAccount"
                   class="header-account banner-option-btn"
