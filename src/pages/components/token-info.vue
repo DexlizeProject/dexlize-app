@@ -13,7 +13,7 @@
               <span class="transaction-title">{{$t('balance')}}</span>
               <span class="transaction-value">
                 <span class="transaction-num">{{eos_balance}}</span>
-                 <span class="transaction-unit">EOS</span>
+                 <!-- <span class="transaction-unit">EOS</span> -->
               </span>
             </div>
             <div class="transaction-item">
@@ -25,7 +25,10 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{referFeePercent}}%</span><span class="transaction-unit">{{this.$store.state.token}}</span></span>
+              <span class="transaction-value">
+                <span class="transaction-num">{{referFeePercent}}%</span>
+                <!-- <span class="transaction-unit">{{this.$store.state.token}}</span> -->
+              </span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('obtain')}}≈</span>
@@ -51,7 +54,7 @@
               <span class="transaction-title">{{$t('balance')}}</span>
               <span class="transaction-value">
                 <span class="transaction-num">{{balance}}</span>
-                 <span class="transaction-unit">{{this.$store.state.token}}</span>
+                 <!-- <span class="transaction-unit">{{this.$store.state.token}}</span> -->
               </span>
             </div>
             <div class="transaction-item">
@@ -64,11 +67,12 @@
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
               <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span>
-                <span class="transaction-unit">EOS</span></span>
+                <!-- <span class="transaction-unit">EOS</span> -->
+              </span>
             </div>
             <div class="transaction-item">
-              <span class="transaction-title">{{$t('obtain')}}</span>
-              <span class="transaction-value"><span class="transaction-num">≈{{sellObtain}}</span><span class="transaction-unit">EOS</span></span>
+              <span class="transaction-title">{{$t('obtain')}}≈</span>
+              <span class="transaction-value"><span class="transaction-num">{{sellObtain}}</span><span class="transaction-unit">EOS</span></span>
             </div>
           </div>
 
@@ -94,14 +98,14 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('account')}}</span>
-              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="Receiver's account name"/>
+              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="Receiver"/>
               </span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value">
                 <input type="number" class="pure-input" v-model="form.transfer.amount"/>
-                <span class="transaction-unit">PUB</span>
+                <span class="transaction-unit">{{this.$store.state.token}}</span>
               </span>
             </div>
           </div>
@@ -123,7 +127,7 @@
 import network from '@/utils/network';
 import api from '@/utils/eos';
 import Eos from 'eosjs';
-import { feePercent } from '@/utils/math';
+import { feePercent, hexTransform } from '@/utils/math';
 
 export default {
   mounted() {
@@ -140,8 +144,10 @@ export default {
       balance: '',
       loading: false,
       feePercent: '',
-        referFeePercent: '',
-        currentTab: 1,
+      referFeePercent: '',
+      currentTab: 1,
+      token_eos: '',
+      token_stake: '',
       // dialog: {
       //   buy: false,
       //   sell: false,
@@ -215,6 +221,9 @@ export default {
         table: 'games'
       }).then(({ rows }) => {
         this.feePercent = feePercent(rows[0]);
+        this.token_eos = hexTransform(rows[0].eos);
+        this.token_stake = rows[0].stake/10000;
+        console.log('token', this.feePercent, this.token_eos, this.token_stake)
       });
     },
     fetchReferFee() {
@@ -492,11 +501,15 @@ export default {
       },
 
       sellObtain() {
-        return (this.form.sell.amount * (1 - this.feePercent / 100)).toFixed(4);
+        let sell_stake = (this.form.sell.amount * this.token_eos) / (parseFloat(this.form.sell.amount) + this.token_stake);
+        // return sell_stake * ();
+        return (sell_stake * (1 - this.feePercent / 100)).toFixed(4);
       },
 
       buyObtain() {
-        return (this.form.buy.amount * (1 - this.referFeePercent / 100)).toFixed(4);
+        let buy_eos = this.form.buy.amount * (1 - this.referFeePercent / 100);
+        return ((parseFloat(buy_eos) * this.token_stake) / (parseFloat(buy_eos) + this.token_eos)).toFixed(8);
+        // return (this.form.buy.amount * (1 - this.referFeePercent / 100)).toFixed(4);
       }
   }
 };
