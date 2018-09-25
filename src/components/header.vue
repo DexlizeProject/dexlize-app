@@ -210,7 +210,8 @@
 
 <style scoped>
   .token-banner {
-    padding: 25px 16px 0;
+    padding: 30px 100px;
+
     height: 220px;
     background-size: 100%;
     background-image: url('/static/img/banner-bg.png');
@@ -249,8 +250,8 @@
   }
 
   .banner-logo{
-    width: 126px;
-    height: 23px;
+    width: 256px;
+    height: 46px;
     margin: 0 auto 25px;
     display: block;
   }
@@ -341,6 +342,13 @@
   }
 
   @media screen and (max-width: 768px){
+    .token-banner{
+      padding: 25px 16px 0;
+    }
+    .banner-logo{
+      width: 126px;
+      height: 23px;
+    }
     .token-banner > ul > li {
       padding: 0;
     }
