@@ -3,7 +3,7 @@
     <div class="token-chart-info">
       <div class="token-chart-title"><div class="blue-circle"></div> {{this.$store.state.token}} - EOS</div>
       <div class="token-chart-price">{{$t('currentPrice')}}: 0.2274 EOS</div>
-      <div class="token-chart-price">EOS {{$t('pool')}}: 23,762.1152(2.38%)</div>
+      <div class="token-chart-price">EOS {{$t('pool')}}: {{eosPool}}</div>
     </div>
     <!--<header>-->
       <ul class="token-filter">
@@ -26,6 +26,9 @@
 import Echarts from 'echarts';
 import chartConfig from '../chart-config';
 import fetch from '@/utils/api';
+import api from '@/utils/eos';
+import { feePercent, hexTransform } from '@/utils/math';
+
 
 export default {
   mounted() {
@@ -33,18 +36,21 @@ export default {
     this.chart = Echarts.init(this.$refs.chart); 
 
     this.fetchTrending();
+    this.fetchToken();
 
     window.onresize = this.chart.resize;
   },
 
   data() {
     return {
-      interval: '1h'
+      interval: '1h',
+        eosPool: ''
     };
   },
 
   watch: {
     token() {
+        this.fetchToken();
       this.fetchTrending();
     }
   },
@@ -71,6 +77,16 @@ export default {
         this.chart.setOption(chartConfig);
       });    
     },
+      fetchToken() {
+          api.getTableRows({
+              json: true,
+              code: 'tokendapppub',
+              scope: this.token.toUpperCase(),
+              table: 'games'
+          }).then(({ rows }) => {
+            this.eosPool = (hexTransform(rows[0].eos) - hexTransform(rows[0].base_eos)).toFixed(4);
+      });
+      },
 
     changeInterval(interval) {
       this.interval = interval;

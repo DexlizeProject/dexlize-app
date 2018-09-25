@@ -57,7 +57,8 @@ export default {
     return {
       decimals: 0,
       about: {},
-      social: {}
+      social: {},
+        referFeePercent: ''
     };
   },
 
@@ -100,7 +101,7 @@ export default {
         this.about = rows[0];
         this.about.feePercent = feePercent(this.about);
         this.about.eosPool = (hexTransform(this.about.eos) - hexTransform(this.about.base_eos)).toFixed(4);
-        this.$store.commit('UPDATE_EOS_POOL', this.about.eosPool);
+        // this.$store.commit('UPDATE_EOS_POOL', this.about.eosPool);
       });
     },
 
@@ -126,6 +127,7 @@ export default {
         table: 'stat',
         scope: this.token.toUpperCase()
       }).then(({ rows }) => {
+          console.log(111, rows)
         const { max_supply } = rows[0];
         this.decimals = (max_supply.match(/[\d\.]+/)[0].split('.')[1] || '').length;
       });
