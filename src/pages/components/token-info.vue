@@ -11,20 +11,28 @@
           <div class="transaction-form">
             <div class="transaction-item">
               <span class="transaction-title">{{$t('balance')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value">
+                <span class="transaction-num">{{eos_balance}}</span>
+                <!-- <span class="transaction-unit">EOS</span> -->
+              </span>
             </div>
             <div class="transaction-item bg-gray">
-              <span class="transaction-title">{{$t('amount')}}</span>
-              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.buy.amount"/> <span
-                      class="transaction-unit">PUB</span></span>
+              <span class="transaction-title">{{$t('eos_amount')}}</span>
+              <span class="transaction-value">
+                <input type="text" class="pure-input" v-model="form.buy.amount"/> 
+                <span class="transaction-unit">EOS</span>
+              </span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
-              <span class="transaction-value"><span class="transaction-num">≈{{buyFee}}({{referFeePercent}}%)</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{referFeePercent}}%</span></span>
             </div>
             <div class="transaction-item">
-              <span class="transaction-title">{{$t('obtain')}}</span>
-              <span class="transaction-value"><span class="transaction-num">≈{{buyObtain}}</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-title">{{$t('obtain')}}≈</span>
+              <span class="transaction-value">
+                <span class="transaction-num">{{buyObtain}}</span>
+                <span class="transaction-unit">PUB</span>
+              </span>
             </div>
           </div>
           <footer class="trade-footer" slot="footer">
@@ -41,20 +49,25 @@
           <div class="transaction-form">
             <div class="transaction-item">
               <span class="transaction-title">{{$t('balance')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value">
+                <span class="transaction-num">{{balance}}</span>
+                <!-- <span class="transaction-unit">PUB</span> -->
+              </span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">{{$t('amount')}}</span>
-              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.sell.amount"/> <span
-                      class="transaction-unit">PUB</span></span>
+              <span class="transaction-value">
+                <input type="text" class="pure-input" v-model="form.sell.amount"/> 
+                <span class="transaction-unit">PUB</span>
+              </span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('fee')}}</span>
-              <span class="transaction-value"><span class="transaction-num">≈{{sellFee}}({{feePercent}}%)</span></span>
+              <span class="transaction-value"><span class="transaction-num">{{feePercent}}%</span></span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('obtain')}}</span>
-              <span class="transaction-value"><span class="transaction-num">≈{{sellObtain}}</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value"><span class="transaction-num">≈{{sellObtain}}</span><span class="transaction-unit">EOS</span></span>
             </div>
           </div>
 
@@ -73,19 +86,22 @@
           <div class="transaction-form">
             <div class="transaction-item">
               <span class="transaction-title">{{$t('balance')}}</span>
-              <span class="transaction-value"><span class="transaction-num">{{balance}}</span><span class="transaction-unit">PUB</span></span>
+              <span class="transaction-value">
+                <span class="transaction-num">{{balance}}</span>
+                <!-- <span class="transaction-unit">PUB</span> -->
+              </span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">{{$t('account')}}</span>
-              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="Receiver's account"/>
-                <!--<span-->
-                      <!--class="transaction-unit">PUB</span>-->
+              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="Receiver's account name"/>
               </span>
             </div>
             <div class="transaction-item bg-gray">
               <span class="transaction-title">{{$t('amount')}}</span>
-              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.amount"/> <span
-                      class="transaction-unit">PUB</span></span>
+              <span class="transaction-value">
+                <input type="text" class="pure-input" v-model="form.transfer.amount"/> 
+                <span class="transaction-unit">PUB</span>
+              </span>
             </div>
           </div>
 
@@ -93,7 +109,7 @@
             <el-button
                     @click="transfer"
                     :loading="loading"
-                    :disabled="!form.transfer.to || !form.transfer.amount || !account.name"
+                    :disabled="!form.transfer.to || !form.transfer.amount"
                     class="btn-trade blue-gradient">{{$t('transfer')}}</el-button>
           </footer>
         </div>
@@ -111,6 +127,7 @@ import { feePercent } from '@/utils/math';
 export default {
   mounted() {
     if (typeof scatter === 'undefined') return;
+    this.getEOSBalance();
     this.getBalance();
     this.getToken();
     this.fetchReferFee();
@@ -118,6 +135,7 @@ export default {
 
   data() {
     return {
+      eos_balance: '',
       balance: '',
       loading: false,
       feePercent: '',
@@ -145,6 +163,7 @@ export default {
 
   watch: {
     account() {
+      this.getEOSBalance();
       this.getBalance();
       this.getToken();
       this.fetchReferFee();
@@ -158,6 +177,12 @@ export default {
   },
 
   methods: {
+    getEOSBalance() {
+      api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
+        this.eos_balance = row[0];
+        console.log('eos_balance', this.eos_balance);
+      });
+    },
     getBalance() {
       api.getTableRows({
         json: true,
