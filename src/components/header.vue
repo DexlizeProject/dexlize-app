@@ -88,7 +88,7 @@
 
     methods: {
         switchLanguage(){
-            console.log(this.$i18n);
+            this.$i18n.locale = this.$i18n.locale === 'en' ? 'zh' : 'en'
         },
         getEOSBalance() {
           api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
