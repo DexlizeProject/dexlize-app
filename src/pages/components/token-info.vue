@@ -148,11 +148,6 @@ export default {
       currentTab: 1,
       token_eos: '',
       token_stake: '',
-      // dialog: {
-      //   buy: false,
-      //   sell: false,
-      //   transfer: false
-      // },
       form: {
         buy: {
           amount: ''
@@ -273,12 +268,12 @@ export default {
           }).then(() => {
             this.$notify.success('Token exchange success');
             this.loading = false;
-            this.dialog.buy = false;
+            // this.dialog.buy = false;
             this.getBalance();
           }).catch(e => {
             this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
             this.loading = false;
-            this.dialog.buy = false;
+            // this.dialog.buy = false;
           })
         } else {
           this.account.bitportal.transferEOSAsset({
@@ -292,12 +287,12 @@ export default {
           }).then(() => {
             this.$notify.success('Token exchange success');
             this.getBalance();
-            this.dialog.buy = false;
+            // this.dialog.buy = false;
             this.loading = false;
           }).catch(e => {
             this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
             this.loading = false;
-            this.dialog.buy = false;
+            // this.dialog.buy = false;
           });
         }
       } else if (scatter) {
@@ -333,11 +328,11 @@ export default {
           }, { broadcast: true, sign: true }).then(() => {
             this.$notify.success('Token exchange success');
             this.loading = false;
-            this.dialog.buy = false;
+            // this.dialog.buy = false;
             this.getBalance();
           }).catch(e => {
             this.loading = false;
-            this.dialog.buy = false;
+            // this.dialog.buy = false;
             this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
           });
         } else {
@@ -353,12 +348,12 @@ export default {
           }).then(() => {
             this.$notify.success('Token exchange success');
             this.getBalance();
-            this.dialog.buy = false;
+            // this.dialog.buy = false;
             this.loading = false;
           }).catch(e => {
             this.$notify.error(e.message || JSON.parse(e).error.details[0].message);
             this.loading = false;
-            this.dialog.buy = false;
+            // this.dialog.buy = false;
           });
         }
       }
@@ -386,11 +381,11 @@ export default {
         }).then(() => {
           this.$notify.success({ message: 'Token exchange success' });
           this.loading = false;
-          this.dialog.sell = false;
+          // this.dialog.sell = false;
           this.getBalance();  
         }).catch(e => {
           this.loading = false;
-          this.dialog.sell = false;
+          // this.dialog.sell = false;
           this.$notify.error({ title: 'Failure', message: e.message || JSON.parse(e).error.details[0].message });
         })
       } else if (scatter) {
@@ -410,11 +405,11 @@ export default {
           }, options).then(() => {
             this.$notify.success({ message: 'Token exchange success' });
             this.loading = false;
-            this.dialog.sell = false;
+            // this.dialog.sell = false;
             this.getBalance();   
           }).catch(e => {
             this.loading = false;
-            this.dialog.sell = false;
+            // this.dialog.sell = false;
             this.$notify.error({ title: 'Failure', message: e.message || JSON.parse(e).error.details[0].message });
           });
         });
@@ -445,12 +440,12 @@ export default {
         }).then(() => {
           this.$notify.success({ message: 'Token exchange success' });
           this.loading = false;
-          this.dialog.transfer = false;
+          // this.dialog.transfer = false;
           this.getBalance();
         }).catch(e => {
           this.$notify.error({ title: 'Failure', message: e.message || JSON.parse(e).error.details[0].message });
           this.loading = false;
-          this.dialog.transfer = false;
+          // this.dialog.transfer = false;
         });
       } else if (scatter) {
         const eos = scatter.eos(network, Eos, {});
@@ -471,12 +466,12 @@ export default {
           }, options).then(() => {
             this.$notify.success({ message: 'Token exchange success' });
             this.loading = false;
-            this.dialog.transfer = false;
+            // this.dialog.transfer = false;
             this.getBalance();
           }).catch(e => {
             this.$notify.error({ title: 'Failure', message: e.message || JSON.parse(e).error.details[0].message });
             this.loading = false;
-            this.dialog.transfer = false;
+            // this.dialog.transfer = false;
           });
         });
       }
