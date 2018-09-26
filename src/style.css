@@ -159,10 +159,22 @@ button {
   background: linear-gradient(to right, #32ae00, #8ec72b); /* 标准语法 */
 }
 
-.btn-buy:disabled, .btn-buy:disabled:hover{
+.btn-blue:disabled, .btn-blue:disabled:hover{
   color: #fff !important;
 }
 
+.btn-blue:disabled, .btn-blue:disabled:hover{
+  color: #fff !important;
+}
+
+.btn-blue, .btn-blue:active, .btn-blue:focus, .btn-blue:visited {
+  color: #fff;
+  background: #0A7CDD;
+}
+
+.btn-blue:disabled, .btn-blue:disabled:hover{
+  color: #fff !important;
+}
 
 .bg-gray {
   background: #f4f4f4;

@@ -9,8 +9,8 @@
           <tr>
               <th>{{$t('time')}}</th>
               <th>{{$t('account')}}</th>
-              <th>EOS/{{this.$store.state.token}}</th>
-              <th>{{$t('price')}}(EOS/{{this.$store.state.token}})</th>
+              <th>{{$t('amount')}}</th>
+              <th>{{$t('price')}} (EOS/{{this.$store.state.token}})</th>
           </tr>
           </thead>
           <tbody>
@@ -71,11 +71,11 @@
                         :class="{ 'disabled': offset === 1 }"
                         icon="chevron-left" />
             </div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === nav1}" @click="gotoPage(nav1)">{{this.nav1}}</div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === nav2}" @click="gotoPage(nav2)">{{this.nav2}}</div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === nav3}" @click="gotoPage(nav3)">{{this.nav3}}</div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === nav4}" @click="gotoPage(nav4)">{{this.nav4}}</div>
-            <div class="order-nav-item" :class="{'blue-gradient': offset === nav5}" @click="gotoPage(nav5)">{{this.nav5}}</div>
+            <div class="order-nav-item" :class="{'btn-blue': offset === nav1}" @click="gotoPage(nav1)">{{this.nav1}}</div>
+            <div class="order-nav-item" :class="{'btn-blue': offset === nav2}" @click="gotoPage(nav2)">{{this.nav2}}</div>
+            <div class="order-nav-item" :class="{'btn-blue': offset === nav3}" @click="gotoPage(nav3)">{{this.nav3}}</div>
+            <div class="order-nav-item" :class="{'btn-blue': offset === nav4}" @click="gotoPage(nav4)">{{this.nav4}}</div>
+            <div class="order-nav-item" :class="{'btn-blue': offset === nav5}" @click="gotoPage(nav5)">{{this.nav5}}</div>
             <div class="order-nav-item">
                 <font-awesome-icon
                         @click="nextPage"
