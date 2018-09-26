@@ -273,6 +273,10 @@ export default {
     border-radius: 5px;
 }
 
+.order-nav-item.blue-gradient{
+    border: transparent;
+}
+
 /*.table {*/
   /*margin-bottom: 15px;*/
   /*width: 100%;*/
