@@ -212,6 +212,8 @@ export default {
 .market-orders-table tr{
     display: flex;
     width: 100%;
+    height: 70px;
+    vertical-align: middle;
 }
 
 .market-orders-table thead tr{
