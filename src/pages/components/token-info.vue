@@ -646,7 +646,7 @@ export default {
     flex: 1;
   }
   .transaction-value {
-    flex: 2;
+    flex: 2.2;
     justify-content: flex-start;
     color: #505050;
     text-align: right;
@@ -670,6 +670,9 @@ export default {
     min-width: 0;
     -webkit-appearance: none;
     flex-shrint: 1;
+  }
+  .transaction-input::placeholder{
+    font-size: 14px;
   }
   .transaction-input-unit{
     color: #a8a8a8;
