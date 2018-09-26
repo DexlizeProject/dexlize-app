@@ -355,7 +355,7 @@
 
   .account-item{
     display: flex;
-    line-height: 32px;
+    line-height: 48px;
     border-bottom: 1px solid rgba(0,0,0,.1);
   }
 

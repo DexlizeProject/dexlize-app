@@ -4,19 +4,24 @@
       <div class="token-chart-title"><div class="blue-circle"></div> {{this.$store.state.token}} - EOS</div>
       <div class="token-chart-price">{{$t('currentPrice')}}: {{currentPrice}} EOS</div>
       <div class="token-chart-price">EOS {{$t('pool')}}: {{eosPool}} EOS</div>
-      <div class="token-chart-price">{{$t('stakeRatio')}}: {{stakeRatio}}%</div>
+      <div class="token-chart-price">
+        <div class="chart-price-ratio">
+          {{$t('stakeRatio')}}: {{stakeRatio}}%
+        </div>
+        <ul class="token-filter">
+          <li
+                  @click="changeInterval('1m')"
+                  :class="{ 'active': this.interval === '1m' }">1M</li>
+          <li
+                  @click="changeInterval('1h')"
+                  :class="{ 'active': this.interval === '1h' }">1h</li>
+          <li
+                  @click="changeInterval('1d')"
+                  :class="{ 'active': this.interval === '1d' }">1D</li>
+        </ul>
+      </div>
     </div>
-      <ul class="token-filter">
-        <li 
-          @click="changeInterval('1m')"
-          :class="{ 'active': this.interval === '1m' }">1M</li>
-        <li 
-          @click="changeInterval('1h')"
-          :class="{ 'active': this.interval === '1h' }">1h</li>
-        <li 
-          @click="changeInterval('1d')"
-          :class="{ 'active': this.interval === '1d' }">1D</li>
-      </ul> 
+
     <div ref="chart"></div>
   </section>
 </template>
@@ -140,11 +145,19 @@ export default {
   font-size: 12px;
   margin-bottom: 5px;
 }
+
+.token-chart-price:last-child{
+  display: flex;
+  align-items: center;
+}
+
+.chart-price-ratio{
+  flex: 1;
+}
 .token-filter {
+  flex: 2;
   display: flex;
   justify-content: flex-end;
-  margin-top: 8px;
-  margin-bottom: 8px;
 }
 
 .token-filter > li {
@@ -156,7 +169,7 @@ export default {
 }
 
 .token-filter >li:last-child{
-  margin-right: 50px;
+  margin-right: 30px;
 }
 
 .token-filter > li.active {
