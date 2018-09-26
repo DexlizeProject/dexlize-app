@@ -19,8 +19,8 @@
             <div class="transaction-item">
               <span class="transaction-title">{{$t('eos_amount')}}</span>
               <span class="transaction-value">
-                <input type="number" class="pure-input" v-model="form.buy.amount"/>
-                <span class="transaction-unit">EOS</span>
+                <input type="number" class="transaction-input" v-model="form.buy.amount"/>
+                <span class="transaction-input-unit">EOS</span>
               </span>
             </div>
             <div class="transaction-item">
@@ -60,8 +60,8 @@
             <div class="transaction-item">
               <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value">
-                <input type="number" class="pure-input" v-model="form.sell.amount"/>
-                <span class="transaction-unit">{{this.$store.state.token}}</span>
+                <input type="number" class="transaction-input" v-model="form.sell.amount"/>
+                <span class="transaction-input-unit">{{this.$store.state.token}}</span>
               </span>
             </div>
             <div class="transaction-item">
@@ -98,14 +98,14 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('account')}}</span>
-              <span class="transaction-value"><input type="text" class="pure-input" v-model="form.transfer.to" placeholder="Receiver"/>
+              <span class="transaction-value"><input type="text" class="transaction-input" style="border-radius: 5px;" v-model="form.transfer.to" placeholder="Enter receiver's account"/>
               </span>
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('amount')}}</span>
               <span class="transaction-value">
-                <input type="number" class="pure-input" v-model="form.transfer.amount"/>
-                <span class="transaction-unit">{{this.$store.state.token}}</span>
+                <input type="number" class="transaction-input" v-model="form.transfer.amount"/>
+                <span class="transaction-input-unit">{{this.$store.state.token}}</span>
               </span>
             </div>
           </div>
@@ -646,34 +646,41 @@ export default {
     flex: 1;
   }
   .transaction-value {
-    flex: 1;
-    justify-content: flex-end;
+    flex: 2;
+    justify-content: flex-start;
     color: #505050;
     text-align: right;
     display: flex;
   }
   .transaction-unit {
     display: inline-block;
-    margin-left: 8px;
+    margin-left: 4px;
     color: #a8a8a8;
     width: 36px;
-    flex: 1;
   }
-  .pure-input{
-    flex: 5;
+  .transaction-input{
+    /*flex: 5;*/
     width: 100%;
-    text-align: right;
     outline: 0;
-    border: none;
-    background: #f8f8f8;
-    border-radius: 5px;
+    padding-left: 4px;
+    border: 1px solid #a8a8a8;
+    background: #fff;
+    border-radius: 5px 0 0 5px;
     font-size: 16px;
     min-width: 0;
     -webkit-appearance: none;
     flex-shrint: 1;
   }
+  .transaction-input-unit{
+    color: #a8a8a8;
+    border: 1px solid #a8a8a8;
+    border-left: none;
+    padding: 0 4px;
+    background: #fff;
+    border-radius: 0 5px 5px 0;
+  }
   .transaction-num{
-    flex: 5;
+    /*flex: 5;*/
   }
   @media screen and (max-width: 768px){
     .token-action__info {

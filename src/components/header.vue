@@ -36,7 +36,7 @@
         <li @click="changeToken('TPT')">TPT</li>
       </ul>
     </div>
-    <div class="my-account-tip tip" v-show="true || showMyAccount">
+    <div class="my-account-tip tip" v-show="showMyAccount">
       <span class="icon-triangle"></span>
       <div class="account-item">
         <div class="item-title">{{$t('accountName')}}</div>

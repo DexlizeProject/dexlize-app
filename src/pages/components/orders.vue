@@ -9,7 +9,7 @@
           <tr>
               <th>{{$t('time')}}</th>
               <th>{{$t('account')}}</th>
-              <th>{{$t('amount')}}</th>
+              <th>EOS/{{this.$store.state.token}}</th>
               <th>{{$t('price')}} (EOS/{{this.$store.state.token}})</th>
           </tr>
           </thead>
@@ -271,7 +271,6 @@ export default {
     text-align: center;
     margin: 0 4px;
     line-height: 32px;
-    border: 1px solid #979797;
     border-radius: 5px;
 }
 
