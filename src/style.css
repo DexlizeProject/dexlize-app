@@ -114,6 +114,14 @@ button {
   background-size: contain;
 }
 
+.icon-triangle{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('/static/img/triangle.png') no-repeat;
+  background-size: contain;
+}
+
 .blue-gradient, .blue-gradient:active, .blue-gradient:focus, .blue-gradient:visited {
   color: #fff;
   background: -webkit-linear-gradient(left, #1752b0, #009dfe); /* Safari 5.1 to 6.0 */
@@ -170,13 +178,13 @@ button {
 
 .tip{
   background: #fff;
-  padding: 0 16px 8px;
+  padding: 0 20px 8px;
   z-index: 50;
   border-radius: 5px;
 }
 
 .tip-header{
-  line-height: 40px;
+  line-height: 48px;
   color: rgba(0,0,0,.5);
   border-bottom: 1px solid rgba(0,0,0,.1);
 }

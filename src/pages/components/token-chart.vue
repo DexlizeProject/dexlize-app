@@ -6,7 +6,6 @@
       <div class="token-chart-price">EOS {{$t('pool')}}: {{eosPool}} EOS</div>
       <div class="token-chart-price">{{$t('stakeRatio')}}: {{stakeRatio}}%</div>
     </div>
-    <!--<header>-->
       <ul class="token-filter">
         <li 
           @click="changeInterval('1m')"
@@ -18,7 +17,6 @@
           @click="changeInterval('1d')"
           :class="{ 'active': this.interval === '1d' }">1D</li>
       </ul> 
-    <!--</header>-->
     <div ref="chart"></div>
   </section>
 </template>
@@ -150,11 +148,15 @@ export default {
 }
 
 .token-filter > li {
-  margin-right: 30px;
-  font-size: .8em;
+  margin-right: 15px;
+  font-size: 12px;
   letter-spacing: 1.5px;
   cursor: pointer;
-  color: #9ba6b2;
+  color: rgba(0,0,0,.5);
+}
+
+.token-filter >li:last-child{
+  margin-right: 50px;
 }
 
 .token-filter > li.active {

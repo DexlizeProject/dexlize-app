@@ -7,7 +7,6 @@
         <span class="icon-zh" v-show="locale === 'en'"></span>
         <span>{{$t('switchLanguage')}}</span>
       </div>
-
       <div class="banner-options">
         <div class="banner-option" style="text-align: left;">
           <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
@@ -30,13 +29,15 @@
       </div>
     </div>
     <div class="token-list-tip tip" v-show="showTokenList">
+      <span class="icon-triangle"></span>
       <div class="tip-header">{{$t('tokenList')}}</div>
       <ul>
         <li @click="changeToken('PUB')">PUB</li>
         <li @click="changeToken('TPT')">TPT</li>
       </ul>
     </div>
-    <div class="my-account-tip tip" v-show="showMyAccount">
+    <div class="my-account-tip tip" v-show="true || showMyAccount">
+      <span class="icon-triangle"></span>
       <div class="account-item">
         <div class="item-title">{{$t('accountName')}}</div>
         <div class="item-value">{{account.name}}</div>
@@ -325,19 +326,31 @@
 
   .token-list-tip{
     position: absolute;
-    top: 124px;
+    top: 134px;
     left: 16px;
   }
 
   .token-list-tip li{
-    line-height: 32px;
+    line-height: 42px;
   }
 
   .my-account-tip{
     position: absolute;
     right: 16px;
-    top: 124px;
+    top: 134px;
     width: 75%;
+  }
+
+  .my-account-tip .icon-triangle{
+    position: absolute;
+    top: -10px;
+    right: 12px;
+  }
+
+  .token-list-tip .icon-triangle{
+    position: absolute;
+    top:-10px;
+    left: 16px;
   }
 
   .account-item{
