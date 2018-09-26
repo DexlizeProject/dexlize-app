@@ -71,11 +71,11 @@
                         :class="{ 'disabled': offset === 1 }"
                         icon="chevron-left" />
             </div>
-            <div class="order-nav-item blue-gradient" @click="gotoPage(offset)">{{this.offset}}</div>
-            <div class="order-nav-item" @click="gotoPage(Number(offset + 1))">{{Number(this.offset + 1)}}</div>
-            <div class="order-nav-item" @click="gotoPage(Number(offset + 2))">{{Number(this.offset + 2)}}</div>
-            <div class="order-nav-item" @click="gotoPage(Number(offset + 3))">{{Number(this.offset + 3)}}</div>
-            <div class="order-nav-item" @click="gotoPage(Number(offset + 4))">{{Number(this.offset + 4)}}</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === nav1}" @click="gotoPage(nav1)">{{this.nav1}}</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === nav2}" @click="gotoPage(nav2)">{{this.nav2}}</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === nav3}" @click="gotoPage(nav3)">{{this.nav3}}</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === nav4}" @click="gotoPage(nav4)">{{this.nav4}}</div>
+            <div class="order-nav-item" :class="{'blue-gradient': offset === nav5}" @click="gotoPage(nav5)">{{this.nav5}}</div>
             <div class="order-nav-item">
                 <font-awesome-icon
                         @click="nextPage"
@@ -113,7 +113,27 @@ export default {
 
     token() {
       return this.$store.state.token;
-    }
+    },
+
+      nav1(){
+        return this.offset <= 3 ? 1 : this.offset -2
+      },
+
+      nav2(){
+        return this.offset <= 3 ? 2 : this.offset - 1
+      },
+
+      nav3(){
+        return this.offset <= 3 ? 3 : this.offset
+      },
+
+      nav4(){
+          return this.offset <= 3 ? 4 : this.offset + 1
+      },
+
+      nav5(){
+          return this.offset <= 3 ? 5 : this.offset + 2
+      }
   },
 
   watch: {

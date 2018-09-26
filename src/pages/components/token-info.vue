@@ -665,7 +665,7 @@ export default {
     text-align: right;
     outline: 0;
     border: none;
-    background: #f4f4f4;
+    background: #f8f8f8;
     border-radius: 5px;
     font-size: 16px;
     min-width: 0;

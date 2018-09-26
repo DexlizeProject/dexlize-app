@@ -112,7 +112,10 @@ button {
 
 .btn-sell, .btn-sell:active, .btn-sell:focus, .btn-sell:visited {
   color: #fff;
-  background: #dc3545;
+  background: -webkit-linear-gradient(left, #f44b2f, #f87062); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #f44b2f, #f87062); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #f44b2f, #f87062); /* Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #f44b2f, #f87062); /* 标准语法 */
 }
 
 .btn-sell:disabled, .btn-sell:disabled:hover{
@@ -125,7 +128,10 @@ button {
 
 .btn-buy, .btn-buy:active, .btn-buy:focus, .btn-buy:visited {
   color: #fff;
-  background: #29a745;
+  background: -webkit-linear-gradient(left, #32ae00, #8ec72b); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(right, #32ae00, #8ec72b); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(right, #32ae00, #8ec72b); /* Firefox 3.6 to 15 */
+  background: linear-gradient(to right, #32ae00, #8ec72b); /* 标准语法 */
 }
 
 .btn-buy:disabled, .btn-buy:disabled:hover{
