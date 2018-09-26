@@ -98,6 +98,22 @@ button {
   background-size: contain;
 }
 
+.icon-en{
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url('/static/img/lang-en.png') no-repeat;
+  background-size: contain;
+}
+
+.icon-zh{
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url('/static/img/lang-zh.png') no-repeat;
+  background-size: contain;
+}
+
 .blue-gradient, .blue-gradient:active, .blue-gradient:focus, .blue-gradient:visited {
   color: #fff;
   background: -webkit-linear-gradient(left, #1752b0, #009dfe); /* Safari 5.1 to 6.0 */
@@ -183,6 +199,6 @@ button {
 
 @media screen and (max-width: 768px){
   .router-container{
-    margin-top: -152px;
+    margin-top: -139px;
   }
 }

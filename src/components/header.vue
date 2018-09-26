@@ -2,6 +2,12 @@
   <div class="token-banner">
     <div>
       <img src="/static/img/banner-logo.png" class="banner-logo"/>
+      <div class="language-switch" @click="switchLanguage()">
+        <span class="icon-en" v-show="locale === 'zh'"></span>
+        <span class="icon-zh" v-show="locale === 'en'"></span>
+        <span>{{$t('switchLanguage')}}</span>
+      </div>
+
       <div class="banner-options">
         <div class="banner-option" style="text-align: left;">
           <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
@@ -80,6 +86,9 @@
     },
 
     methods: {
+        switchLanguage(){
+            console.log(this.$i18n);
+        },
         getEOSBalance() {
           api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
             this.eos_balance = row[0];
@@ -187,6 +196,10 @@
     computed: {
       account() {
         return this.$store.state.account;
+      },
+
+      locale() {
+          return this.$i18n.locale
       }
     },
 
@@ -211,11 +224,27 @@
 <style scoped>
   .token-banner {
     padding: 30px 100px;
-
     height: 220px;
     background-size: 100%;
     background-image: url('/static/img/banner-bg.png');
     background-repeat: no-repeat;
+  }
+
+  .language-switch{
+    display: inline-block;
+    float: right;
+    color: #fff;
+    margin-bottom: 25px;
+  }
+
+  .language-switch span{
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .language-switch span:last-child{
+    margin-top: -6px;
   }
 
   .banner-options{
@@ -226,10 +255,6 @@
 
   .banner-option{
     flex: 1;
-  }
-
-  .banner-option:last-child{
-    flex: 1.2;
   }
 
   .banner-option-btn{
@@ -252,8 +277,8 @@
   .banner-logo{
     width: 256px;
     height: 46px;
-    margin: 0 auto 25px;
-    display: block;
+    margin-bottom: 25px;
+    display: inline-block;
   }
 
   .header-account > svg {

@@ -1,6 +1,7 @@
 export default {
     zh: {
         'tokenList': 'Token 列表',
+        'switchLanguage': '切换语言',
         'about': '关于',
         'login': '登录',
         'pool': '池',
@@ -32,6 +33,7 @@ export default {
     },
     en: {
         'tokenList': 'Token List',
+        'switchLanguage': 'Switch',
         'about': 'About',
         'login': 'Login',
         'pool': 'Pool',
