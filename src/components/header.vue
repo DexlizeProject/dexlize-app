@@ -44,8 +44,8 @@
       <div class="account-item">
         <div class="item-title">{{$t('balance')}}</div>
         <div class="item-value">
-          {{this.eos_balance}}<span class="item-unit">EOS</span><br/>
-          {{this.balance}}<span class="item-unit">{{this.$store.state.token}}</span>
+          {{this.eos_balance}}<br/>
+          {{this.balance}}
         </div>
       </div>
     </div>
@@ -63,11 +63,11 @@
 
   export default {
     mounted() {
-      if (typeof scatter === 'undefined' && (typeof this.account.bitportal === 'undefined')) return;
+      // if (this.account.name) return;
       this.getEOSBalance();
       this.getBalance();
-      this.getToken();
-      this.fetchReferFee();
+      // this.getToken();
+      // this.fetchReferFee();
       this.$root.$on('close-dialog', () => {
           this.showTokenList = false;
           this.showTokenAbout = false;
@@ -92,7 +92,6 @@
         getEOSBalance() {
           api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
             this.eos_balance = row[0];
-            console.log('eos_balance', this.eos_balance);
           });
         },
         getBalance() {
@@ -104,13 +103,13 @@
           }).then(({
             rows
           }) => {
-            const balance = rows.find(row => new RegExp(`\\s${'PUB'.toUpperCase()}\$`).test(row.balance));
+            const balance = rows.find(row => new RegExp(`\\s${this.$store.state.token.toUpperCase()}\$`).test(row.balance));
             if (!balance) {
               return api.getTableRows({
                 json: true,
                 code: 'tokendapppub',
                 table: 'stat',
-                scope: 'PUB'
+                scope: this.$store.state.token
               }).then(({
                 rows
               }) => {
@@ -126,6 +125,7 @@
         },
         changeToken(target){
             this.search(target);
+            this.getBalance();
         },
         toggleTokenList(){
             this.showMyAccount = false;
