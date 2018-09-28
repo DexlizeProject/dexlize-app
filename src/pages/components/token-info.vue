@@ -98,7 +98,7 @@
             </div>
             <div class="transaction-item">
               <span class="transaction-title">{{$t('account')}}</span>
-              <span class="transaction-value"><input type="text" class="transaction-input" style="border-radius: 5px;" v-model="form.transfer.to" placeholder="Enter receiver's account"/>
+              <span class="transaction-value"><input type="text" class="transaction-input" style="border-radius: 5px;" v-model="form.transfer.to" :placeholder="$t('accountHint')"/>
               </span>
             </div>
             <div class="transaction-item">
@@ -496,14 +496,14 @@ export default {
       },
 
       sellObtain() {
-        let sell_stake = (this.form.sell.amount * this.token_eos) / (parseFloat(this.form.sell.amount) + this.token_stake);
+        let sell_stake = (this.form.sell.amount * this.token_eos) / (parseFloat(this.form.sell.amount) + this.token_stake) || 0;
         // return sell_stake * ();
         return (sell_stake * (1 - this.feePercent / 100)).toFixed(4);
       },
 
       buyObtain() {
         let buy_eos = this.form.buy.amount * (1 - this.referFeePercent / 100);
-        return ((parseFloat(buy_eos) * this.token_stake) / (parseFloat(buy_eos) + this.token_eos)).toFixed(8);
+        return ((parseFloat(buy_eos) * this.token_stake) / (parseFloat(buy_eos) + this.token_eos)).toFixed(8) || 0;
         // return (this.form.buy.amount * (1 - this.referFeePercent / 100)).toFixed(4);
       }
   }
