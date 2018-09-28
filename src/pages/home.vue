@@ -16,7 +16,7 @@
 
 <style>
     .home-page-wrap {
-        margin-top: -199px;
+        margin-top: -144px;
     }
 
     @media screen and (max-width: 768px) {
