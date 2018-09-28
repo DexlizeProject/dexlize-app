@@ -29,10 +29,6 @@
         </div>
       </div>
 
-      <div class="banner-switch" v-if="this.$router.currentRoute.name === 'home'">
-        fff
-      </div>
-
     </div>
     <div class="token-list-tip tip" v-show="showTokenList">
       <span class="icon-triangle"></span>
@@ -71,7 +67,6 @@
   export default {
     mounted() {
       // if (this.account.name) return;
-        console.log(this.$router.currentRoute)
       this.getEOSBalance();
       this.getBalance();
       // this.getToken();

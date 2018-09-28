@@ -29,7 +29,6 @@ import termsheetSketch from '@/assets/termsheet.png';
 
 export default {
   created() {
-      console.log(this.$router.currentRoute)
       document.addEventListener('scatterLoaded', () => {
         if (!scatter.identity) return;
         const account = scatter.identity.accounts.find(account => account.blockchain === 'eos');

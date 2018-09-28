@@ -1,7 +1,27 @@
 <template>
-    <div>This is home</div>
+    <div class="home-page-wrap">
+        <trading-switch/>
+        <trading/>
+    </div>
 </template>
 
-<style>
+<script>
+    export default {
+        components: {
+            tradingSwitch: require('@/pages/components/trading-switch').default,
+            trading: require('@/pages/components/trading').default
+        }
+    }
+</script>
 
+<style>
+    .home-page-wrap {
+        margin-top: -199px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .home-page-wrap {
+            margin-top: -176px;
+        }
+    }
 </style>

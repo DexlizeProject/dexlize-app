@@ -30,7 +30,10 @@ export default {
         'eospool': 'EOS池',
         'buyfeerate': '买入手续费',
         'sellfeerate': '卖出手续费',
-        'lockup': '锁仓时间'
+        'lockup': '锁仓时间',
+
+        'tradingPair': '交易对',
+        'change': '浮动'
     },
     en: {
         'tokenList': 'Token List',
@@ -63,6 +66,10 @@ export default {
         'eospool': 'EOS Pool',
         'buyfeerate': 'Buy Fee Rate',
         'sellfeerate': 'Sell Fee Rate',
-        'lockup': 'Lockup'
+        'lockup': 'Lockup',
+
+        'tradingPair': 'Trading Pair',
+        'change': 'Change'
+
     }
 }
