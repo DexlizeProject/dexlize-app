@@ -16,43 +16,43 @@
             this.tradingData = [
                 {
                     tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
+                    price: '0.03313123',
+                    change: '+99.99%'
                 },
                 {
                     tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
+                    price: '0.03131123',
+                    change: '+99.99%'
                 },
                 {
                     tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
+                    price: '0.03131123',
+                    change: '+99.99%'
                 },
                 {
                     tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
+                    price: '0.03131123',
+                    change: '+99.99%'
                 },
                 {
                     tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
+                    price: '0.03131312',
+                    change: '+99.99%'
                 },
                 {
                     tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
+                    price: '0.03131312',
+                    change: '+99.99%'
                 },
                 {
                     tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
+                    price: '0.03131312',
+                    change: '+99.99%'
                 },
                 {
                     tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
+                    price: '0.03131312',
+                    change: '+99.99%'
                 }
             ]
         },

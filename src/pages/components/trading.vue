@@ -9,9 +9,9 @@
         </thead>
         <tbody>
         <tr v-for="item in this.tradingData">
-            <td>{{item.tradingPair}}</td>
+            <td><span class="icon-token"/>{{item.tradingPair}}</td>
             <td>{{item.price}}</td>
-            <td>{{item.change}}</td>
+            <td><div class="trading-percent" :class="'up'">{{item.change}}</div></td>
         </tr>
         </tbody>
     </table>
@@ -24,6 +24,15 @@
 </script>
 
 <style>
+    .icon-token{
+        display: inline-block;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        vertical-align: middle;
+        background: #0f77ff;
+    }
     .trading-pair-table{
         background: #fff;
         width: 100%;
@@ -57,6 +66,7 @@
         border-bottom: 1px solid #f5f5f5;
         height: 56px;
         line-height: 56px;
+        font-size: 16px;
     }
 
     .trading-pair-table tbody tr td:nth-child(1){
@@ -69,6 +79,26 @@
 
     .trading-pair-table tbody tr td:nth-child(3){
         text-align: right;
+    }
+
+    .trading-percent{
+        border-radius: 5px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 14px;
+        text-align: center;
+        width: 85%;
+        float: right;
+    }
+
+    .trading-percent.up{
+        color: #fff;
+        background: #44c14a;
+    }
+
+    .trading-percent.down{
+        color: #fff;
+        background: #ef2f5f;
     }
 
 
