@@ -8,12 +8,13 @@ export default new Router({
   routes: [
       {
         path: '/',
-          redirect: '/tokens'
+          name: 'home',
+          component: require('@/pages/home').default
       },
     {
       path: '/tokens',
-      name: 'trade',
-      component: require('@/pages/home').default
+      name: 'tokens',
+      component: require('@/pages/tokens').default
     },
     // {
     //   path: '/tokens/publish',

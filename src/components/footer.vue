@@ -17,7 +17,6 @@
         </div>
       </div>
     </footer>
-    <div class="copyright">Copyright &copy; 2018. Dexlize Foundation PTE. LTD.</div>
   </div>
 
 </template>
@@ -61,11 +60,5 @@
     margin-left: 10px;
   }
 
-  .copyright{
-    font-size: 12px;
-    text-align: center;
-    color: rgba(0,0,0,.2);
-    line-height: 30px;
-  }
 </style>
 

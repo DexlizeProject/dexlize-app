@@ -7,7 +7,8 @@
         <span class="icon-zh" v-show="locale === 'en'"></span>
         <span>{{$t('switchLanguage')}}</span>
       </div>
-      <div class="banner-options">
+
+      <div class="banner-options" v-if="this.$router.currentRoute.name === 'tokens'">
         <div class="banner-option" style="text-align: left;">
           <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
         </div>
@@ -27,6 +28,11 @@
                   v-else>{{$t('login')}}</button>
         </div>
       </div>
+
+      <div class="banner-switch" v-if="this.$router.currentRoute.name === 'home'">
+        fff
+      </div>
+
     </div>
     <div class="token-list-tip tip" v-show="showTokenList">
       <span class="icon-triangle"></span>
@@ -65,6 +71,7 @@
   export default {
     mounted() {
       // if (this.account.name) return;
+        console.log(this.$router.currentRoute)
       this.getEOSBalance();
       this.getBalance();
       // this.getToken();

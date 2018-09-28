@@ -676,6 +676,7 @@ export default {
     padding: 0 4px;
     background: #fff;
     border-radius: 0 5px 5px 0;
+    height: 36px;
   }
   .transaction-num{
     /*flex: 5;*/
