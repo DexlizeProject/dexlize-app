@@ -8,7 +8,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="item in tradingData">
+        <tr v-for="item in this.tradingData">
             <td>{{item.tradingPair}}</td>
             <td>{{item.price}}</td>
             <td>{{item.change}}</td>
@@ -18,21 +18,8 @@
 </template>
 
 <script>
-    export default {
-        created() {
-            this.tradingData = [
-                {
-                    tradingPair: 'PUB/EOS',
-                    price: '0.031313123',
-                    change: '+ 99.99%'
-                }
-            ]
-        },
-        data(){
-            return{
-                tradingData: []
-            }
-        }
+    export default{
+        props: ['tradingData']
     }
 </script>
 
