@@ -16,6 +16,11 @@ export default new Router({
       name: 'tokens',
       component: require('@/pages/tokens').default
     },
+      {
+        path: '/kyubey',
+          name: 'kyubey',
+          component: require('@/pages/kyubey').default
+      }
     // {
     //   path: '/tokens/publish',
     //   name: 'publish',

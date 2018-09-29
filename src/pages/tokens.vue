@@ -43,12 +43,6 @@ export default {
 </script>
 
 <style scoped>
-  /*.search-container > .el-input {*/
-    /*width: 30%;*/
-    /*min-width: 200px;*/
-    /*margin-right: 15px;*/
-  /*}*/
-
   .tokens-page-wrap{
     margin-top: -116px;
   }
