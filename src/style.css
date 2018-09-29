@@ -37,6 +37,10 @@ body {
   height: 100%;
 }
 
+#app{
+    min-height: 100%;
+}
+
 button {
   outline: none;
   cursor: pointer;
@@ -85,9 +89,9 @@ button {
   color: #2f2f2f;
 }
 
-/*.router-container{*/
-  /*margin-top: -116px;*/
-/*}*/
+.router-container{
+  min-height: 100vh;
+}
 
 .icon-share{
   display: inline-block;

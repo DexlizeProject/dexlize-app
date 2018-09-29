@@ -33,7 +33,8 @@ export default {
         'lockup': '锁仓时间',
 
         'tradingPair': '交易对',
-        'change': '浮动'
+        'change': '浮动',
+        'referencePrice': '参考价格'
     },
     en: {
         'tokenList': 'Token List',
@@ -69,7 +70,8 @@ export default {
         'lockup': 'Lockup',
 
         'tradingPair': 'Trading Pair',
-        'change': 'Change'
+        'change': 'Change',
+        'referencePrice': 'Reference Price'
 
     }
 }

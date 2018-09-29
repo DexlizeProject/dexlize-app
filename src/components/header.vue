@@ -1,7 +1,7 @@
 <template>
   <div class="token-banner">
     <div>
-      <img src="/static/img/banner-logo.png" class="banner-logo"/>
+      <a href="/"><img src="/static/img/banner-logo.png" class="banner-logo"/></a>
       <div class="language-switch" @click="switchLanguage()">
         <span class="icon-en" v-show="locale === 'zh'"></span>
         <span class="icon-zh" v-show="locale === 'en'"></span>

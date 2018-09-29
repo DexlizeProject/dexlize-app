@@ -1,7 +1,7 @@
 <template>
     <div class="home-page-wrap">
-        <trading-switch/>
-        <trading :trading-data="tradingData"/>
+        <trading-switch :current-table="tradingType" :switch-table="switchTable"/>
+        <trading-table :trading-type="tradingType" :trading-data="tradingData"/>
     </div>
 </template>
 
@@ -16,13 +16,25 @@ export default {
     },
     data(){
         return{
+            tradingType: 'PUB',
             tradingData: []
         }
     },
 
     methods: {
-        getData() {
-            let product = 'Dapppub';
+        switchTable(type){
+            this.tradingType = type;
+            if(type === 'PUB'){
+                this.getData('Dapppub');
+            }else if(type === 'KBY'){
+                this.getData('Kyubey');
+            }
+        },
+        getData(product) {
+            this.tradingData = [];
+            if(!product){
+                product = 'Dapppub'
+            }
             switch (product) {
                 case 'Dapppub':
                 this.getDapppubTradingData();
@@ -48,7 +60,7 @@ export default {
                         let change = ((data[1].high - data[0].high) / data[0].high * 100).toFixed(4);
                         change = change > 0 ?  '+' + change + '%' : change + '%';
                         this.tradingData.push({
-                            tradingPair: token + '/EOS',
+                            tradingPair: token,
                             price: currentPrice,
                             change: change
                         });
@@ -84,9 +96,9 @@ export default {
 
                         // push the current trading data of KBY
                         this.tradingData.push({
-                            tradingPair: token + '/EOS',
+                            tradingPair: token,
                             price: currentPrice,
-                            change: '+99.00%'
+                            // change: '+99.00%'
                         });
                     });
                 });
@@ -95,7 +107,7 @@ export default {
     },
     components: {
         tradingSwitch: require('@/pages/components/trading-switch').default,
-        trading: require('@/pages/components/trading').default
+        tradingTable: require('@/pages/components/trading-table').default
     }
 }
 </script>

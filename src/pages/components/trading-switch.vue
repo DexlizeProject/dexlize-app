@@ -1,9 +1,20 @@
 <template>
     <div class="trading-switch">
-        <button class="active">PUB</button>
-        <button>Kyubey</button>
+        <button :class="{'active': this.currentTable === 'PUB'}" @click="switchViewTable('PUB')">PUB</button>
+        <button :class="{'active': this.currentTable === 'KBY'}" @click="switchViewTable('KBY')">Kyubey</button>
     </div>
 </template>
+
+<script>
+    export default{
+        props:['switchTable', 'currentTable'],
+        methods:{
+            switchViewTable(type){
+                this.switchTable(type);
+            }
+        }
+    }
+</script>
 
 <style>
     .trading-switch{
