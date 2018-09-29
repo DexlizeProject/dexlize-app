@@ -36,8 +36,8 @@ import { feePercent, hexTransform } from '@/utils/math';
 
 export default {
   mounted() {
-    this.$refs.chart.style.height = window.innerHeight / 3 + 'px'; 
-    this.chart = Echarts.init(this.$refs.chart); 
+    this.$refs.chart.style.height = window.innerHeight / 3 + 'px';
+    this.chart = Echarts.init(this.$refs.chart);
 
     this.fetchTrending();
     this.fetchToken();
@@ -69,18 +69,21 @@ export default {
 
   methods: {
     fetchTrending() {
+        console.log(this.interval);
+        console.log(`token/kline?symbol=${this.token.toUpperCase()}&interval=${this.interval}&limit=50`);
       fetch(`token/kline?symbol=${this.token.toUpperCase()}&interval=${this.interval}&limit=50`).then(({ data }) => {
+          console.log(data);
         const dates = data.map(({ time }) => {
           const date = new Date(time);
           const minutes = date.getMinutes();
           return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${minutes < 10 ? '0' + minutes : minutes}`;
-        });  
+        });
         const kData = data.map(({ open, close, low, high }) => [open, close, low, high]);
         chartConfig.xAxis.data = dates;
         chartConfig.series[0].data = kData;
-  
+
         this.chart.setOption(chartConfig);
-      });    
+      });
     },
       fetchToken() {
           api.getTableRows({
@@ -121,7 +124,7 @@ export default {
 }
 
 .token-symbol, .token-price {
-  color: #515C6C; 
+  color: #515C6C;
   vertical-align: top;
 }
 
