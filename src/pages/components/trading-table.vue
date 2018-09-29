@@ -9,7 +9,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="item in this.tradingData" @click="viewTokenDetail('PUB')">
+            <tr v-for="item in this.tradingData" @click="viewTokenDetail(item.tradingPair)">
                 <td><span class="icon-token"/>{{item.tradingPair}}<span class="trading-pair-unit">/EOS</span></td>
                 <td>{{item.price}}</td>
                 <td><div class="trading-percent" :class="'up'">{{item.change}}</div></td>

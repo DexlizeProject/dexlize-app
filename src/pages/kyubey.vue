@@ -1,5 +1,8 @@
 <template>
     <div class="kyubey-page-wrap">
+        <div class="kyubey-header">
+
+        </div>
         <!--<token-chart />-->
         <!--<token-info />-->
         <!--<token-orders />-->
@@ -43,16 +46,12 @@
 
 <style scoped>
     .kyubey-page-wrap{
-        margin-top: -116px;
-    }
-
-    .token-filter > p {
-        margin-right: 15px;
+        margin-top: -144px;
     }
 
     @media screen and (max-width: 768px){
         .kyubey-page-wrap{
-            margin-top: -139px;
+            margin-top: -176px;
         }
     }
 

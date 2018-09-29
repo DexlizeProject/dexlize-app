@@ -44,7 +44,7 @@ export default {
 
 <style scoped>
   .tokens-page-wrap{
-    margin-top: -116px;
+    margin-top: -85px;
   }
 
   .token-filter > p {
@@ -53,7 +53,7 @@ export default {
 
   @media screen and (max-width: 768px){
     .tokens-page-wrap{
-      margin-top: -139px;
+      margin-top: -108px;
     }
   }
 

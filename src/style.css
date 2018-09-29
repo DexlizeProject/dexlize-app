@@ -238,3 +238,6 @@ button {
   background: linear-gradient(to bottom, #0e6ecf, #009dfe); /* 标准语法 */
 }
 
+.kyubey-page{
+  background: #f4f4f4;
+}

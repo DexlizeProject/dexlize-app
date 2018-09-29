@@ -12,9 +12,7 @@
         <div class="banner-option" style="text-align: left;">
           <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
         </div>
-        <div class="banner-option" style="text-align: center;">
-          <button class="banner-option-btn" @click="showTokenAbout = !showTokenAbout">{{$t('about')}} {{this.$store.state.token}}</button>
-        </div>
+        <div class="banner-option"></div>
         <div class="banner-option" style="text-align: right;">
           <button
                   @click="toggleShowMyAccount"
@@ -28,7 +26,9 @@
                   v-else>{{$t('login')}}</button>
         </div>
       </div>
-
+      <div class="header-what-is" @click="showTokenAbout = !showTokenAbout">
+        What is {{this.$store.state.token}}?
+      </div>
     </div>
     <div class="token-list-tip tip" v-show="showTokenList">
       <span class="icon-triangle"></span>
@@ -248,6 +248,14 @@
 
   .language-switch span:last-child{
     margin-top: -6px;
+  }
+
+  .header-what-is{
+    background: #fff;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px auto;
+    border-radius: 5px;
   }
 
   .banner-options{

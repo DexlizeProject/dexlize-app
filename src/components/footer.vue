@@ -13,7 +13,8 @@
         <div class="footer-item-title"><div>网站</div></div>
         <div class="footer-item-list">
           <a target="_blank" href="https://dapp.pub/">DappPub</a>
-          <a target="_blank" href="http://www.dexlize.org/">Dexlize</a>
+          <a target="_blank" href="http://www.dexlize.org/" v-if="$store.state.token === 'PUB'">Dexlize</a>
+          <a target="_blank" href="http://tpdex.io" v-if="$store.state.token === 'TPT'">TPDex</a>
         </div>
       </div>
     </footer>
