@@ -79,7 +79,6 @@ export default{
     mounted() {
         if (typeof scatter === 'undefined' && (typeof this.account.bitportal === 'undefined')) return;
         this.getEOSBalance();
-        // this.getMarket();
     },
     created() {
         this.getMarket();
