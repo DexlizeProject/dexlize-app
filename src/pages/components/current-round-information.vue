@@ -2,19 +2,19 @@
     <div class="current-round-information">
         <header>Current Round Information</header>
         <div class="current-round-information-content">
-            <div class="current-round-information-item">
+            <div class="information-item">
                 <div class="information-label">Remaining Time</div>
                 <div class="information-value">01.09.38</div>
             </div>
-            <div class="current-round-information-item">
+            <div class="information-item">
                 <div class="information-label">Reference Price <span class="icon-question"/></div>
                 <div class="information-value">0.002 EOS</div>
             </div>
-            <div class="current-round-information-item">
+            <div class="information-item">
                 <div class="information-label">Reserved Amount</div>
                 <div class="information-value">3.7291 EOS</div>
             </div>
-            <div class="current-round-information-item">
+            <div class="information-item">
                 <div class="information-label">Reserved Accounts</div>
                 <div class="information-value">80</div>
             </div>
@@ -22,7 +22,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .current-round-information{
         padding: 20px;
         background: #fff;
@@ -35,7 +35,7 @@
         border-left: 5px solid #0688e9;
         margin-bottom: 20px;
     }
-    .current-round-information-item{
+    .information-item{
         display: flex;
         margin-bottom: 15px;
     }
