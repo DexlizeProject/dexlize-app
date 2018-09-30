@@ -13,7 +13,7 @@
             <tbody>
             <tr v-for="item in reservationTable">
                 <td>{{item.account}}</td>
-                <td>{{item.amount}}</td>
+                <td>{{item.quantity}}</td>
             </tr>
             </tbody>
         </table>
@@ -24,23 +24,21 @@
     export default{
         data(){
             return {
-                reservationTable: [
-                    {
-                        account: 'mmmm*nnn',
-                        amount: '0.12311'
+                reservationTable: []
+            }
+        },
+        method: {
+            getReservation() {
+                api.getTableRows({
+                    json: true,
+                    code: 'myeosgroupon',
+                    scope: 'myeosgroupon',
+                    table: 'order'
+                }).then(({ rows }) => {
+                    let orders = rows;
 
-                    },
-                    {
-                        account: 'mmmm*nnn',
-                        amount: '0.12311'
-
-                    },
-                    {
-                        account: 'mmmm*nnn',
-                        amount: '0.12311'
-
-                    }
-                ]
+                    this.reservationTable = orders;
+                });
             }
         }
     }
