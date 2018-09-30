@@ -109,7 +109,8 @@ export default{
     }
     .information-item{
         display: flex;
-        margin-bottom: 15px;
+        height: 32px;
+        line-height: 32px;
     }
     .information-label{
         flex: 1;

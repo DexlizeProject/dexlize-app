@@ -9,6 +9,7 @@
             </tr>
             </thead>
             <tbody>
+            <tr v-show="isLoading"><td class="loading-td">Loading...</td></tr>
             <tr v-for="item in this.tradingData" @click="viewTokenDetail(item.tradingPair)">
                 <td><span class="icon-token"/>{{item.tradingPair}}<span class="trading-pair-unit">/EOS</span></td>
                 <td>{{item.price}}</td>
@@ -16,7 +17,6 @@
             </tr>
             </tbody>
         </table>
-
         <table class="trading-pair-table" v-show="this.tradingType === 'KBY'">
             <thead>
             <tr>
@@ -25,6 +25,7 @@
             </tr>
             </thead>
             <tbody>
+            <tr v-show="isLoading"><td class="loading-td">Loading...</td></tr>
             <tr v-for="item in this.tradingData" @click="viewTokenDetail('KBY')">
                 <td><span class="icon-token"/>{{item.tradingPair}}<span class="trading-pair-unit">/EOS</span></td>
                 <td>{{item.price}}</td>
@@ -37,7 +38,7 @@
 
 <script>
     export default{
-        props: ['tradingData', 'tradingType'],
+        props: ['tradingData', 'tradingType', 'isLoading'],
         created(){
         },
         methods:{
@@ -65,6 +66,11 @@
         width: 100%;
         border-radius: 5px;
         padding: 0 20px;
+    }
+
+    .loading-td{
+        height: 56px;
+        line-height: 1;
     }
 
     .trading-pair-unit{

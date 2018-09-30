@@ -1,7 +1,7 @@
 <template>
     <div class="home-page-wrap">
         <trading-switch :current-table="tradingType" :switch-table="switchTable"/>
-        <trading-table :trading-type="tradingType" :trading-data="tradingData"/>
+        <trading-table :trading-type="tradingType" :trading-data="tradingData" :isLoading="loadingTable"/>
     </div>
 </template>
 
@@ -17,7 +17,8 @@ export default {
     data(){
         return{
             tradingType: 'PUB',
-            tradingData: []
+            tradingData: [],
+            loadingTable: false
         }
     },
 
@@ -31,7 +32,6 @@ export default {
             }
         },
         getData(product) {
-            this.tradingData = [];
             if(!product){
                 product = 'Dapppub'
             }
@@ -47,6 +47,8 @@ export default {
         },
         getDapppubTradingData() {
             let tokens = ['PUB', 'TPT'];
+            let tradingArr = []
+            this.loadingTable = true;
             tokens.forEach(token => {
                 api.getTableRows({
                     json: true,
@@ -57,9 +59,10 @@ export default {
                     let currentPrice = (1 / ((parseInt(rows[0].stake) / 10000) / (hexTransform(rows[0].eos)))).toFixed(8);
                     // get change of current token
                     fetch(`token/kline?symbol=${token}&interval=1d&limit=2`).then(({ data }) => {
+                        this.loadingTable = false;
                         let change = ((data[1].high - data[0].high) / data[0].high * 100).toFixed(4);
                         change = change > 0 ?  '+' + change + '%' : change + '%';
-                        this.tradingData.push({
+                        tradingArr.push({
                             tradingPair: token,
                             price: currentPrice,
                             change: change
@@ -67,9 +70,12 @@ export default {
                     });
                 });
             });
+            this.tradingData = tradingArr
         },
         getKyubeyTradingData() {
-            let tokens = ['KBY'];
+            let tokens = ['KBY'],
+                tradingArr = []
+            this.loadingTable = true;
             tokens.forEach(token => {
                 api.getTableRows({
                     json: true,
@@ -85,8 +91,8 @@ export default {
                         scope: 'dacincubator',
                         table: 'market'
                     }).then(({rows}) => {
+                        this.loadingTable = false;
                         let market = rows[0];
-
                         // calculate the current price of KBY
                         let buy_eos_quantity = 100;
                         let eos_amout = assetTransform(market.balance) + assetTransform(global.reserve);
@@ -95,7 +101,7 @@ export default {
                         let currentPrice = (100 / kby_quantity).toFixed(8);
 
                         // push the current trading data of KBY
-                        this.tradingData.push({
+                        tradingArr.push({
                             tradingPair: token,
                             price: currentPrice,
                             // change: '+99.00%'
@@ -103,6 +109,7 @@ export default {
                     });
                 });
             });
+            this.tradingData = tradingArr
         },
     },
     components: {

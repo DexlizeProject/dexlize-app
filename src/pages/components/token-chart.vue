@@ -106,8 +106,6 @@ export default {
 
 <style scoped>
 .token-chart {
-  margin-top: 10px;
-  margin-bottom: 32px;
   padding: 0;
 }
 
