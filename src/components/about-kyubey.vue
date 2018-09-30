@@ -19,14 +19,12 @@
         <label>{{$t('description')}}</label>
       </li>
       <div class="about-kyubey-description">
-        KBY 使用了 Kyubey 协议合约和团购合约发行。 Kyubey 协议将设置价格与发行量的函数为一次函数，类似 P3D 的价格曲线。
-
-        - 价格增加速率：10^-10 / KBY
-        - 初始价格：0.002 EOS/KBY
-        - 初始 dummy 发行量：20M
-        - 初始 dummy 储备金：20k
-
-        更多关于 KBY 的介绍请参考
+        {{$t('aboutKby.desc')}}<br/><br/>
+        {{$t('aboutKby.li1')}}<br/>
+        {{$t('aboutKby.li2')}}<br/>
+        {{$t('aboutKby.li3')}}<br/>
+        {{$t('aboutKby.li4')}}<br/><br/>
+        {{$t('aboutKby.forMore')}}<br/>
         <a href="https://github.com/kyubey-network/kyubey-initial-bancor-offer-contract">https://github.com/kyubey-network/kyubey-initial-bancor-offer-contract</a>
         </div>
     </ul>

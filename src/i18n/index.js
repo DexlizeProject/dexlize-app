@@ -45,7 +45,16 @@ export default {
         'marketBalance': '市场总量',
         'description': '描述',
         'whyNoPrice': '为什么没有 KBY 的单价？',
-        'whyNoPriceExplain': '价格随着市场供需而定，在 IBO 中，市价由供需、保证金等因素决定， 所以你可直接投入你的数字资产，我们的 Bancor 协议会帮你汇兑。'
+        'whyNoPriceExplain': '价格随着市场供需而定，在 IBO 中，市价由供需、保证金等因素决定， 所以你可直接投入你的数字资产，我们的 Bancor 协议会帮你汇兑。',
+
+        'aboutKby':{
+            'desc': 'KBY 使用了 Kyubey 协议合约和团购合约发行。 Kyubey 协议将设置价格与发行量的函数为一次函数，类似 P3D 的价格曲线。',
+            'li1': '- 价格增加速率：10^-10 / KBY',
+            'li2': '- 初始价格：0.002 EOS/KBY',
+            'li3': '- 初始 dummy 发行量：20M',
+            'li4': '- 初始 dummy 储备金：20k',
+            'forMore': '更多关于 KBY 的介绍请参考'
+        }
 
     },
     en: {
@@ -93,7 +102,15 @@ export default {
         'marketSupply': 'Market Supply',
         'description': 'Description',
         'whyNoPrice': 'Why there is no KBY unit price?',
-        'whyNoPriceExplain': 'The price is determined by market supply and demand. In IBO, the market price is determined by supply, demand, reservation pool, etc. You can directly invest your crypto assets, and our Bancor protocol will convert correspondingly.'
+        'whyNoPriceExplain': 'The price is determined by market supply and demand. In IBO, the market price is determined by supply, demand, reservation pool, etc. You can directly invest your crypto assets, and our Bancor protocol will convert correspondingly.',
+        'aboutKby':{
+            'desc': 'KBY is published with an implementation of Kyubey protocol contract and Group Purchase contract. Kyubey protocol set the price and circulation function as a linear function, which is similar to P3D price curve.',
+            'li1': '- Price acceleration rate: 10^-10 / KBY',
+            'li2': '- Initial price: 0.002 EOS/KBY',
+            'li3': '- Initial dummy circulation: 20M',
+            'li4': '- Initial dummy reserve: 20k',
+            'forMore': 'For more information about KBY, please refer to'
+        }
 
 
     }
