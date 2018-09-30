@@ -16,7 +16,7 @@
     <div class="container router-container" :class="this.$router.currentRoute.name + '-page'">
       <router-view />
     </div>
-    <token-footer v-show="this.$router.currentRoute.name === 'tokens'" />
+    <token-footer v-show="this.$router.currentRoute.name === 'tokens' || this.$router.currentRoute.name === 'kyubey'"/>
     <copyright/>
   </main>
 </template>

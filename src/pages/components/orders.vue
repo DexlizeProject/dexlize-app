@@ -22,47 +22,6 @@
           </tr>
           </tbody>
       </table>
-    <!--<el-table-->
-      <!--class="table"-->
-      <!--border-->
-      <!--stripe-->
-      <!--:data="orders">-->
-      <!--<el-table-column-->
-        <!--prop="is_buy_type"-->
-        <!--label="Type"-->
-        <!--width="100">-->
-        <!--<template slot-scope="scope">-->
-          <!--<el-tag-->
-            <!--:type="scope.row.is_buy_type ? 'success' : 'danger'"-->
-            <!--disable-transitions>{{scope.row.is_buy_type ? 'buy' : 'sell'}}</el-tag>-->
-        <!--</template>-->
-      <!--</el-table-column>-->
-      <!--<el-table-column prop="time" label="Time" :formatter="dateFormatter" />-->
-      <!--<el-table-column-->
-        <!--prop="account_name"-->
-        <!--label="Account" />-->
-      <!--<el-table-column-->
-        <!--prop="money"-->
-        <!--label="EOS"-->
-        <!--:formatter="eosFormatter" />-->
-      <!--<el-table-column-->
-        <!--prop="amount"-->
-        <!--label="Amount"  />-->
-      <!--<el-table-column-->
-        <!--prop="price"-->
-        <!--label="price"-->
-        <!--:formatter="priceFormatter" />-->
-
-      <!--<el-table-column-->
-        <!--label="Action">-->
-        <!--<template slot-scope="scope">-->
-          <!--<a-->
-            <!--class="order-trxlink"-->
-            <!--target="_blank"-->
-            <!--:href="`//eospark.com/MainNet/tx/${scope.row.trx_id}`">detail</a>-->
-        <!--</template>-->
-    <!--</el-table-column>-->
-    <!--</el-table>-->
     <footer class="order-footer">
         <div class="order-nav">
             <div class="order-nav-item">
