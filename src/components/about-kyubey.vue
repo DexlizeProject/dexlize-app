@@ -37,7 +37,7 @@
 <script>
 import fetch from '@/utils/api';
 import api from '@/utils/eos';
-import { assetTransform, buyKuybeyFeePrecent } from '@/utils/math';
+import {assetTransform} from '@/utils/math';
 
 export default {
   mounted() {

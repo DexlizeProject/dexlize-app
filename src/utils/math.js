@@ -15,7 +15,7 @@ export const hexTransform = raw => {
   return Number('0x' + raw.slice(2).match(/\w{2}/g).reverse().join('')) / 10000;
 };
 
-export const sellKuybeyFeePrecent = raw => {
+export const sellKuybeyFeePrecent = () => {
     let feeRatio = 0;
     const BASE_FEE_RATIO = 0.45; // 45%
     const START = 1538395200; // 10/01/2018 @ 12:00pm (UTC)
@@ -24,7 +24,7 @@ export const sellKuybeyFeePrecent = raw => {
     const NOW = (Date.now() / 1000);
     if (NOW <= START) {
         feeRatio = BASE_FEE_RATIO;
-    } else if (now < END) {
+    } else if (NOW < END) {
         feeRatio = BASE_FEE_RATIO * (END-NOW) / (END-START);
     }
 
