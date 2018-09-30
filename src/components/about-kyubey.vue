@@ -13,7 +13,7 @@
 
       <li>
         <label>{{$t('marketBalance')}}</label>
-        <span>{{about.marketBalance}}%</span>
+        <span>{{about.marketBalance}}</span>
       </li>
       <li>
         <label>{{$t('description')}}</label>
@@ -86,8 +86,8 @@ export default {
             table: 'market'
         }).then(({rows}) => {
             let market = rows[0];
-            this.about.marketSupply = (assetTransform(market.supply) / 10000).toFixed(4);
-            this.about.marketBalance = (assetTransform(market.balance) / 10000).toFixed(4);
+            this.about.marketSupply = market.supply;
+            this.about.marketBalance = market.balance;
         });
     }
   }
