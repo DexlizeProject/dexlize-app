@@ -5,6 +5,7 @@
         </div>
         <current-round-information/>
         <kby-transaction/>
+        <current-reservation/>
         <!--<token-chart />-->
         <!--<token-info />-->
         <!--<token-orders />-->
@@ -55,7 +56,8 @@
             // tradeForm: require('@/components/trade').default,
             aboutKyubey: require('@/components/about-kyubey').default,
             kbyTransaction: require('@/pages/components/kby-transaction').default,
-            currentRoundInformation: require('@/pages/components/current-round-information').default
+            currentRoundInformation: require('@/pages/components/current-round-information').default,
+            currentReservation: require('@/pages/components/current-reservation').default
         }
 
     }
