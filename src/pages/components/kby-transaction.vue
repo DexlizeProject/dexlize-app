@@ -198,6 +198,7 @@ export default{
                 let market = rows[0];
 
                 let supply = assetTransform(market.suplly) + this.form.sell.amount * 10000;
+                let K = 10000000000;
                 let delta_balance = (supply * supply) / 2 / K / 10000 - assetTransform(market.balance);
                 return (delta_balance * (1 - sellKuybeyFeePrecent()) / 10000).toFixed(4);
             });
