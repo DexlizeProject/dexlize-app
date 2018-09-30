@@ -32,5 +32,6 @@ export const sellKuybeyFeePrecent = () => {
 };
 
 export const assetTransform = raw => {
+    console.log(typeof raw);
     return parseInt(raw.substring(0, raw.length - 4) * 10000 + 0.5);
 };

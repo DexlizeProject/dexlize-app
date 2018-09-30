@@ -85,13 +85,15 @@ export default{
             currentTab: 1,
             form: {
                 buy:{
-                   amount: ''
+                   amount: '',
+                    obtain: ''
                 },
                 sell:{
-                    amount: ''
+                    amount: '',
+                    obtain: ''
                 }
             },
-            balance: '',
+            balance: 0,
             amount: '',
             obtain: ''
         }
@@ -106,9 +108,9 @@ export default{
   },
     methods: {
         getEOSBalance() {
-            api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
-                this.balance = row[0];
-            });
+          api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
+            this.balance = row[0];
+          });
         },
         getBalance() {
 
@@ -262,6 +264,12 @@ export default{
 </script>
 
 <style scoped>
+    header button{
+        border:none;
+        outline: 0;
+        background: #fff;
+        -webkit-appearance: none;
+    }
     header button.active{
         border: none;
         border-bottom: 2px solid #0688e9;
@@ -333,5 +341,6 @@ export default{
         border-radius: 5px;
         margin-top: 12px;
         height: 40px;
+        -webkit-appearance: none;
     }
 </style>

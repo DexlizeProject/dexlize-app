@@ -40,7 +40,6 @@
                     table: 'order'
                 }).then(({ rows }) => {
                     let orders = rows;
-
                     this.reservationTable = orders;
                 });
             }
