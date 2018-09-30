@@ -6,9 +6,7 @@
         <current-round-information/>
         <kby-transaction/>
         <current-reservation/>
-        <!--<token-chart />-->
-        <!--<token-info />-->
-        <!--<token-orders />-->
+
         <el-dialog :visible.sync="showAboutKyubey">
             <about-kyubey v-on:close-dialog="showAboutKyubey = false"/>
         </el-dialog>

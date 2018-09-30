@@ -7,7 +7,7 @@
                 <div class="information-value">{{remainingTime}}</div>
             </div>
             <div class="information-item">
-                <div class="information-label">{{$t('referencePrice')}} <span class="icon-question"/></div>
+                <div class="information-label">{{$t('referencePrice')}} <span @click="showReferencePrice = true" class="icon-question"/></div>
                 <div class="information-value">{{referencePrice}}</div>
             </div>
             <div class="information-item">
@@ -19,6 +19,19 @@
                 <div class="information-value">{{reservedAccounts}}</div>
             </div>
         </div>
+        <el-dialog :visible.sync="showReferencePrice">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-nav">
+                        {{$t('whyNoPrice')}}
+                        <font-awesome-icon icon="times" @click="showReferencePrice = false"/>
+                    </div>
+                </div>
+                <div class="card-content">
+                    {{$t('whyNoPriceExplain')}}
+                </div>
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -32,10 +45,14 @@ export default{
             remainingTime: '01.09.38',
             referencePrice: '0.002 EOS',
             reservedAmount: '3.7291 EOS',
-            reservedAccounts: '80'
+            reservedAccounts: '80',
+            showReferencePrice: false
         }
     },
-    method: {
+    methods: {
+        closeDialog(){
+            this.$emit('close-dialog')
+        },
         initRoundInfo() {
             // init the info
             api.getTableRows({
@@ -121,5 +138,30 @@ export default{
         flex: 1;
         text-align: right;
         justify-content: right;
+    }
+
+    .current-round-information .card-header{
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        margin-bottom: 20px;
+
+    }
+
+
+    .current-round-information .card-nav{
+        color: rgba(0,0,0,.5);
+        text-align: left;
+    }
+
+    .current-round-information .card-header svg{
+        width: 18px;
+        height: 18px;
+        float: right;
+        margin-top: 12px;
+    }
+
+    .current-round-information .card-content{
+        color: #2f2f2f;
+        font-size: 12px;
+        line-height: 17px;
     }
 </style>

@@ -43,7 +43,9 @@ export default {
         'reserve': '预约团购',
         'marketSupply': '市场供应量',
         'marketBalance': '市场总量',
-        'description': '描述'
+        'description': '描述',
+        'whyNoPrice': '为什么没有 KBY 的单价？',
+        'whyNoPriceExplain': '价格随着市场供需而定，在 IBO 中，市价由供需、保证金等因素决定， 所以你可直接投入你的数字资产，我们的 Bancor 协议会帮你汇兑。'
 
     },
     en: {
@@ -89,7 +91,9 @@ export default {
         'reservedAccounts': 'Reserved Accounts',
         'reserve': 'Reserve',
         'marketSupply': 'Market Supply',
-        'description': 'Description'
+        'description': 'Description',
+        'whyNoPrice': 'Why there is no KBY unit price?',
+        'whyNoPriceExplain': 'The price is determined by market supply and demand. In IBO, the market price is determined by supply, demand, reservation pool, etc. You can directly invest your crypto assets, and our Bancor protocol will convert correspondingly.'
 
 
     }
