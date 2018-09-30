@@ -1,16 +1,16 @@
 <template>
     <div class="kby-transaction">
         <header>
-            <button>Buy</button>
-            <button>Sell</button>
+            <button @click="currentTab = 1" :class="{'active': currentTab === 1}">Buy</button>
+            <button @click="currentTab = 2" :class="{'active': currentTab === 2}">Sell</button>
         </header>
-        <div class="buy-content">
+        <div class="buy-content" v-show="currentTab === 1">
             <div class="information-item">
                 <div class="information-label">
                     Balance
                 </div>
                 <div class="information-value">
-                    1,12312,231312.3221 EOS
+                    {{balance}}
                 </div>
             </div>
             <div class="information-item">
@@ -18,7 +18,7 @@
                     Amount
                 </div>
                 <div class="information-value">
-                    <input type="text" class="transaction-input"/>
+                    <input type="text" class="transaction-input" v-model="amount"/>
                     <span class="transaction-input-unit">EOS</span>
                 </div>
             </div>
@@ -27,19 +27,45 @@
                     Obtain ≈
                 </div>
                 <div class="information-value">
-                    23,600 KBY
+                    {{obtain}}
                 </div>
             </div>
-
+            <div class="information-item">
+                <button class="btn-buy" @click="reserve()">Reserve</button>
+            </div>
         </div>
-        <div class="sell-content">
-
+        <div class="sell-content" v-show="currentTab === 2">
+sell
         </div>
     </div>
 
 </template>
 
+<script>
+    export default{
+        data(){
+            return {
+                currentTab: 1,
+                balance: '1,12312,231312.3221 EOS',
+                amount: '',
+                obtain: ''
+            }
+        },
+        method:{
+            reserve(){
+                console.log('reserve')
+            }
+        }
+    }
+</script>
+
 <style scoped>
+    header button.active{
+        border: none;
+        border-bottom: 2px solid #0688e9;
+        background: #fff;
+        outline: 0;
+    }
     .kby-transaction{
         padding:0 20px 20px;
         background: #fff;
@@ -63,8 +89,9 @@
         border-radius: 5px 0 0 5px;
         font-size: 16px;
         min-width: 0;
+        height: 40px;
+        line-height: 40px;
         -webkit-appearance: none;
-        flex-shrint: 1;
     }
     .transaction-input::placeholder{
         font-size: 14px;
@@ -73,14 +100,17 @@
         color: #a8a8a8;
         border: 1px solid #a8a8a8;
         border-left: none;
+        height: 40px;
+        line-height: 40px;
         padding: 0 4px;
         background: #fff;
         border-radius: 0 5px 5px 0;
+        display: inline-block;
     }
     .information-item{
         display: flex;
-        margin-bottom: 15px;
-        height: 20px;
+        height: 40px;
+        line-height: 40px;
     }
     .information-label{
         flex: 1;
@@ -93,5 +123,13 @@
         align-items: center;
         text-align: right;
         justify-content: right;
+    }
+    .btn-buy, .btn-sell{
+        width: 100%;
+        outline: 0;
+        border: none;
+        border-radius: 5px;
+        margin-top: 12px;
+        height: 40px;
     }
 </style>
