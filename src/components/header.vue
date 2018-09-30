@@ -26,9 +26,7 @@
                   v-else>{{$t('login')}}</button>
         </div>
       </div>
-      <div class="header-what-is" @click="showTokenAbout = !showTokenAbout">
-        What is {{this.$store.state.token}}?
-      </div>
+
     </div>
     <div class="token-list-tip tip" v-show="showTokenList">
       <span class="icon-triangle"></span>
@@ -250,13 +248,7 @@
     margin-top: -6px;
   }
 
-  .header-what-is{
-    background: #fff;
-    height: 40px;
-    line-height: 40px;
-    margin: 10px auto;
-    border-radius: 5px;
-  }
+
 
   .banner-options{
     display: flex;

@@ -1,5 +1,8 @@
 <template>
   <div class="tokens-page-wrap">
+    <div class="header-what-is" @click="showTokenAbout = !showTokenAbout">
+      <span class="icon-info"/> What is {{this.$store.state.token}}?
+    </div>
     <token-chart />
     <token-info />
     <token-orders />
@@ -44,16 +47,31 @@ export default {
 
 <style scoped>
   .tokens-page-wrap{
-    margin-top: -85px;
+    margin-top: -113px;
   }
 
   .token-filter > p {
     margin-right: 15px;
   }
 
+  .header-what-is{
+    color: #2e79cd;
+    padding: 0 20px;
+    background: #fff;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px auto;
+    border-radius: 5px;
+  }
+
+  .header-what-is .icon-info{
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
   @media screen and (max-width: 768px){
     .tokens-page-wrap{
-      margin-top: -108px;
+      margin-top: -136px;
     }
   }
 

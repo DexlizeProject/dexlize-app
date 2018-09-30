@@ -125,6 +125,14 @@ button {
   background-size: contain;
 }
 
+.icon-info{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url('/static/img/info.png') no-repeat;
+  background-size: contain;
+}
+
 .blue-gradient, .blue-gradient:active, .blue-gradient:focus, .blue-gradient:visited {
   color: #fff;
   background: -webkit-linear-gradient(left, #1752b0, #009dfe); /* Safari 5.1 to 6.0 */
