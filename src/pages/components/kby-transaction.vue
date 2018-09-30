@@ -1,13 +1,13 @@
 <template>
     <div class="kby-transaction">
         <header>
-            <button @click="currentTab = 1" :class="{'active': currentTab === 1}">Buy</button>
-            <button @click="currentTab = 2" :class="{'active': currentTab === 2}">Sell</button>
+            <button @click="currentTab = 1" :class="{'active': currentTab === 1}">{{$t('buy')}}</button>
+            <button @click="currentTab = 2" :class="{'active': currentTab === 2}">{{$t('sell')}}</button>
         </header>
         <div class="buy-content" v-show="currentTab === 1">
             <div class="information-item">
                 <div class="information-label">
-                    Balance
+                    {{$t('balance')}}
                 </div>
                 <div class="information-value">
                     {{balance}}
@@ -15,7 +15,7 @@
             </div>
             <div class="information-item">
                 <div class="information-label">
-                    Amount
+                    {{$t('amount')}}
                 </div>
                 <div class="information-value">
                     <input type="text" class="transaction-input" v-model="amount"/>
@@ -24,14 +24,14 @@
             </div>
             <div class="information-item">
                 <div class="information-label">
-                    Obtain ≈
+                    {{$t('obtain')}} ≈
                 </div>
                 <div class="information-value">
                     {{obtain}}
                 </div>
             </div>
             <div class="information-item">
-                <button class="btn-buy" @click="reserve()">Reserve</button>
+                <button class="btn-buy" @click="reserve()">{{$t('reserve')}}</button>
             </div>
         </div>
         <div class="sell-content" v-show="currentTab === 2">

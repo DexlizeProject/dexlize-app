@@ -34,7 +34,17 @@ export default {
 
         'tradingPair': '交易对',
         'change': '浮动',
-        'referencePrice': '参考价格'
+        'referencePrice': '参考价格',
+        'currentReservation' :'当前预约',
+        'currentRoundInformation': '本轮信息',
+        'remainingTime': '剩余时间',
+        'reservedAmount': '预约金额',
+        'reservedAccounts': '预约账户数',
+        'reserve': '预约团购',
+        'marketSupply': '市场供应量',
+        'marketBalance': '市场总量',
+        'description': '描述'
+
     },
     en: {
         'tokenList': 'Token List',
@@ -71,7 +81,16 @@ export default {
 
         'tradingPair': 'Trading Pair',
         'change': 'Change',
-        'referencePrice': 'Reference Price'
+        'referencePrice': 'Reference Price',
+        'currentReservation' :'Current Reservation',
+        'currentRoundInformation': 'Current Round Information',
+        'remainingTime': 'Remaining Time',
+        'reservedAmount': 'Reserved Amount',
+        'reservedAccounts': 'Reserved Accounts',
+        'reserve': 'Reserve',
+        'marketSupply': 'Market Supply',
+        'description': 'Description'
+
 
     }
 }

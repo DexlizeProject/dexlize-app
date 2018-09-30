@@ -7,16 +7,16 @@
     </div>
     <ul class="about-list">
       <li>
-        <label>Market Supply</label>
+        <label>{{$t('marketSupply')}}</label>
         <span>{{about.marketSupply}}</span>
       </li>
 
       <li>
-        <label>Market Balance</label>
+        <label>{{$t('marketBalance')}}</label>
         <span>{{about.marketBalance}}%</span>
       </li>
       <li>
-        <label>Description</label>
+        <label>{{$t('description')}}</label>
       </li>
       <div class="about-kyubey-description">
         KBY 使用了 Kyubey 协议合约和团购合约发行。 Kyubey 协议将设置价格与发行量的函数为一次函数，类似 P3D 的价格曲线。

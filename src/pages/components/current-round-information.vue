@@ -1,21 +1,21 @@
 <template>
     <div class="current-round-information">
-        <header>Current Round Information</header>
+        <header>{{$t('currentRoundInformation')}}</header>
         <div class="current-round-information-content">
             <div class="information-item">
-                <div class="information-label">Remaining Time</div>
+                <div class="information-label">{{$t('remainingTime')}}</div>
                 <div class="information-value">{{remainingTime}}</div>
             </div>
             <div class="information-item">
-                <div class="information-label">Reference Price <span class="icon-question"/></div>
+                <div class="information-label">{{$t('referencePrice')}} <span class="icon-question"/></div>
                 <div class="information-value">{{referencePrice}}</div>
             </div>
             <div class="information-item">
-                <div class="information-label">Reserved Amount</div>
+                <div class="information-label">{{$t('reservedAmount')}}</div>
                 <div class="information-value">{{reservedAmount}}</div>
             </div>
             <div class="information-item">
-                <div class="information-label">Reserved Accounts</div>
+                <div class="information-label">{{$t('reservedAccounts')}}</div>
                 <div class="information-value">{{reservedAccounts}}</div>
             </div>
         </div>

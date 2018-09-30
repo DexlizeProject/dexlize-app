@@ -1,13 +1,13 @@
 <template>
     <div class="current-reservation">
         <header>
-            Current Reservation
+            {{$t('currentReservation')}}
         </header>
         <table class="reservation-table">
             <thead>
             <tr>
-                <th>Account</th>
-                <th>Amount</th>
+                <th>{{$t('account')}}</th>
+                <th>{{$t('amount')}}</th>
             </tr>
             </thead>
             <tbody>
