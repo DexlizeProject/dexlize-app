@@ -89,7 +89,7 @@ export default{
                 sell:{
                     amount: ''
                 }
-            }
+            },
             balance: '1,12312,231312.3221 EOS',
             amount: '',
             obtain: ''
