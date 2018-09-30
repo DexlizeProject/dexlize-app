@@ -37,7 +37,7 @@
 <script>
 import fetch from '@/utils/api';
 import api from '@/utils/eos';
-import { feePercent, hexTransform } from '@/utils/math';
+import { assetTransform, buyKuybeyFeePrecent } from '@/utils/math';
 
 export default {
   mounted() {
@@ -65,7 +65,7 @@ export default {
       return this.$store.state.token;
     },
     account() {
-      return this.$store.state.account; 
+      return this.$store.state.account;
     }
   },
 
@@ -73,22 +73,22 @@ export default {
     openTab(url) {
       window.open(url);
     },
-      closeDialog(){
-          console.log('close')
-          this.$emit('close-dialog')
-      },
+    closeDialog(){
+      console.log('close')
+      this.$emit('close-dialog')
+    },
     fetchToken() {
-      // api.getTableRows({
-      //   json: true,
-      //   code: 'tokendapppub',
-      //   scope: this.token.toUpperCase(),
-      //   table: 'games'
-      // }).then(({ rows }) => {
-      //   this.about = rows[0];
-      //   this.about.feePercent = feePercent(this.about);
-      //   this.about.eosPool = (hexTransform(this.about.eos) - hexTransform(this.about.base_eos)).toFixed(4);
-      //   // this.$store.commit('UPDATE_EOS_POOL', this.about.eosPool);
-      // });
+        // get market data and init the supply and balance of market from eos by contract
+        api.getTableRows({
+            json: true,
+            code: 'dacincubator',
+            scope: 'dacincubator',
+            table: 'market'
+        }).then(({rows}) => {
+            let market = rows[0];
+            this.about.marketSupply = (assetTransform(market.supply) / 10000).toFixed(4);
+            this.about.marketBalance = (assetTransform(market.balance) / 10000).toFixed(4);
+        });
     }
   }
 };
@@ -162,4 +162,3 @@ export default {
     background: #f9f9f9;
   }
 </style>
-

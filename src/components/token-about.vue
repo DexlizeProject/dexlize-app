@@ -79,7 +79,7 @@ export default {
       return this.$store.state.token;
     },
     account() {
-      return this.$store.state.account; 
+      return this.$store.state.account;
     }
   },
 
@@ -116,8 +116,8 @@ export default {
           this.referFeePercent = rows[0].fee_percent/100;
         } else {
           this.referFeePercent = 0;
-        }  
-      }); 
+        }
+      });
     },
 
     getBalance() {
@@ -141,7 +141,7 @@ export default {
     },
 
     rangeFormat(raw) {
-      if (Number(raw) === 0) return 0; 
+      if (Number(raw) === 0) return 0;
       let time = raw * 1000;
       let year = (time / (864E5 * 365)).toFixed(0);
       let month = ((time - year * 864E5 * 365) / 864E5 * 30).toFixed(0);
@@ -201,4 +201,3 @@ export default {
   font-weight: 500;
 }
 </style>
-
