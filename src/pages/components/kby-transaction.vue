@@ -84,22 +84,21 @@ export default{
             currentTab: 1,
             form: {
                 buy:{
-                   amount: ''
+                   amount: '',
+                    obtain: ''
                 },
                 sell:{
-                    amount: ''
+                    amount: '',
+                    obtain: ''
                 }
             },
-            balance: '1,12312,231312.3221 EOS',
-            amount: '',
-            obtain: ''
+            balance: '0'
         }
     },
     methods: {
         getEOSBalance() {
           api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
             this.balance = row[0];
-            console.log(111, this.balance)
           });
         },
         buy() {
@@ -245,6 +244,9 @@ export default{
 </script>
 
 <style scoped>
+    header button{
+        -webkit-appearance: none;
+    }
     header button.active{
         border: none;
         border-bottom: 2px solid #0688e9;
