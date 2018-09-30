@@ -10,7 +10,7 @@
                     {{$t('balance')}}
                 </div>
                 <div class="information-value">
-                    {{balance}}
+                    {{buy.balance}}
                 </div>
             </div>
             <div class="information-item">
@@ -18,7 +18,7 @@
                     {{$t('amount')}}
                 </div>
                 <div class="information-value">
-                    <input type="text" class="transaction-input" v-model="amount"/>
+                    <input type="text" class="transaction-input" v-model="buy.amount"/>
                     <span class="transaction-input-unit">EOS</span>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                     {{$t('obtain')}} ≈
                 </div>
                 <div class="information-value">
-                    {{obtain}}
+                    {{buy.obtain}}
                 </div>
             </div>
             <div class="information-item">
@@ -35,7 +35,34 @@
             </div>
         </div>
         <div class="sell-content" v-show="currentTab === 2">
-sell
+            <div class="information-item">
+                <div class="information-label">
+                    {{$t('balance')}}
+                </div>
+                <div class="information-value">
+                    {{sell.balance}}
+                </div>
+            </div>
+            <div class="information-item">
+                <div class="information-label">
+                    {{$t('amount')}}
+                </div>
+                <div class="information-value">
+                    <input type="text" class="transaction-input" v-model="sell.amount"/>
+                    <span class="transaction-input-unit">KBY</span>
+                </div>
+            </div>
+            <div class="information-item">
+                <div class="information-label">
+                    {{$t('obtain')}} ≈
+                </div>
+                <div class="information-value">
+                    {{sell.obtain}}
+                </div>
+            </div>
+            <div class="information-item">
+                <button class="btn-sell" @click="sell()">{{$t('sell')}}</button>
+            </div>
         </div>
     </div>
 
@@ -46,14 +73,25 @@ sell
         data(){
             return {
                 currentTab: 1,
-                balance: '1,12312,231312.3221 EOS',
-                amount: '',
-                obtain: ''
+                buy:{
+                    balance: '1,12312,231312.3221 EOS',
+                    amount: '',
+                    obtain: ''
+                },
+                sell:{
+                    balance: '1,12312,231312.3221 EOS',
+                    amount: '',
+                    obtain: ''
+                }
+
             }
         },
         method:{
             reserve(){
                 console.log('reserve')
+            },
+            sell(){
+                console.log('sell')
             }
         }
     }
