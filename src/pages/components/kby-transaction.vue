@@ -10,7 +10,7 @@
                     {{$t('balance')}}
                 </div>
                 <div class="information-value">
-                    {{buy.balance}}
+                    {{balance}}
                 </div>
             </div>
             <div class="information-item">
@@ -76,7 +76,8 @@ import api from '@/utils/eos';
 import {sellKuybeyFeePrecent, assetTransform} from '@/utils/math';
 
 export default{
-    created(){
+    mounted() {
+        if (typeof scatter === 'undefined' && (typeof this.account.bitportal === 'undefined')) return;
         this.getEOSBalance();
     },
     data(){
@@ -90,17 +91,27 @@ export default{
                     amount: ''
                 }
             },
-            balance: '1,12312,231312.3221 EOS',
+            balance: '',
             amount: '',
             obtain: ''
         }
     },
+    watch: {
+      account() {
+        this.getEOSBalance();
+        this.getBalance();
+        // this.getToken();
+        // this.fetchReferFee();
+      }
+  },
     methods: {
         getEOSBalance() {
-          api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
-            this.balance = row[0];
-            console.log(111, this.balance)
-          });
+            api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
+                this.balance = row[0];
+            });
+        },
+        getBalance() {
+
         },
         buy() {
             if (this.account.bitportal) {
@@ -122,6 +133,7 @@ export default{
                   this.loading = false;
                 });
             } else if (scatter) {
+                const eos = scatter.eos(network, Eos, {});
                 eos.transfer({
                   from: this.account.name,
                   to: 'myeosgroupon',
@@ -200,6 +212,7 @@ export default{
             return sellKuybeyFeePrecent();
         },
         getBuyObtain() {
+            console.log('*****');
             api.getTableRows({
                 json: true,
                 code: 'myeosgroupon',
@@ -221,6 +234,7 @@ export default{
                     let eos_amout = assetTransform(market.balance) + assetTransform(global.reserve);
                     let K = 10000000000;
                     let kby_quantity = (Math.sqrt(eos_amout * 2 * K) * 100 - assetTransform(market.supply)) * buy_eos_quantity / assetTransform(global.reserve);
+                    // console.log(kby_quantity);
                     return kby_quantity;
                 });
             });
@@ -239,7 +253,10 @@ export default{
                 let delta_balance = (supply * supply) / 2 / K / 10000 - assetTransform(market.balance);
                 return (delta_balance * (1 - sellKuybeyFeePrecent()) / 10000).toFixed(4);
             });
-        }
+        },
+        account() {
+          return this.$store.state.account;
+        },
     }
 }
 </script>
