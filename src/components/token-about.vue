@@ -39,6 +39,14 @@
         <span>{{rangeFormat(about.lock_up_period)}}</span>
       </li>
     </ul>
+    <ul class="social-link-wrap">
+      <a href="https://t.me/DappPub" target="_blank" v-show="$store.state.token === 'PUB'"><span class="icon-telegram"></span></a>
+      <a href="https://twitter.com/DappPub" target="_blank" v-show="$store.state.token === 'PUB'"><span class="icon-twitter"></span></a>
+      <a href="https://medium.com/dapppub" target="_blank" v-show="$store.state.token === 'PUB'"><span class="icon-medium"></span></a>
+
+      <a href="https://t.me/tokenPocket_en" target="_blank" v-show="$store.state.token === 'TPT'"><span class="icon-telegram"></span></a>
+      <a href="https://twitter.com/TokenPocket_TP" target="_blank" v-show="$store.state.token === 'TPT'"><span class="icon-twitter"></span></a>
+    </ul>
   </section>
 </template>
 
@@ -155,7 +163,7 @@ export default {
 
 <style scoped>
 .token-about {
-  padding-top: 0;
+  padding:0;
   margin-top: 0;
   margin-bottom: 0;
   flex:1;
@@ -163,6 +171,8 @@ export default {
 
 .token-about .card-nav{
   text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
@@ -188,6 +198,12 @@ export default {
   margin-bottom: 15px;
 }
 
+.about-list{
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
 .about-list > li > label {
   color: rgba(0,0,0,.5);
   margin-right: 100px;
@@ -200,4 +216,16 @@ export default {
   line-height: 1.5;
   font-weight: 500;
 }
+
+.social-link-wrap{
+  background: #f9f9f9;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 50px;
+  line-height: 50px;
+}
+
+  .social-link-wrap a{
+    margin-right: 15px;
+  }
 </style>

@@ -144,6 +144,69 @@ button {
   vertical-align: middle;
 }
 
+.icon-discord{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url('/static/img/social/discord.png') no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.icon-facebook{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url('/static/img/social/facebook.png') no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.icon-github{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url('/static/img/social/github.png') no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.icon-telegram{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url('/static/img/social/telegram.png') no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.icon-twitter{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url('/static/img/social/twitter.png') no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.icon-wechat{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url('/static/img/social/wechat.png') no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.icon-weibo{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background: url('/static/img/social/weibo.png') no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
 .blue-gradient, .blue-gradient:active, .blue-gradient:focus, .blue-gradient:visited {
   color: #fff;
   background: -webkit-linear-gradient(left, #1752b0, #009dfe); /* Safari 5.1 to 6.0 */

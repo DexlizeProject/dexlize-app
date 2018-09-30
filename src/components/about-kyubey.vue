@@ -30,7 +30,9 @@
         <a href="https://github.com/kyubey-network/kyubey-initial-bancor-offer-contract">https://github.com/kyubey-network/kyubey-initial-bancor-offer-contract</a>
         </div>
     </ul>
-    <ul class="social-link">123</ul>
+    <ul class="social-link-wrap">
+      <a href="https://github.com/kyubey-network" target="_blank"><span class="icon-github"></span></a>
+    </ul>
   </section>
 </template>
 
@@ -96,7 +98,7 @@ export default {
 
 <style scoped>
 .token-about {
-  padding-top: 0;
+  padding: 0;
   margin-top: 0;
   margin-bottom: 0;
   flex:1;
@@ -104,6 +106,8 @@ export default {
 
 .token-about .card-nav{
   text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
   border-bottom: 1px solid rgba(0,0,0,.1);
 }
 
@@ -137,6 +141,12 @@ export default {
   margin-top: 12px;
 }
 
+.about-list{
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}
+
 .about-list > li {
   display: flex;
   align-items: center;
@@ -160,5 +170,13 @@ export default {
 
   .social-link-wrap{
     background: #f9f9f9;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 50px;
+    line-height: 50px;
   }
+
+.social-link-wrap a{
+  margin-right: 15px;
+}
 </style>
