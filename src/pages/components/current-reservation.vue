@@ -21,13 +21,17 @@
 </template>
 
 <script>
+    import api from '@/utils/eos';
     export default{
+        created(){
+            this.getReservation();
+        },
         data(){
             return {
                 reservationTable: []
             }
         },
-        method: {
+        methods: {
             getReservation() {
                 api.getTableRows({
                     json: true,

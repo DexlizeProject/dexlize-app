@@ -100,6 +100,7 @@ export default {
         'reservedAccounts': 'Reserved Accounts',
         'reserve': 'Reserve',
         'marketSupply': 'Market Supply',
+        'marketBalance': 'Market Balance',
         'description': 'Description',
         'whyNoPrice': 'Why there is no KBY unit price?',
         'whyNoPriceExplain': 'The price is determined by market supply and demand. In IBO, the market price is determined by supply, demand, reservation pool, etc. You can directly invest your crypto assets, and our Bancor protocol will convert correspondingly.',

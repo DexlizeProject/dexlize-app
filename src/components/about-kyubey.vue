@@ -46,8 +46,8 @@ export default {
   data() {
     return {
       about: {
-          marketSupply: '21321321.123 KBY',
-          marketBalance: '13321313.123 EOS'
+          marketSupply: '',
+          marketBalance: ''
       },
       social: {},
         referFeePercent: ''

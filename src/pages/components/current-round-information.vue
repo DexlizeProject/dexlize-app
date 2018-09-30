@@ -36,16 +36,18 @@
 </template>
 
 <script>
-export default{
-    created(){
+    import api from '@/utils/eos';
 
+    export default{
+    created(){
+        this.initRoundInfo();
     },
     data(){
         return{
-            remainingTime: '01.09.38',
-            referencePrice: '0.002 EOS',
-            reservedAmount: '3.7291 EOS',
-            reservedAccounts: '80',
+            remainingTime: '',
+            referencePrice: '',
+            reservedAmount: '',
+            reservedAccounts: '',
             showReferencePrice: false
         }
     },
@@ -104,7 +106,7 @@ export default{
                 scope: 'myeosgroupon',
                 table: 'order'
             }).then(({rows}) => {
-                this.reserveAccounts = rows.length;
+                this.reservedAccounts = rows.length;
             });
         }
     }

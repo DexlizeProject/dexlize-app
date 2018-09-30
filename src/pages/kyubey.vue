@@ -48,10 +48,6 @@
         },
 
         components: {
-            // tokenInfo: require('./components/token-info').default,
-            // tokenChart: require('./components/token-chart').default,
-            // tokenOrders: require('./components/orders').default,
-            // tradeForm: require('@/components/trade').default,
             aboutKyubey: require('@/components/about-kyubey').default,
             kbyTransaction: require('@/pages/components/kby-transaction').default,
             currentRoundInformation: require('@/pages/components/current-round-information').default,
