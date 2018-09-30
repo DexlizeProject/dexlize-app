@@ -127,7 +127,6 @@ export default {
         table: 'stat',
         scope: this.token.toUpperCase()
       }).then(({ rows }) => {
-          console.log(111, rows)
         const { max_supply } = rows[0];
         this.decimals = (max_supply.match(/[\d\.]+/)[0].split('.')[1] || '').length;
       });

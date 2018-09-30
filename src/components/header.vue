@@ -27,6 +27,25 @@
         </div>
       </div>
 
+      <div class="banner-options" v-if="this.$router.currentRoute.name === 'kyubey'">
+        <div class="banner-option" style="text-align: left;">
+          <button class="banner-option-btn"><div class="blue-circle"></div> {{this.$store.state.token}}</button>
+        </div>
+        <div class="banner-option"></div>
+        <div class="banner-option" style="text-align: right;">
+          <button
+                  @click="toggleShowMyAccount"
+                  class="header-account banner-option-btn"
+                  v-if="account.name">
+            {{$t('myAccount')}} <font-awesome-icon icon="caret-down" v-show="!showMyAccount"/><font-awesome-icon icon="caret-up" v-show="showMyAccount"/>
+          </button>
+          <button
+                  class="login-link banner-option-btn"
+                  @click="login"
+                  v-else>{{$t('login')}}</button>
+        </div>
+      </div>
+
     </div>
     <div class="token-list-tip tip" v-show="showTokenList">
       <span class="icon-triangle"></span>
@@ -50,9 +69,7 @@
         </div>
       </div>
     </div>
-    <el-dialog :visible.sync="showTokenAbout">
-      <token-about v-on:close-dialog="showTokenAbout = false"/>
-    </el-dialog>
+
   </div>
 </template>
 
@@ -81,7 +98,6 @@
             eos_balance: "",
             keyword: "",
             showTokenList: false,
-            showTokenAbout: false,
             showMyAccount: false
         }
     },
@@ -213,11 +229,7 @@
         this.getEOSBalance()
         this.getBalance()
       }
-    },
-
-      components:{
-        tokenAbout: require('./token-about').default
-      }
+    }
   };
 </script>
 

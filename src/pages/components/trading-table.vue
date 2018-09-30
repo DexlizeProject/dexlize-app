@@ -39,11 +39,10 @@
     export default{
         props: ['tradingData', 'tradingType'],
         created(){
-            console.log(this.tradingType)
         },
         methods:{
             viewTokenDetail(tokenType) {
-                const url = new URL('/tokens', location.href);
+                const url = tokenType === 'PUB' ? new URL('/tokens', location.href) : new URL('/kyubey', location.href);
                 url.searchParams.set('token', tokenType);
                 location.href = url;
             }

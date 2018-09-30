@@ -6,11 +6,19 @@
     <token-chart />
     <token-info />
     <token-orders />
+    <el-dialog :visible.sync="showTokenAbout">
+      <token-about v-on:close-dialog="showTokenAbout = false"/>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 export default {
+    data() {
+        return {
+            showTokenAbout: false,
+        }
+    },
   created() {
     document.addEventListener('scatterLoaded', () => {
       if (!scatter.identity) return;
@@ -33,6 +41,10 @@ export default {
         this.$store.commit('UPDATE_ACCOUNT', account)
       });
     });
+
+      this.$root.$on('close-dialog', () => {
+          this.showTokenAbout = false;
+      })
   },
 
   components: {
@@ -40,7 +52,7 @@ export default {
     tokenChart: require('./components/token-chart').default,
     tokenOrders: require('./components/orders').default,
     tradeForm: require('@/components/trade').default,
-
+      tokenAbout: require('@/components/token-about').default
   }
 }
 </script>

@@ -244,7 +244,6 @@
         return length <= 3 ? 100 * Math.pow(10, 4-length) : 100;
       },
        labelWidth() {
-          console.log(screen.width)
           return window.screen.width <= 768 ? 'auto' : '150px';
         }
     },

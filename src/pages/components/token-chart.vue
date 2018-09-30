@@ -69,10 +69,8 @@ export default {
 
   methods: {
     fetchTrending() {
-        console.log(this.interval);
         console.log(`token/kline?symbol=${this.token.toUpperCase()}&interval=${this.interval}&limit=50`);
       fetch(`token/kline?symbol=${this.token.toUpperCase()}&interval=${this.interval}&limit=50`).then(({ data }) => {
-          console.log(data);
         const dates = data.map(({ time }) => {
           const date = new Date(time);
           const minutes = date.getMinutes();
