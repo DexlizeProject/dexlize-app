@@ -245,6 +245,9 @@ export default{
 
 <style scoped>
     header button{
+        background: none;
+        border:none;
+        outline: 0;
         -webkit-appearance: none;
     }
     header button.active{
