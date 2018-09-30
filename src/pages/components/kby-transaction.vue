@@ -10,7 +10,7 @@
                     {{$t('balance')}}
                 </div>
                 <div class="information-value">
-                    {{balance}}
+                    {{eosBalance}}
                 </div>
             </div>
             <div class="information-item">
@@ -40,7 +40,7 @@
                     {{$t('balance')}}
                 </div>
                 <div class="information-value">
-                    {{sell.balance}}
+                    {{kbyBalance}}
                 </div>
             </div>
             <div class="information-item">
@@ -90,14 +90,15 @@ export default{
             form: {
                 buy:{
                    amount: '',
-                    obtain: ''
+                   obtain: ''
                 },
                 sell:{
                     amount: '',
                     obtain: ''
                 }
             },
-            balance: 0,
+            eosBalance: 0,
+            kbyBalance: 0,
             amount: '',
             obtain: '',
             global: {reserve: 0},
@@ -107,18 +108,25 @@ export default{
     watch: {
       account() {
         this.getEOSBalance();
-        this.getBalance();
+        this.getKBYBalance();
         this.getGlobal();
       }
   },
     methods: {
         getEOSBalance() {
           api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
-            this.balance = row[0];
+            this.eosBalance = row[0];
           });
         },
-        getBalance() {
-
+        getKBYBalance() {
+            api.getTableRows({
+                json: true,
+                code: 'dacincubator',
+                table: 'accounts',
+                scope: this.account.name
+            }).then(({rows}) => {
+                this.kbyBalance = rows[0].balance;
+            });
         },
         getGlobal() {
             api.getTableRows({
@@ -246,19 +254,14 @@ export default{
             let eos_amount = this.market.balance + this.global.reserve;
             let K = 10000000000;
             let kby_quantity = (Math.sqrt(eos_amount * 2 * K) * 100 - this.market.supply) * buy_eos_quantity / this.global.reserve;
-            console.log('******');
-            console.log(this.market.balance);
-            console.log(this.market.supply);
-            console.log(this.global.reserve);
-            console.log(kby_quantity);
-            return (kby_quantity / 10000).toFixed(8);
+            return (kby_quantity / 10000).toFixed(8) + ' KBY';
 
         },
         getSellObtain() {
             let supply = this.market.supply + this.form.sell.amount * 10000;
             let K = 10000000000;
             let delta_balance = parseInt((supply * supply) / 2 / K / 10000) - this.market.balance;
-            return (delta_balance * (1 - sellKuybeyFeePrecent() / 100) / 10000).toFixed(4);
+            return (delta_balance * (1 - sellKuybeyFeePrecent() / 100) / 10000).toFixed(4) + ' EOS';
         },
         account() {
           return this.$store.state.account;
