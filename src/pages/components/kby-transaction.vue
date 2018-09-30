@@ -18,7 +18,7 @@
                     {{$t('amount')}}
                 </div>
                 <div class="information-value">
-                    <input type="text" class="transaction-input" v-model="buy.amount"/>
+                    <input type="text" class="transaction-input" v-model="form.buy.amount"/>
                     <span class="transaction-input-unit">EOS</span>
                 </div>
             </div>
@@ -27,11 +27,11 @@
                     {{$t('obtain')}} ≈
                 </div>
                 <div class="information-value">
-                    {{buy.obtain}}
+                    {{getBuyObtain}}
                 </div>
             </div>
             <div class="information-item">
-                <button class="btn-buy" @click="reserve()">{{$t('reserve')}}</button>
+                <button class="btn-buy" @click="buy()">{{$t('reserve')}}</button>
             </div>
         </div>
         <div class="sell-content" v-show="currentTab === 2">
@@ -48,7 +48,7 @@
                     {{$t('amount')}}
                 </div>
                 <div class="information-value">
-                    <input type="text" class="transaction-input" v-model="sell.amount"/>
+                    <input type="text" class="transaction-input" v-model="form.sell.amount"/>
                     <span class="transaction-input-unit">KBY</span>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                     {{$t('obtain')}} ≈
                 </div>
                 <div class="information-value">
-                    {{sell.obtain}}
+                    {{getSellObtain}}
                 </div>
             </div>
             <div class="information-item">
@@ -71,24 +71,35 @@
 <script>
 import network from '@/utils/network';
 import Eos from 'eosjs';
+import api from '@/utils/eos';
+
 import {sellKuybeyFeePrecent, assetTransform} from '@/utils/math';
 
 export default{
+    created(){
+        this.getEOSBalance();
+    },
     data(){
         return {
             currentTab: 1,
+            form: {
+                buy:{
+                   amount: ''
+                },
+                sell:{
+                    amount: ''
+                }
+            }
             balance: '1,12312,231312.3221 EOS',
             amount: '',
             obtain: ''
         }
     },
     methods: {
-        reserve() {
-            // console.log('reserve')
-        },
         getEOSBalance() {
           api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
             this.balance = row[0];
+            console.log(111, this.balance)
           });
         },
         buy() {
