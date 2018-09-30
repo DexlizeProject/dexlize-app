@@ -4,23 +4,39 @@
         <div class="current-round-information-content">
             <div class="information-item">
                 <div class="information-label">Remaining Time</div>
-                <div class="information-value">01.09.38</div>
+                <div class="information-value">{{remainingTime}}</div>
             </div>
             <div class="information-item">
                 <div class="information-label">Reference Price <span class="icon-question"/></div>
-                <div class="information-value">0.002 EOS</div>
+                <div class="information-value">{{referencePrice}}</div>
             </div>
             <div class="information-item">
                 <div class="information-label">Reserved Amount</div>
-                <div class="information-value">3.7291 EOS</div>
+                <div class="information-value">{{reservedAmount}}</div>
             </div>
             <div class="information-item">
                 <div class="information-label">Reserved Accounts</div>
-                <div class="information-value">80</div>
+                <div class="information-value">{{reservedAccounts}}</div>
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    export default{
+        created(){
+
+        },
+        data(){
+            return{
+                remainingTime: '01.09.38',
+                referencePrice: '0.002 EOS',
+                reservedAmount: '3.7291 EOS',
+                reservedAccounts: '80'
+            }
+        }
+    }
+</script>
 
 <style scoped>
     .current-round-information{
