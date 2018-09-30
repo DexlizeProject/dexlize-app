@@ -118,7 +118,7 @@ export default{
                       data: {
                         from: this.account.name,
                         to: 'dacincubator',
-                        quantity: Number(this.form.sell.amount).toFixed(decimals) + ` ${this.token.toUpperCase()}`,
+                        quantity: Number(this.form.sell.amount).toFixed(4) + ' KBY',
                         memo: 'sell'
                       }
                     }
@@ -140,12 +140,11 @@ export default{
 
                 this.loading = true;
                 eos.contract('dacincubator', options).then(contract => {
-                  const raw = this.balance.match(/[\d\.]+/)[0].split('.')[1] || '';
-                  const decimals = raw.length;
                   contract.transfer({
                     from: this.account.name,
                     to: 'dacincubator',
-                    quantity: Number(this.form.sell.amount).toFixed(decimals) + ` ${this.token.toUpperCase()}`
+                    quantity: Number(this.form.sell.amount).toFixed(4) + ' KBY',
+                    memo: 'sell'
                   }, options).then(() => {
                     this.$notify.success({ message: 'Token exchange success' });
                     this.loading = false;
