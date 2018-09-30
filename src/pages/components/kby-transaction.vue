@@ -79,6 +79,10 @@ export default{
     mounted() {
         if (typeof scatter === 'undefined' && (typeof this.account.bitportal === 'undefined')) return;
         this.getEOSBalance();
+        // this.getMarket();
+    },
+    created() {
+        this.getMarket();
     },
     data(){
         return {
@@ -95,15 +99,16 @@ export default{
             },
             balance: 0,
             amount: '',
-            obtain: ''
+            obtain: '',
+            global: {reserve: 0},
+            market: {balance: 0, supply: 0}
         }
     },
     watch: {
       account() {
         this.getEOSBalance();
         this.getBalance();
-        // this.getToken();
-        // this.fetchReferFee();
+        this.getGlobal();
       }
   },
     methods: {
@@ -114,6 +119,29 @@ export default{
         },
         getBalance() {
 
+        },
+        getGlobal() {
+            api.getTableRows({
+                json: true,
+                code: 'myeosgroupon',
+                scope: 'myeosgroupon',
+                table: 'global'
+            }).then(({rows}) => {
+                this.global.reserve = assetTransform(rows[0].reserve);
+            });
+        },
+        getMarket() {
+            api.getTableRows({
+                json: true,
+                code: 'dacincubator',
+                scope: 'dacincubator',
+                table: 'market'
+            }).then(({rows}) => {
+                let market = rows[0];
+
+                this.market.balance = assetTransform(market.balance);
+                this.market.supply = assetTransform(market.supply);
+            });
         },
         buy() {
             if (this.account.bitportal) {
@@ -214,47 +242,23 @@ export default{
             return sellKuybeyFeePrecent();
         },
         getBuyObtain() {
-            console.log('*****');
-            api.getTableRows({
-                json: true,
-                code: 'myeosgroupon',
-                scope: 'myeosgroupon',
-                table: 'global'
-            }).then(({rows}) => {
-                let global = rows[0];
+            let buy_eos_quantity = this.form.buy.amount * 10000;
+            let eos_amount = this.market.balance + this.global.reserve;
+            let K = 10000000000;
+            let kby_quantity = (Math.sqrt(eos_amount * 2 * K) * 100 - this.market.supply) * buy_eos_quantity / this.global.reserve;
+            console.log('******');
+            console.log(this.market.balance);
+            console.log(this.market.supply);
+            console.log(this.global.reserve);
+            console.log(kby_quantity);
+            return (kby_quantity / 10000).toFixed(8);
 
-                api.getTableRows({
-                    json: true,
-                    code: 'dacincubator',
-                    scope: 'dacincubator',
-                    table: 'market'
-                }).then(({rows}) => {
-                    let market = rows[0];
-
-                    // calculate the current price of KBY
-                    let buy_eos_quantity = this.form.buy.amount * 10000;
-                    let eos_amout = assetTransform(market.balance) + assetTransform(global.reserve);
-                    let K = 10000000000;
-                    let kby_quantity = (Math.sqrt(eos_amout * 2 * K) * 100 - assetTransform(market.supply)) * buy_eos_quantity / assetTransform(global.reserve);
-                    // console.log(kby_quantity);
-                    return kby_quantity;
-                });
-            });
         },
         getSellObtain() {
-            api.getTableRows({
-                json: true,
-                code: 'dacincubator',
-                scope: 'dacincubator',
-                table: 'market'
-            }).then(({rows}) => {
-                let market = rows[0];
-
-                let supply = assetTransform(market.suplly) + this.form.sell.amount * 10000;
-                let K = 10000000000;
-                let delta_balance = (supply * supply) / 2 / K / 10000 - assetTransform(market.balance);
-                return (delta_balance * (1 - sellKuybeyFeePrecent()) / 10000).toFixed(4);
-            });
+            let supply = this.market.supply + this.form.sell.amount * 10000;
+            let K = 10000000000;
+            let delta_balance = parseInt((supply * supply) / 2 / K / 10000) - this.market.balance;
+            return (delta_balance * (1 - sellKuybeyFeePrecent() / 100) / 10000).toFixed(4);
         },
         account() {
           return this.$store.state.account;
