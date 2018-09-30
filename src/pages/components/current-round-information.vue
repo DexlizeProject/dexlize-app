@@ -37,6 +37,7 @@
 
 <script>
     import api from '@/utils/eos';
+    import {sellKuybeyFeePrecent, assetTransform} from '@/utils/math';
 
     export default{
     created(){
@@ -71,32 +72,35 @@
                 let PERIOD = 6 * 60 * 60;
                 let remainingTime = PERIOD - (parseInt(Date.now() / 1000) - global.claim_time);
                 if (remainingTime > 0) {
-                    let h = parseInt(remianTime / 3600);
-                    let m = parseInt(remianTime % 3600 / 60);
-                    let s = parseInt(remianTime % (60*60) % 60);
-                    this.remainingTime = '' + h + '.' + m + '.' + s;
+                    let h = parseInt(remainingTime / 3600);
+                    let m = parseInt(remainingTime % 3600 / 60);
+                    let s = parseInt(remainingTime % (60*60) % 60);
+                    this.remainingTime = '' + h + ':' + m + ':' + s;
                 } else {
-                    this.remainingTime = '0.0.0';
+                    this.remainingTime = '0:0:0';
                 }
+                if (assetTransform(global.reserve) > 0) {
+                    api.getTableRows({
+                        json: true,
+                        code: 'dacincubator',
+                        scope: 'dacincubator',
+                        table: 'market'
+                    }).then(({rows}) => {
+                        let market = rows[0];
 
-                api.getTableRows({
-                    json: true,
-                    code: 'dacincubator',
-                    scope: 'dacincubator',
-                    table: 'market'
-                }).then(({rows}) => {
-                    let market = rows[0];
+                        // calculate the current price of KBY
+                        let buy_eos_quantity = 100;
+                        let eos_amout = assetTransform(market.balance) + assetTransform(global.reserve);
+                        let K = 10000000000;
+                        let kby_quantity = (Math.sqrt(eos_amout * 2 * K) * 100 - assetTransform(market.supply)) * buy_eos_quantity / assetTransform(global.reserve);
+                        let currentPrice = (100 / kby_quantity).toFixed(4);
 
-                    // calculate the current price of KBY
-                    let buy_eos_quantity = 100;
-                    let eos_amout = assetTransform(market.balance) + assetTransform(global.reserve);
-                    let K = 10000000000;
-                    let kby_quantity = (Math.sqrt(eos_amout * 2 * K) * 100 - assetTransform(market.supply)) * buy_eos_quantity / assetTransform(global.reserve);
-                    let currentPrice = (100 / kby_quantity).toFixed(4);
-
-                    // init the the reference price
-                    this.referencePrice = currentPrice + ' EOS';
-                });
+                        // init the the reference price
+                        this.referencePrice = currentPrice + ' EOS';
+                    });
+                } else {
+                    this.referencePrice = 0.0020 + ' EOS';
+                }
             });
 
             // init the reserve accounts
