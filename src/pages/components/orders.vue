@@ -308,7 +308,4 @@ export default {
   fill: #979797;
 }
 
-  @media screen and (max-width: 768px){
-
-  }
 </style>
