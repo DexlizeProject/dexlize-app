@@ -6,18 +6,19 @@
           <div>相关协议</div>
         </div>
         <div class="footer-item-list">
-          <a target="_blank" href="https://dapp.mytokenpocket.vip/%E5%9F%BA%E4%BA%8E%E7%8F%AD%E6%9F%AF%E7%9A%84%E5%AE%9E%E7%94%A8%E5%A2%9E%E5%BC%BA%E5%9E%8B%E9%80%9A%E8%AF%81%E5%8D%8F%E8%AE%AE.pdf">基于班柯的实用增强型通证协议</a>
+          <a target="_blank" href="https://dapp.mytokenpocket.vip/%E5%9F%BA%E4%BA%8E%E7%8F%AD%E6%9F%AF%E7%9A%84%E5%AE%9E%E7%94%A8%E5" v-if="$store.state.token === 'PUB' || $store.state.token === 'TPT'">PUB</a>
+          <a target="_blank" href="https://github.com/kyubey-network/kyubey-" v-if="$store.state.token === 'KBY'">Kyubey</a>
         </div>
       </div>
       <div class="footer-item">
         <div class="footer-item-title"><div>网站</div></div>
         <div class="footer-item-list">
-          <a target="_blank" href="https://dapp.pub/">DappPub</a>
-          <a target="_blank" href="http://www.dexlize.org/">Dexlize</a>
+          <a target="_blank" href="https://dapp.pub/" v-if="$store.state.token === 'PUB'">DappPub</a>
+          <a target="_blank" href="http://tpdex.io/#/" v-if="$store.state.token === 'TPT'">TPDex</a>
+          <a target="_blank" href="https://ibo.kyubey.network/" v-if="$store.state.token === 'KBY'">Kyubey Network</a>
         </div>
       </div>
     </footer>
-    <div class="copyright">Copyright &copy; 2018. Dexlize Foundation PTE. LTD.</div>
   </div>
 
 </template>
@@ -61,11 +62,5 @@
     margin-left: 10px;
   }
 
-  .copyright{
-    font-size: 12px;
-    text-align: center;
-    color: rgba(0,0,0,.2);
-    line-height: 30px;
-  }
 </style>
 

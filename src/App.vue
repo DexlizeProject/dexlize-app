@@ -13,10 +13,11 @@
         class="create-link"
         :to="{ name: 'publish' }">publish one</router-link>
     </el-alert>
-    <div class="container router-container">
+    <div class="container router-container" :class="this.$router.currentRoute.name + '-page'">
       <router-view />
     </div>
-    <token-footer />
+    <token-footer v-show="this.$router.currentRoute.name === 'tokens' || this.$router.currentRoute.name === 'kyubey'"/>
+    <copyright/>
   </main>
 </template>
 
@@ -115,16 +116,13 @@ export default {
 
   components: {
     tokenHeader: require('@/components/header').default,
-    tokenFooter: require('@/components/footer').default
+      tokenFooter: require('@/components/footer').default,
+      copyright: require('@/components/copyright').default
   }
 }
 </script>
 
 <style scoped>
-  #app {
-    background-color: #f4f4f4;
-  }
-
   .container {
     padding: 30px 100px;
   }
