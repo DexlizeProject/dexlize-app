@@ -5,11 +5,11 @@ module.exports = {
   devServer: {
     proxy: ''
   },
-    configureWebpack:{
-    plugins:[
-        new BundleAnalyzerPlugin()
-    ]
-    }
+    // configureWebpack:{
+    // plugins:[
+    //     new BundleAnalyzerPlugin()
+    // ]
+    // }
   // protocol_types: [{
   // 	'protocol_name': 'PUB',
   // 	'description': {
