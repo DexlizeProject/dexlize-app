@@ -48,7 +48,7 @@
 
         components: {
             aboutKyubey: require('./components/kyubey/about-kyubey').default,
-            kbyTransaction: require('@/pages/components/kby-transaction').default,
+            kbyTransaction: require('@/pages/components/kyubey/kby-transaction').default,
             currentRoundInformation: require('@/pages/components/kyubey/current-round-information').default,
             currentReservation: require('@/pages/components/kyubey/current-reservation').default
         }
