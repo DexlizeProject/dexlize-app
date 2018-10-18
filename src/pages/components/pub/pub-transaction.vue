@@ -132,22 +132,14 @@ import { feePercent, hexTransform } from '@/utils/math';
 export default {
   mounted() {
     if (typeof scatter === 'undefined' && (typeof this.account.bitportal === 'undefined')) return;
-    this.getEOSBalance();
     this.getBalance();
-    this.getToken();
-    this.fetchReferFee();
   },
 
   data() {
     return {
-      eos_balance: '',
       balance: '',
       loading: false,
-      feePercent: '',
-      referFeePercent: '',
       currentTab: 1,
-      token_eos: '',
-      token_stake: '',
       form: {
         buy: {
           amount: ''
@@ -165,26 +157,15 @@ export default {
 
   watch: {
     account() {
-      this.getEOSBalance();
       this.getBalance();
-      this.getToken();
-      this.fetchReferFee();
     },
 
     token() {
       this.getBalance(); 
-      this.getToken();
-      this.fetchReferFee();
     }
   },
 
   methods: {
-    getEOSBalance() {
-      api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
-        this.eos_balance = row[0];
-        console.log('eos_balance', this.eos_balance);
-      });
-    },
     getBalance() {
       api.getTableRows({
         json: true,
@@ -207,33 +188,6 @@ export default {
         }
         this.balance = balance.balance;
       });
-    },
-    getToken() {
-      api.getTableRows({
-        json: true,
-        code: 'tokendapppub',
-        scope: this.token.toUpperCase(),
-        table: 'games'
-      }).then(({ rows }) => {
-        this.feePercent = feePercent(rows[0]);
-        this.token_eos = hexTransform(rows[0].eos);
-        this.token_stake = rows[0].stake/10000;
-        console.log('token', this.feePercent, this.token_eos, this.token_stake)
-      });
-    },
-    fetchReferFee() {
-      api.getTableRows({
-        json: true,
-        code: 'tokendapppub',
-        scope: this.token.toUpperCase(),
-        table: 'refer'
-      }).then(({ rows }) => {
-        if (rows.length == 1) {
-          this.referFeePercent = rows[0].fee_percent/100;
-        } else {
-          this.referFeePercent = 0;
-        }  
-      }); 
     },
     buy() {
       if (this.account.bitportal) {
@@ -482,10 +436,24 @@ export default {
     account() {
       return this.$store.state.account;
     },
-
+      feePercent(){
+        return this.$store.state.pub.about.feePercent;
+      },
+      token_eos(){
+          return this.$store.state.pub.about.token_eos;
+      },
+      token_stake(){
+          return this.$store.state.pub.about.token_stake;
+      },
+      eos_balance(){
+        return this.$store.state.eos_balance;
+      },
     token() {
       return this.$store.state.token;
     },
+      referFeePercent(){
+        return this.$store.state.pub.referFeePercent;
+      },
 
       sellFee() {
         return (this.form.sell.amount * this.feePercent / 100).toFixed(4);

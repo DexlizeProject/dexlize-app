@@ -13,6 +13,7 @@ export default new Vuex.Store({
         token,
         tradeDisabled: false,
         about: {},
+        eosBalance: '',
         balance: {
             max_supply: '',
             decimals: ''
@@ -54,6 +55,9 @@ export default new Vuex.Store({
             state.pub.about.eosPool = (hexTransform(about.eos) - hexTransform(about.base_eos)).toFixed(4);
             state.pub.about.currentPrice = (1 / ((parseInt(about.stake)/10000) / (hexTransform(about.eos)))).toFixed(8);
             state.pub.about.stakeRatio = ((1 - (about.stake / (parseInt(about.base_stake) + parseInt(about.claimed_option)))) * 100).toFixed(4);
+
+            state.pub.about.token_eos = hexTransform(about.eos);
+            state.pub.about.token_stake = about.stake/10000;
         },
 
         UPDATE_PUB_REFER_FEE_PERCENT(state, referFeePercent){
@@ -62,7 +66,11 @@ export default new Vuex.Store({
             } else {
                 state.pub.referFeePercent = 0;
             }
+        },
+
+        UPDATE_EOS_BALANCE(state, balance){
+            this.eos_balance = balance;
         }
-    }
+}
 });
 

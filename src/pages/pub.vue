@@ -17,7 +17,7 @@
 
     export default {
         mounted() {
-            this.getInitialData()
+            this.getInitialData();
         },
         watch: {
             token() {
@@ -25,6 +25,7 @@
             },
             account() {
                 this.getBalance();
+                this.getEOSBalance();
             }
         },
         data() {
@@ -35,11 +36,15 @@
         computed: {
             token() {
                 return this.$store.state.token;
+            },
+            account(){
+                return this.$store.state.account;
             }
         },
         methods: {
             getInitialData() {
                 this.getBalance();
+                this.getEOSBalance();
                 this.fetchToken();
                 this.fetchReferFee();
             },
@@ -72,8 +77,12 @@
                 }).then(({rows}) => {
                     this.$store.commit('UPDATE_PUB_REFER_FEE_PERCENT', rows)
                 });
+            },
+            getEOSBalance() {
+                api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
+                    this.$store.commit('UPDATE_EOS_BALANCE', row[0]);
+                });
             }
-
         },
         created() {
             document.addEventListener('scatterLoaded', () => {
