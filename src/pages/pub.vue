@@ -51,7 +51,6 @@ export default {
     pubTransaction: require('./components/pub/pub-transaction').default,
     pubChart: require('./components/pub/pub-chart').default,
     orders: require('./components/pub/orders').default,
-    tradeForm: require('@/components/trade').default,
       aboutPub: require('./components/pub/about-pub').default
   }
 }
