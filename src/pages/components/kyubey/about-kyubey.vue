@@ -70,9 +70,6 @@ export default {
   },
 
   methods: {
-    openTab(url) {
-      window.open(url);
-    },
     closeDialog(){
       console.log('close')
       this.$emit('close-dialog')
