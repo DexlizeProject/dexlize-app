@@ -30,7 +30,6 @@
 import Echarts from 'echarts';
 import chartConfig from './chart-config';
 import fetch from '@/utils/api';
-import api from '@/utils/eos';
 import { feePercent, hexTransform } from '@/utils/math';
 
 
