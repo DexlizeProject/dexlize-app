@@ -12,25 +12,15 @@ export default new Router({
           component: require('@/pages/home').default
       },
     {
-      path: '/tokens',
-      name: 'tokens',
-      component: require('@/pages/tokens').default
+      path: '/pub',
+      name: 'pub',
+      component: require('@/pages/pub').default
     },
       {
         path: '/kyubey',
           name: 'kyubey',
           component: require('@/pages/kyubey').default
       }
-    // {
-    //   path: '/tokens/publish',
-    //   name: 'publish',
-    //   component: require('@/pages/publish').default
-    // },
-    // {
-    //   path: '/tokens/termsheet',
-    //   name: 'termsheet',
-    //   component: require('@/pages/termsheet').default
-    // }
   ] 
 });
 

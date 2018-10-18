@@ -1,7 +1,7 @@
 <template>
   <section class="token-chart card">
     <div class="token-chart-info">
-      <div class="token-chart-title"><div class="blue-circle"></div> {{this.$store.state.token}} - EOS</div>
+      <div class="token-chart-title"><div class="blue-circle"></div> {{this.$store.state.token.toUpperCase()}} - EOS</div>
       <div class="token-chart-price">{{$t('currentPrice')}}: {{currentPrice}} EOS</div>
       <div class="token-chart-price">EOS {{$t('pool')}}: {{eosPool}} EOS</div>
       <div class="token-chart-price">
@@ -28,7 +28,7 @@
 
 <script>
 import Echarts from 'echarts';
-import chartConfig from '../chart-config';
+import chartConfig from './chart-config';
 import fetch from '@/utils/api';
 import api from '@/utils/eos';
 import { feePercent, hexTransform } from '@/utils/math';

@@ -6,7 +6,6 @@
         <current-round-information/>
         <kby-transaction/>
         <current-reservation/>
-
         <el-dialog :visible.sync="showAboutKyubey">
             <about-kyubey v-on:close-dialog="showAboutKyubey = false"/>
         </el-dialog>
@@ -48,10 +47,10 @@
         },
 
         components: {
-            aboutKyubey: require('@/components/about-kyubey').default,
+            aboutKyubey: require('./components/kyubey/about-kyubey').default,
             kbyTransaction: require('@/pages/components/kby-transaction').default,
-            currentRoundInformation: require('@/pages/components/current-round-information').default,
-            currentReservation: require('@/pages/components/current-reservation').default
+            currentRoundInformation: require('@/pages/components/kyubey/current-round-information').default,
+            currentReservation: require('@/pages/components/kyubey/current-reservation').default
         }
 
     }

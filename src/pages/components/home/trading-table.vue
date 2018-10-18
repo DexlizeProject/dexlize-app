@@ -43,8 +43,8 @@
         },
         methods:{
             viewTokenDetail(tokenType) {
-                const url = tokenType === 'PUB' ? new URL('/tokens', location.href) : new URL('/kyubey', location.href);
-                url.searchParams.set('token', tokenType);
+                const url = tokenType === 'PUB' || tokenType === 'TPT' ? new URL('/pub', location.href) : new URL('/kyubey', location.href);
+                // url.searchParams.set('token', tokenType);
                 location.href = url;
             }
         }

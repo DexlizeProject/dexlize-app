@@ -113,8 +113,8 @@ export default {
         },
     },
     components: {
-        tradingSwitch: require('@/pages/components/trading-switch').default,
-        tradingTable: require('@/pages/components/trading-table').default
+        tradingSwitch: require('@/pages/components/home/trading-switch').default,
+        tradingTable: require('@/pages/components/home/trading-table').default
     }
 }
 </script>

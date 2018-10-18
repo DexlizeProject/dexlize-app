@@ -3,11 +3,11 @@
     <div class="header-what-is" @click="showTokenAbout = !showTokenAbout">
       <span class="icon-info"/> What is {{this.$store.state.token}}?
     </div>
-    <token-chart />
-    <token-info />
-    <token-orders />
+    <pub-chart />
+    <pub-transaction />
+    <orders />
     <el-dialog :visible.sync="showTokenAbout">
-      <token-about v-on:close-dialog="showTokenAbout = false"/>
+      <about-pub v-on:close-dialog="showTokenAbout = false"/>
     </el-dialog>
   </div>
 </template>
@@ -48,11 +48,11 @@ export default {
   },
 
   components: {
-    tokenInfo: require('./components/token-info').default,
-    tokenChart: require('./components/token-chart').default,
-    tokenOrders: require('./components/orders').default,
+    pubTransaction: require('./components/pub/pub-transaction').default,
+    pubChart: require('./components/pub/pub-chart').default,
+    orders: require('./components/pub/orders').default,
     tradeForm: require('@/components/trade').default,
-      tokenAbout: require('@/components/token-about').default
+      aboutPub: require('./components/pub/about-pub').default
   }
 }
 </script>

@@ -4,13 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const url = new URL(location.href);
-let token = url.searchParams.get('token');
-
-if (!token) {
-  token = 'PUB';
-  url.searchParams.set('token', token); 
-  history.pushState('', '', url.toString());
-}
+let token = url.pathname.slice(1)
 
 export default new Vuex.Store({
   state: {

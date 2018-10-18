@@ -8,9 +8,9 @@
         <span>{{$t('switchLanguage')}}</span>
       </div>
 
-      <div class="banner-options" v-if="this.$router.currentRoute.name === 'tokens'">
+      <div class="banner-options" v-if="this.$router.currentRoute.name === 'pub'">
         <div class="banner-option" style="text-align: left;">
-          <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
+          <button class="banner-option-btn" @click="toggleTokenList"><div class="blue-circle"></div> {{this.$store.state.token.toUpperCase()}} <font-awesome-icon v-show="!showTokenList" icon="caret-down"/><font-awesome-icon v-show="showTokenList" icon="caret-up"/></button>
         </div>
         <div class="banner-option"></div>
         <div class="banner-option" style="text-align: right;">
