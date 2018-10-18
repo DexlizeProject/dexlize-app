@@ -82,7 +82,6 @@
   export default {
     mounted() {
       // if (this.account.name) return;
-      this.getEOSBalance();
       this.getBalance();
       // this.getToken();
       // this.fetchReferFee();
@@ -95,7 +94,6 @@
     data() {
         return {
             balance: "",
-            eos_balance: "",
             keyword: "",
             showTokenList: false,
             showMyAccount: false
@@ -105,11 +103,6 @@
     methods: {
         switchLanguage(){
             this.$i18n.locale = this.$i18n.locale === 'en' ? 'zh' : 'en'
-        },
-        getEOSBalance() {
-          api.getCurrencyBalance('eosio.token', this.account.name, 'EOS').then((row) => {
-            this.eos_balance = row[0];
-          });
         },
         getBalance() {
           api.getTableRows({
@@ -217,6 +210,10 @@
 
       locale() {
           return this.$i18n.locale
+      },
+
+      eos_balance(){
+          return this.$store.eos_balance;
       }
     },
 
@@ -226,7 +223,6 @@
         this.$store.commit('UPDATE_TOKEN', to.query.token);
       },
       balance() {
-        this.getEOSBalance()
         this.getBalance()
       }
     }

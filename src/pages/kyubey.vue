@@ -13,10 +13,28 @@
 </template>
 
 <script>
+    import api from '@/utils/eos';
     export default {
+        mounted(){
+            this.fetchToken();
+        },
         data(){
             return {
                 showAboutKyubey: false
+            }
+        },
+        methods: {
+            fetchToken() {
+                // get market data and init the supply and balance of market from eos by contract
+                api.getTableRows({
+                    json: true,
+                    code: 'dacincubator',
+                    scope: 'dacincubator',
+                    table: 'market'
+                }).then(({rows}) => {
+                    this.$store.commit('UPDATE_KBY_ABOUT', rows[0])
+
+                });
             }
         },
         created() {

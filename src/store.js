@@ -22,7 +22,7 @@ export default new Vuex.Store({
             about:{},
             referFeePercent:''
         },
-        kyubey:{
+        kby:{
             about:{}
         }
     },
@@ -58,6 +58,11 @@ export default new Vuex.Store({
 
             state.pub.about.token_eos = hexTransform(about.eos);
             state.pub.about.token_stake = about.stake/10000;
+        },
+
+        UPDATE_KBY_ABOUT(state, market){
+            state.kby.about.marketSupply = market.supply;
+            state.kby.about.marketBalance = market.balance;
         },
 
         UPDATE_PUB_REFER_FEE_PERCENT(state, referFeePercent){
