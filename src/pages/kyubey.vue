@@ -41,27 +41,6 @@
             this.$root.$on('close-dialog', () => {
                 this.showAboutKyubey = false;
             })
-            // document.addEventListener('scatterLoaded', () => {
-            //     if (!scatter.identity) return;
-            //     const account = scatter.identity.accounts.find(account => account.blockchain === 'eos');
-            //     if (!account) return;
-            //     this.$store.commit('UPDATE_ACCOUNT', account)
-            // });
-            //
-            // document.addEventListener('bitportalapi', () => {
-            //     const bitportal = window.bitportal;
-            //     window.bitportal = null;
-            //
-            //     bitportal.getCurrentWallet().then(data => {
-            //         const account = {
-            //             name: data.account,
-            //             authority: data.permission,
-            //             publicKey: data.publicKey,
-            //             bitportal
-            //         };
-            //         this.$store.commit('UPDATE_ACCOUNT', account)
-            //     });
-            // });
         },
 
         components: {
