@@ -52,6 +52,8 @@ export default new Vuex.Store({
             state.pub.about = about;
             state.pub.about.feePercent = feePercent(about);
             state.pub.about.eosPool = (hexTransform(about.eos) - hexTransform(about.base_eos)).toFixed(4);
+            state.pub.about.currentPrice = (1 / ((parseInt(about.stake)/10000) / (hexTransform(about.eos)))).toFixed(8);
+            state.pub.about.stakeRatio = ((1 - (about.stake / (parseInt(about.base_stake) + parseInt(about.claimed_option)))) * 100).toFixed(4);
         },
 
         UPDATE_PUB_REFER_FEE_PERCENT(state, referFeePercent){

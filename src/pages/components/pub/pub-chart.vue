@@ -1,12 +1,12 @@
 <template>
   <section class="token-chart card">
     <div class="token-chart-info">
-      <div class="token-chart-title"><div class="blue-circle"></div> {{this.$store.state.token.toUpperCase()}} - EOS</div>
-      <div class="token-chart-price">{{$t('currentPrice')}}: {{currentPrice}} EOS</div>
-      <div class="token-chart-price">EOS {{$t('pool')}}: {{eosPool}} EOS</div>
+      <div class="token-chart-title"><div class="blue-circle"></div> {{token}} - EOS</div>
+      <div class="token-chart-price">{{$t('currentPrice')}}: {{about.currentPrice}} EOS</div>
+      <div class="token-chart-price">EOS {{$t('pool')}}: {{about.eosPool}} EOS</div>
       <div class="token-chart-price">
         <div class="chart-price-ratio">
-          {{$t('stakeRatio')}}: {{stakeRatio}}%
+          {{$t('stakeRatio')}}: {{about.stakeRatio}}%
         </div>
         <ul class="token-filter">
           <li
@@ -38,25 +38,18 @@ export default {
   mounted() {
     this.$refs.chart.style.height = window.innerHeight / 3 + 'px';
     this.chart = Echarts.init(this.$refs.chart);
-
     this.fetchTrending();
-    this.fetchToken();
-
     window.onresize = this.chart.resize;
   },
 
   data() {
     return {
-      interval: '1h',
-      eosPool: '',
-      currentPrice: '',
-      stakeRatio: ''
+      interval: '1h'
     };
   },
 
   watch: {
     token() {
-        this.fetchToken();
       this.fetchTrending();
     }
   },
@@ -64,12 +57,15 @@ export default {
   computed: {
     token() {
       return this.$store.state.token;
+    },
+    about() {
+        return this.$store.state.pub.about
     }
   },
 
   methods: {
     fetchTrending() {
-        console.log(`token/kline?symbol=${this.token.toUpperCase()}&interval=${this.interval}&limit=50`);
+        // console.log(`token/kline?symbol=${this.token.toUpperCase()}&interval=${this.interval}&limit=50`);
       fetch(`token/kline?symbol=${this.token.toUpperCase()}&interval=${this.interval}&limit=50`).then(({ data }) => {
         const dates = data.map(({ time }) => {
           const date = new Date(time);
@@ -83,19 +79,6 @@ export default {
         this.chart.setOption(chartConfig);
       });
     },
-      fetchToken() {
-          api.getTableRows({
-              json: true,
-              code: 'tokendapppub',
-              scope: this.token.toUpperCase(),
-              table: 'games'
-          }).then(({ rows }) => {
-            this.eosPool = (hexTransform(rows[0].eos) - hexTransform(rows[0].base_eos)).toFixed(4);
-            this.currentPrice = (1 / ((parseInt(rows[0].stake)/10000) / (hexTransform(rows[0].eos)))).toFixed(8);
-            this.stakeRatio = ((1 - (rows[0].stake / (parseInt(rows[0].base_stake) + parseInt(rows[0].claimed_option)))) * 100).toFixed(4);
-      });
-      },
-
     changeInterval(interval) {
       this.interval = interval;
       this.fetchTrending();
