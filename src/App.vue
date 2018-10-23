@@ -2,7 +2,7 @@
   <main id="app">
     <div v-show="showAppShadow" class="app-shadow" @click="hideDialogAndShadow"></div>
     <token-header v-on:show-shadow="showShadow" v-on:hide-shadow="hideShadow" />
-    <dex-alert type="warning">
+    <dex-alert type="warning" v-if="showAlert">
       <font-awesome-icon icon="exclamation-circle" size="2x"/>
       <span class="dex-alert-content">Token `{{token.toUpperCase()}}` not exist,
         <router-link class="create-link" :to="{ name: 'publish' }">publish one</router-link>
