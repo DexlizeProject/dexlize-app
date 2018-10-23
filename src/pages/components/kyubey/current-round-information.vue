@@ -19,7 +19,7 @@
                 <div class="information-value">{{reservedAccounts}}</div>
             </div>
         </div>
-        <el-dialog :visible.sync="showReferencePrice">
+        <dex-dialog :visible.sync="showReferencePrice">
             <div class="card">
                 <div class="card-header">
                     <div class="card-nav">
@@ -31,7 +31,7 @@
                     {{$t('whyNoPriceExplain')}}
                 </div>
             </div>
-        </el-dialog>
+        </dex-dialog>
     </div>
 </template>
 
@@ -54,7 +54,7 @@
     },
     methods: {
         closeDialog(){
-            this.$emit('close-dialog')
+            this.$root.$emit('close-dialog')
         },
         initRoundInfo() {
             // init the info

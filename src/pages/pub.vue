@@ -6,9 +6,9 @@
         <pub-chart/>
         <pub-transaction/>
         <orders/>
-        <el-dialog :visible.sync="showTokenAbout">
-            <about-pub v-on:close-dialog="showTokenAbout = false"/>
-        </el-dialog>
+        <dex-dialog :visible.sync="showTokenAbout">
+            <about-pub/>
+        </dex-dialog>
     </div>
 </template>
 

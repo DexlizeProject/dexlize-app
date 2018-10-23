@@ -61,7 +61,7 @@
 
         methods: {
             closeDialog() {
-                this.$emit('close-dialog')
+                this.$root.$emit('close-dialog')
             }
         }
     };

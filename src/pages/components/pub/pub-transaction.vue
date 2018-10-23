@@ -39,11 +39,11 @@
             </div>
           </div>
           <footer class="trade-footer" slot="footer">
-            <el-button
+            <button
                     @click="buy"
                     :loading="loading"
                     :disabled="!form.buy.amount || !account.name"
-                    class="btn-trade btn-buy">{{$t('buy')}}</el-button>
+                    class="btn-trade btn-buy">{{$t('buy')}}</button>
           </footer>
         </div>
       </div>
@@ -77,11 +77,11 @@
           </div>
 
           <footer class="trade-footer" slot="footer">
-            <el-button
+            <button
                     @click="sell"
                     :loading="loading"
                     :disabled="!form.sell.amount || !account.name"
-                    class="btn-trade btn-sell">{{$t('sell')}}</el-button>
+                    class="btn-trade btn-sell">{{$t('sell')}}</button>
           </footer>
         </div>
       </div>
@@ -111,11 +111,11 @@
           </div>
 
           <footer class="trade-footer" slot="footer">
-            <el-button
+            <button
                     @click="transfer"
                     :loading="loading"
                     :disabled="!form.transfer.to || !form.transfer.amount"
-                    class="btn-trade blue-gradient">{{$t('transfer')}}</el-button>
+                    class="btn-trade blue-gradient">{{$t('transfer')}}</button>
           </footer>
         </div>
       </div>

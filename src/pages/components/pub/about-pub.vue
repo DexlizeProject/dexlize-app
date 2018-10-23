@@ -78,7 +78,7 @@
         },
         methods: {
             closeDialog() {
-                this.$emit('close-dialog')
+                this.$root.$emit('close-dialog')
             },
             timeFormat(raw) {
                 const date = new Date(raw * 1000);

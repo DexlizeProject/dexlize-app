@@ -2,17 +2,23 @@
   <main id="app">
     <div v-show="showAppShadow" class="app-shadow" @click="hideDialogAndShadow"></div>
     <token-header v-on:show-shadow="showShadow" v-on:hide-shadow="hideShadow" />
-    <el-alert
-      title=""
-      show-icon
-      v-if="showAlert"
-      type="warning"
-      :closable="false">
-      Token `{{token.toUpperCase()}}` not exist,
-      <router-link
-        class="create-link"
-        :to="{ name: 'publish' }">publish one</router-link>
-    </el-alert>
+    <dex-alert type="warning">
+      <font-awesome-icon icon="exclamation-circle" size="2x"/>
+      <span class="dex-alert-content">Token `{{token.toUpperCase()}}` not exist,
+        <router-link class="create-link" :to="{ name: 'publish' }">publish one</router-link>
+      </span>
+    </dex-alert>
+    <!--<el-alert-->
+      <!--title=""-->
+      <!--show-icon-->
+      <!--v-if="showAlert"-->
+      <!--type="warning"-->
+      <!--:closable="false">-->
+      <!--Token `{{token.toUpperCase()}}` not exist,-->
+      <!--<router-link-->
+        <!--class="create-link"-->
+        <!--:to="{ name: 'publish' }">publish one</router-link>-->
+    <!--</el-alert>-->
     <div class="container router-container" :class="this.$router.currentRoute.name + '-page'">
       <router-view />
     </div>
@@ -39,7 +45,7 @@ export default {
       document.addEventListener('bitportalapi', () => {
         const bitportal = window.bitportal;
         window.bitportal = null;
-        
+
         bitportal.getCurrentWallet().then(data => {
           const account = {
             name: data.account,

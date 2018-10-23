@@ -6,9 +6,9 @@
         <current-round-information/>
         <kby-transaction/>
         <current-reservation/>
-        <el-dialog :visible.sync="showAboutKyubey">
-            <about-kyubey v-on:close-dialog="showAboutKyubey = false"/>
-        </el-dialog>
+        <dex-dialog :visible.sync="showAboutKyubey">
+            <about-kyubey/>
+        </dex-dialog>
     </div>
 </template>
 
