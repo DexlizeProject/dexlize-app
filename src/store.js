@@ -13,7 +13,7 @@ export default new Vuex.Store({
         token,
         tradeDisabled: false,
         about: {},
-        eosBalance: '',
+        eos_balance: '',
         balance: {
             max_supply: '',
             decimals: ''
@@ -74,7 +74,7 @@ export default new Vuex.Store({
         },
 
         UPDATE_EOS_BALANCE(state, balance){
-            this.eos_balance = balance;
+            state.eos_balance = balance;
         }
 }
 });
